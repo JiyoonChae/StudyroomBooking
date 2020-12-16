@@ -22,7 +22,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="${pageContext.request.contextPath}/">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -37,14 +37,27 @@
           </li>
         </ul>
       </div>
+      
         <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+      	<c:choose>
+      		<c:when test="${not empty member}">
+      			<li class="nav-item"><a class="nav-link" href="#">My Page</a></li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Sign Up</a>
+            <a class="nav-link" href="${pageContext.request.contextPath}/member/memberLogout">LogOut</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="member/memberLogin">Log In</a>
-          </li>
+      		</c:when>
+      		<c:otherwise>
+      			 <li class="nav-item">
+		            <a class="nav-link" href="#">Sign Up</a>
+			          </li>
+			          <li class="nav-item">
+			            <a class="nav-link" href="${pageContext.request.contextPath}/member/memberLogin">Log In</a>
+			          </li>
+      		</c:otherwise>
+      	</c:choose>
+         
+      
         </ul>
       </div>
     </div>

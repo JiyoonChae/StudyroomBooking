@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>StudyRoom Login</title>
+
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 <link href="../css/member/memberLogin.css" rel="stylesheet" type="text/css">
@@ -43,23 +44,79 @@
  	<a href="#">회원가입</a>
  	</p>
 
-<div class="naverbtn">
-	<img>
-	네이버 아이디로 로그인
+<p>
+	<div id="naverIdLogin"><a id="naverIdLogin_loginButton" href="#" role="button"><img src="https://static.nid.naver.com/oauth/big_g.PNG" width=320></a></div>
+</p>
+<div class="naverLogin">
+	<a id="naverbtn" href="#">
+		네이버 아이디로 로그인
+	</a>
 </div> 
 <br>
 <div class="kakaobtn">
 	<img>
 	카카오 아이디로 로그인
 </div>
+</form>
+</div>
 
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script type="text/javascript">
 	$(".logbtn").click(function(){
 		$("#frm").submit();
 		})
-</script>
 
-</form>
-</div>
+
+
+<!-- 네이버아디디로로그인 초기화 Script -->
+	<!-- (3) LoginWithNaverId Javscript 설정 정보 및 초기화 -->
+		window.name='opener';
+		var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "3mxLzdZN0uWCIguV1hC2",
+				callbackUrl: "http://localhost/member/memberNaverLogin",
+				isPopup: true,
+				loginButton: {color: "green", type: 3, height: 60},
+				callbackHandle: true
+			}
+		);
+		/* (4) 네아로 로그인 정보를 초기화하기 위하여 init을 호출 */
+		naverLogin.init();
+
+		
+		/* (4-1) 임의의 링크를 설정해줄 필요가 있는 경우 */
+		$("#gnbLogin").attr("href", naverLogin.generateAuthorizeUrl());
+
+		/* (5) 현재 로그인 상태를 확인 */
+		window.addEventListener('load', function () {
+			naverLogin.getLoginStatus(function (status) {
+				if (status) {
+					/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
+					setLoginStatus();
+				}
+			});
+		});
+
+		/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
+		function setLoginStatus() {
+			var profileImage = naverLogin.user.getProfileImage();
+			var nickName = naverLogin.user.getNickName();
+			var imageViewer = '';
+			if (profileImage) {
+				imageViewer += '<br><br><img src="' + profileImage + '" height=50 /> <p>';
+			}
+			$("#naverIdLogin_loginButton").html(imageViewer + nickName + '님 반갑습니다.</p>');
+			$("#gnbLogin").html("Logout");
+			$("#gnbLogin").attr("href", "#");
+			/* (7) 로그아웃 버튼을 설정하고 동작을 정의합니다. */
+			$("#gnbLogin").click(function (e) {
+				e.preventDefault();
+				naverLogin.logout();
+				location.replace('/oauth/sample/javascript_sample.html');
+			});
+		}
+	</script>
+<!-- // 네이버아이디로로그인 초기화 Script -->
+
 </body>
 </html>

@@ -10,6 +10,7 @@ public class MemberService {
 
 	
 	public MemberVO getMemberLogin(MemberVO memberVO) throws Exception{
+		System.out.println("왜 안넘어오지?????????");
 		return memberMapper.getMemberLogin(memberVO);
 	}
 }
