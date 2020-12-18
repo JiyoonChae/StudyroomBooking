@@ -54,7 +54,7 @@
 </div> 
 <br>
 <div class="kakaobtn">
-	<img>
+	<a href="https://kauth.kakao.com/oauth/authorize?client_id=db6b291272bd77842e5db5fa28f52e1a&redirect_uri=http://localhost/auth/kakao/callback&response_type=code"><img class="kakaoLogin" alt="" src="../images/kakao_login.png" /></a>
 	카카오 아이디로 로그인
 </div>
 </form>

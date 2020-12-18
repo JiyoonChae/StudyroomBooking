@@ -28,6 +28,7 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	
 	@RequestMapping(value ="personalInfo", method={RequestMethod.GET, RequestMethod.POST})
 	public void personalInfo(HttpServletRequest requeset)throws Exception{
 		String token ="AAAANjm6a2HyubXjEyyscLUO1zNrFB9xLzfiCQPGRoso--DsMZSMEmEc-MyFP6K9n7qXJtKZhCYwor3c3TAn-vJlc6Y";

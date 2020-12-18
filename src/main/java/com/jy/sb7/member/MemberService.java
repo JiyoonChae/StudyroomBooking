@@ -8,6 +8,10 @@ public class MemberService {
 	@Autowired
 	private MemberMapper memberMapper;
 
+	public int setMemberJoin(MemberVO memberVO) throws Exception{
+		System.out.println("회원가입 서비스----------");
+		return memberMapper.setMemberJoin(memberVO);
+	}
 	
 	public MemberVO getMemberLogin(MemberVO memberVO) throws Exception{
 		System.out.println("왜 안넘어오지?????????");
