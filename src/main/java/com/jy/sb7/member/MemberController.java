@@ -28,6 +28,10 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@GetMapping("memberJoin")
+	public void memberJoin() throws Exception{
+		
+	}
 	
 	@RequestMapping(value ="personalInfo", method={RequestMethod.GET, RequestMethod.POST})
 	public void personalInfo(HttpServletRequest requeset)throws Exception{

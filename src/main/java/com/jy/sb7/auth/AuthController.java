@@ -63,7 +63,7 @@ public class AuthController {
 			//Gson, Json Simple, ObjectMapper 라이브러리 중 선택하면됨. 
 		ObjectMapper objectMapper = new ObjectMapper(); //기본 내장되어있음
 		OAuthToken oauthToken = objectMapper.readValue(response.getBody(), OAuthToken.class);
-		System.out.println("카카오 엑세스 토근:"+oauthToken.getAccess_token());
+		System.out.println("카카오 엑세스 토큰:"+oauthToken.getAccess_token());
 		
 		//**********************사용자 정보 요청 **************************************
 		RestTemplate rt2 = new RestTemplate();
@@ -97,13 +97,19 @@ public class AuthController {
 		System.out.println("내서버 유저네임:"+kakaoProfile.getKakao_account().getEmail()+"_"+kakaoProfile.getId());
 		System.out.println("내서버 이메일:"+kakaoProfile.getKakao_account().getEmail());
 		System.out.println("내서버 패스워드:" +"kakao."+kakaoProfile.getId());
+	
 		
+		//
 		MemberVO memberVO = new MemberVO();
 				memberVO.setId(kakaoProfile.getKakao_account().getEmail()+"_"+kakaoProfile.getId());
 				memberVO.setPw("kakao."+kakaoProfile.getId());
 				memberVO.setEmail(kakaoProfile.getKakao_account().getEmail());
-		
-		memberService.setMemberJoin(memberVO);
+		//가입자 혹은 비가입자 체크해서 처리
+		//	memberService.memberCheck();
+				
+		//회원가입
+		int result = memberService.setMemberJoin(memberVO);
+		System.out.println("result: "+result);
 		return response2.getBody();  //getBody, getHeader따로 가져올수있음! 
 	}
 }

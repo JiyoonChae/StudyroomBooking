@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>StudyRoom Login</title>
+<title>Login | JY-StudyRoom</title>
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
@@ -21,10 +21,10 @@
  	로그인 후 다양한 서비스를 이용하세요!
  	</p>
  </div>
- 
+ <!-- Login Form 시작 -->
  <div class="login">
 	<form action="./memberLogin" method="post" id="frm">
-  <div class="form-group">
+ 	 <div class="form-group">
     <label for="id">ID</label>
     <input type="text" class="form-control" id="id" name="id">
   </div>
@@ -33,11 +33,12 @@
     <input type="password" class="form-control" id="pw" name="pw">
   </div>
   <div class="checkbox">
-    <label><input type="checkbox"> Remember me</label>
+    <label><input type="checkbox" id="save"> Remember me</label>
   </div>
   
+  <!--  로그인 버튼  -->
   <div class="logbtn">로그인</div>
-   <p class="save"> <input type="checkbox" id="save">아이디저장</p>
+
  	<p class="join">
  	<a href="#">아이디 찾기</a>
  	<a href="#">비밀번호 찾기</a>
