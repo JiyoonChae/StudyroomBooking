@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="./template/bootStrap.jsp"></c:import>
- 
+<link href="../css/common/header.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <c:import url="./template/header.jsp"></c:import>	
@@ -16,8 +16,13 @@
 
   <!-- Header1 - set the background image for the header in the line below -->
   <header class="py-5 bg-image-full" style="background-image: url('https://hd.sels.co.kr/images/main_bnrimg01.jpg');height: 619px;">
-    <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200&text=Logo" alt="">
-     <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Learn More</a>
+   	<ul>
+   		<li class="txt_type1">STUDY / MEET / CO-WORK </li>
+   		<li class="txt_type2">총 8개 단독룸으로 구성된 (24H) <br><b>프리미엄 모임공간 홍대점 오픈!</b></li>
+   	</ul>
+     <div class="midbtn">
+     <a href="#" class="btn btn-xl rounded-pill mt-5" >실시간 예약 바로가기</a>
+     </div>
   </header>
 
   <!-- Content 1 section -->
