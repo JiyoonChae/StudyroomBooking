@@ -1,6 +1,8 @@
 package com.jy.sb7.auth;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
@@ -27,7 +29,7 @@ public class AuthController {
 	private MemberService memberService;
 	
 	@GetMapping("kakao/callback")
-	public @ResponseBody String kakaoLogin(String code) throws Exception{ //responsebody는 DATA를 리턴해주는 컨트롤러 함수
+	public String kakaoLogin(String code, HttpSession session) throws Exception{ //responsebody는 DATA를 리턴해주는 컨트롤러 함수
 		//post 방식으로 key=value 데이터를 요청 (카카오쪽으로) 
 		//a태그로 요청하는 건 무조건 get방식.. 이때 필요한 라이브러리가 restTemplate
 		//HttpURLConnection 도 사용할 수있는데 쫌 불편?
@@ -100,16 +102,23 @@ public class AuthController {
 	
 		
 		//
-		MemberVO memberVO = new MemberVO();
-				memberVO.setId(kakaoProfile.getKakao_account().getEmail()+"_"+kakaoProfile.getId());
-				memberVO.setPw("kakao."+kakaoProfile.getId());
-				memberVO.setEmail(kakaoProfile.getKakao_account().getEmail());
+		MemberVO kakaoUser = new MemberVO();
+			kakaoUser.setId(kakaoProfile.getKakao_account().getEmail()+"_"+kakaoProfile.getId());
+			kakaoUser.setPw("kakao."+kakaoProfile.getId());
+			kakaoUser.setEmail(kakaoProfile.getKakao_account().getEmail());
 		//가입자 혹은 비가입자 체크해서 처리
-		//	memberService.memberCheck();
+			MemberVO	originUser = memberService.memberCheck(kakaoUser);
+				if(originUser == null) {
+					//회원가입
+					int result = memberService.setMemberJoin(kakaoUser);
+					System.out.println("result: "+result);
+				}
 				
-		//회원가입
-		int result = memberService.setMemberJoin(memberVO);
-		System.out.println("result: "+result);
-		return response2.getBody();  //getBody, getHeader따로 가져올수있음! 
+				//로그인 처리
+				originUser = memberService.getMemberLogin(kakaoUser);
+				session.setAttribute("member", originUser);
+				System.out.println("로그인 완료: ");
+		return "redirect:/";  
+				//response2.getBody();  //getBody, getHeader따로 가져올수있음! 
 	}
 }

@@ -178,40 +178,72 @@
 		<!-- path는 parameter 이름!! -->
 		<div class="form-group">
 		<label for="id">id </label>
-		<input path="id" class="form-control"/>
+		<input type="text" id="id" class="form-control"/>
 		
 		</div>
 		
 		<div class="form-group">
 		<label for="pw">PW </label>
-		<input path="pw" class="form-control"/>
+		<input type="text" id="pw" class="form-control"/>
 	
 		</div>
 		
 		<div class="form-group">
 		<label for="pw">PW </label>
-		<input path="pw2" class="form-control"/>
+		<input type="text" id="pw2" class="form-control"/>
 		
 		</div>
 		
 		<div class="form-group">
 		<label for="name">name </label>
-		<input path="name" class="form-control"/>
+		<input type="name" id="name" class="form-control"/>
 		
 		</div>
 		
 		
 		<div class="form-group">
 		<label for="email">Email </label>
-		<input path="email" class="form-control"/>
+		<input type="email" id="email" class="form-control"/>
 		
 		</div>
-			
-			<button type="submit" class="btn btn-default">Write</button>
-		
-		
-		
 		</form>
+		<button id="btn-save" class="btn btn-warning">회원가입</button>
 	</div>
+	
+	
+	<script type="text/javascript">
+	function init(){
+		$("#btn-save").on("click", ()=>{
+			this.save();
+			});
+	}
+
+		function save() {
+			//alert("user의 save 함수");
+			let data ={
+				id: $("#id").val(),
+				pw: $("#pw").val(),
+				name:$("#name").val(),
+				email: $("#email").val()
+					};
+			//console.log(data); ->자바스크립트 오브젝트
+			//ajax통신을 이용해서 파라미터(데이터)를 json으로 변경하여 insert요청.
+			$.ajax({
+				type: "POST",
+				url:"/api/member",
+				data: JSON.stringify(data), //위에 data 객체를 java로 보낼 때 json으로 변경해서 보내야함. http body 데이터!
+				contentType: "application/json; charset=utf-8", // body데이터가 어떤 데이터타입인지 알려주는 것
+				dataType: "json" //요청을 서버로해서 응답이 왔을 때 기본적으로 모든 것이 string인 json형식으로 오는데 =>javascript 오브젝트로 변환시켜줌
+				}).done(function(response){
+					alert("회원가입이 완료되었습니다");
+					alert(response);
+					location.href="/";
+						}).fail(function(error){
+								alert(JSON.stringify(error));
+								});  
+		}
+
+		init();
+	</script>
 </body>
 </html>

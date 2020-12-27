@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 
 
@@ -29,8 +30,10 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@GetMapping("memberJoin")
-	public void memberJoin() throws Exception{
-		
+	public ModelAndView memberJoin() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("title", "회원가입");
+		return mv;
 	}
 	
 	@RequestMapping(value ="personalInfo", method={RequestMethod.GET, RequestMethod.POST})

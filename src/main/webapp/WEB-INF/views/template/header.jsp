@@ -6,6 +6,7 @@
 <head>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
 <style type="text/css">
  *{font-family: 'Montserrat', sans-serif;}
 </style>
@@ -49,7 +50,7 @@
       		</c:when>
       		<c:otherwise>
       			 <li class="nav-item">
-		            <a class="nav-link" href="#">Sign Up</a>
+		            <a class="nav-link" href="${pageContext.request.contextPath}/member/memberJoin">Sign Up</a>
 			          </li>
 			          <li class="nav-item">
 			            <a class="nav-link" href="${pageContext.request.contextPath}/member/memberLogin">Log In</a>
