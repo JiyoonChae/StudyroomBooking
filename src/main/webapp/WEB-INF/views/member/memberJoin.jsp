@@ -9,7 +9,10 @@
 <title>회원가입</title>
 <c:import url="../template/bootStrap.jsp"></c:import>
 <link href="../css/member/memberJoin.css" rel="stylesheet" type="text/css">
-
+<style> 
+	.idCheck0 { color: blue;}
+	.idCheck1 { color: red;}
+</style>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
@@ -176,6 +179,7 @@
 		<div class="form-group">
 		<label for="id">아이디</label>
 		<input type="text" id="id" class="form-control"/>
+		 <div id="idResult"></div>
 		</div>
 		
 		<div class="form-group">
@@ -186,6 +190,7 @@
 		<div class="form-group">
 		<label for="pw">비밀번호 확인 </label>
 		<input type="text" id="pw2" class="form-control"/>
+		<div id="pwResult"></div>
 		</div>
 		
 		<div class="form-group">
@@ -203,12 +208,19 @@
 	
 	
 	<script type="text/javascript">
+	var idCheck = false;
+	var pwCheck = false;
 	function init(){
 		$("#btn-save").on("click", ()=>{
-			this.save();
+			if(idCheck&&pwCheck){
+				this.save();
+				}else{
+					alert("no");
+					}
+		
 			});
 	}
-
+	//***********************회원가입 DB로 보내기
 		function save() {
 			//alert("user의 save 함수");
 			let data ={
@@ -236,6 +248,56 @@
 		}
 
 		init();
+
+		//****************id 중복 체크 ***************************
+		$("#id").blur(function(){
+			var id =$(this).val();
+			//alert(id);
+			if(id != ''){
+				$.ajax({
+					url: "./memberCheck",
+					type: "get",
+					data: {id:id},
+					success: function(data){
+						
+						data = data.trim();
+						var str ="중복된 id 입니다";
+						if(data==0){
+							str="사용 가능한 id입니다"
+								console.log("dddd"+str)
+							idCheck=true;
+							$("#idResult").removeClass("idCheck1").addClass("idCheck0");
+							}else{
+								$("#idResult").addClass("idCheck1");
+								idCheck=false;
+								}
+						$("#idResult").html(str);
+					}
+					})
+				}else{
+				$("#idResult").html("id를 입력하세요");
+				$("#idResult").addClass("idCheck1");
+				} 
+			
+			}) //************id 중복 체크 완료 *****************************
+
+			//******************pw 일치 체크 *******************************
+			$("#pw2").blur(function(){
+				var pw = $("#pw").val();
+				var pw2 =$(this).val();
+				pwCheck=false;
+				if(pw2==''){
+					$("#pwResult").html("Password를 입력하세요");
+					$("#pwResult").removeClass("idCheck0").addClass("idCheck1");
+					}else if(pw==pw2){
+						$("pwResult").html("Password가 일치합니다")
+						$("pwResult").removeClass("idCheck1").addClass("idCheck0");
+						pwCheck=true;
+						}else {
+							$("#pwResult").html("Password가 일치하지 않습니다");
+							$("#pwResult").removeClass("idCheck0").addClass("idCheck1");
+							}
+				})
 	</script>
 </body>
 </html>

@@ -99,6 +99,23 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:../";
 	}
+	
+	@GetMapping("memberCheck")
+	public ModelAndView getIdCheck(MemberVO memberVO) throws Exception{
+		System.out.println("membercheck:"+memberVO.getId());
+		System.out.println("email:"+memberVO.getEmail());
+		ModelAndView mv = new ModelAndView();
+		memberVO = memberService.memberCheck(memberVO);
+		System.out.println(memberVO);
+		int result =1; //중복일때
+		if(memberVO ==null) {
+			result=0;
+		}
+		mv.addObject("msg", result);
+		mv.setViewName("common/result");
+		return mv;
+	}
+	
 	//login
 	@PostMapping("memberLogin")
 	public ModelAndView getMemberLogin (MemberVO memberVO, HttpSession session) throws Exception{
