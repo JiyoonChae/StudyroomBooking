@@ -16,7 +16,6 @@ ul,li,ol {list-style:none;}
 </style>
 </head>
 <body>
-
 	<div class="subtitle">
 		<ul class="title02">
 			<h2>
@@ -25,7 +24,6 @@ ul,li,ol {list-style:none;}
 				로그인
 			</h2>
 		</ul>
-	
 	</div>
 </body>
 </html>
