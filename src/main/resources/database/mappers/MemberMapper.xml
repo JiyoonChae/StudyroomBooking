@@ -7,6 +7,14 @@
   	<select id="getMemberLogin" parameterType="MemberVO" resultType="MemberVO">
   		select * from member where id=#{id} and pw=#{pw}
   	</select>
+  	
+  	<insert id="setMemberJoin" parameterType="MemberVO">
+  		insert into member (id, pw, name, email, phone, adminNum, type, joinPath, joinDate) values(#{id}, #{pw}, #{name}, #{email}, '010-2222-3333', null, 1, #{joinPath}, sysdate());
+  	</insert>
+  	
+  	<select id="memberCheck" parameterType="MemberVO" resultType="MemberVO">
+  		select * from member where email =#{email}
+  	</select>
   
   
   

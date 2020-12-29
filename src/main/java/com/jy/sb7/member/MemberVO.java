@@ -14,6 +14,21 @@ public class MemberVO {
 	private String phone;
 	private long adminNum;
 	private long type;
-	private String joinPath;
+	private String joinPath; //kakao, naver
 	private Date joinDate;
+	
+	public String getName() {
+		if(this.name == null) {
+			this.name="name";
+		}
+		return name;
+	}
+	public void setName(String name) {
+		if(this.name==null) {
+			this.name="name";
+		}
+		this.name = name;
+	}
+	
+	
 }
