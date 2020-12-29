@@ -224,7 +224,8 @@
 				id: $("#id").val(),
 				pw: $("#pw").val(),
 				name:$("#name").val(),
-				email: $("#email").val()
+				email: $("#email").val(),
+				joinPath: "home"
 					};
 			//console.log(data); ->자바스크립트 오브젝트
 			//ajax통신을 이용해서 파라미터(데이터)를 json으로 변경하여 insert요청.

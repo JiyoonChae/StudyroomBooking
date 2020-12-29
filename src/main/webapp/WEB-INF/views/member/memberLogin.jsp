@@ -65,8 +65,33 @@
 <script type="text/javascript">
 	$(".logbtn").click(function(){
 		$("#frm").submit();
+		
 		})
 
+
+	//	function login() {
+	//		let data ={
+	//			id: $("#id").val(),
+//				pw: $("#pw").val(),
+//					};
+			//console.log(data); ->자바스크립트 오브젝트
+			//ajax통신을 이용해서 파라미터(데이터)를 json으로 변경하여 insert요청.
+	//		$.ajax({
+	//			type: "POST",
+	//			url:"./memberLogin",
+	//			data: JSON.stringify(data), //위에 data 객체를 java로 보낼 때 json으로 변경해서 보내야함. http body 데이터!
+	//			contentType: "application/json; charset=utf-8", // body데이터가 어떤 데이터타입인지 알려주는 것
+	//			dataType: "json", //요청을 서버로해서 응답이 왔을 때 기본적으로 모든 것이 string인 json형식으로 오는데 =>javascript 오브젝트로 변환시켜줌
+	//			success: function(result){
+	//				console.log(result)
+	//				alert("로그인이 완료되었습니다");
+	//				alert(result);
+	//				location.href="/";
+	//				}
+	//					}).fail(function(error){
+	//							alert(JSON.stringify(error));
+	//							});  
+	//	}
 
 
 <!-- 네이버아디디로로그인 초기화 Script -->

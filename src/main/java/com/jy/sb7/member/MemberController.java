@@ -16,9 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -99,18 +101,20 @@ public class MemberController {
 	}
 	//login
 	@PostMapping("memberLogin")
-	public String getMemberLogin(MemberVO memberVO, HttpSession session) throws Exception{
+	public ModelAndView getMemberLogin (MemberVO memberVO, HttpSession session) throws Exception{
+		ModelAndView mv= new ModelAndView();
 		System.out.println(memberVO.getId());
 		System.out.println(memberVO.getPw());
 		MemberVO VO = memberService.getMemberLogin(memberVO);
 		if(VO != null) {
 			System.out.println("login 성공");
 			session.setAttribute("member", VO);
-			return "redirect:../";
+			mv.setViewName("redirect:../");
+			
 		}else {
 			System.out.println("login 실패");
 		}
-		return null;
+		return mv;
 	}
 	@GetMapping("memberLogin")
 	public void getMemberLogin() throws Exception{

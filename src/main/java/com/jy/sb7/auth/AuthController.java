@@ -106,12 +106,13 @@ public class AuthController {
 			kakaoUser.setId(kakaoProfile.getKakao_account().getEmail()+"_"+kakaoProfile.getId());
 			kakaoUser.setPw("kakao."+kakaoProfile.getId());
 			kakaoUser.setEmail(kakaoProfile.getKakao_account().getEmail());
+			kakaoUser.setJoinPath("kakao");
 		//가입자 혹은 비가입자 체크해서 처리
 			MemberVO	originUser = memberService.memberCheck(kakaoUser);
 				if(originUser == null) {
 					//회원가입
 					int result = memberService.setMemberJoin(kakaoUser);
-					System.out.println("result: "+result);
+					System.out.println("가입완료result: "+result);
 				}
 				
 				//로그인 처리

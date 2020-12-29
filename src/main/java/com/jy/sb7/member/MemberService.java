@@ -21,7 +21,7 @@ public class MemberService {
 	}
 	
 	public MemberVO getMemberLogin(MemberVO memberVO) throws Exception{
-		System.out.println("왜 안넘어오지?????????");
+		System.out.println("로그인 서비스--------");
 		return memberMapper.getMemberLogin(memberVO);
 	}
 }
