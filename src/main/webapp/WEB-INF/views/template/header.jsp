@@ -16,7 +16,7 @@
 <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Start Bootstrap</a>
+      <a class="navbar-brand" href="#">StudyRoom Booing</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -28,18 +28,22 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="#">공간(룸)소개</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" href="#">이용안내</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="#">실시간예약</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="${pageContext.request.contextPath}/notice/noticeList">고객지원</a>
           </li>
         </ul>
       </div>
       
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+      <!-- 로그인 영역 -->
+      <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
       	<c:choose>
       		<c:when test="${not empty member}">
@@ -57,10 +61,10 @@
 			          </li>
       		</c:otherwise>
       	</c:choose>
-         
-      
         </ul>
       </div>
+      <!-- //로그인 영역 -->
+      
     </div>
   </nav>
   
