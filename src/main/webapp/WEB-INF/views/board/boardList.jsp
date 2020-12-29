@@ -9,11 +9,14 @@
 	<c:import url="../template/bootStrap.jsp"></c:import>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-	<link href="../css/member/memberLogin.css" rel="stylesheet" type="text/css">
+	<link href="../css/common/reset.css" rel="stylesheet" type="text/css">
+	<link href="../css/common/header.css" rel="stylesheet" type="text/css">
+	<link href="../css/service/service_navigation.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 	<c:import url="../template/service_subtitle.jsp"></c:import>
+	<c:import url="../template/service_navigation.jsp"></c:import>
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="vendor/jquery/jquery.min.js"></script>

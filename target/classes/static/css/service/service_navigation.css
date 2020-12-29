@@ -1,0 +1,6 @@
+@charset "UTF-8";
+
+.subtap { clear:both;border-bottom:1px solid #ffb400;border-top:1px solid #ffb400;overflow:hidden;}
+.subtap ul { margin:0 auto;text-align:center}
+.subtap li { cursor:pointer;display:inline-block;padding:20px 30px;font-size:18px;}
+.tapon { background:#ffb400;display:inline;color:#fff}
