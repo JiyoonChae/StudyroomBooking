@@ -8,18 +8,15 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <c:import url="../template/bootStrap.jsp"></c:import>
-<style type="text/css">
-	.agree{ width:1200px; position:relative; }
-	h3 {display:block; font-weigth:bold;}
-	.agree textarea {width:100%; padding:15px 0; font-size:13px; color:#999; line-height: 25px; height: 190px; border-left-width:0; border-right-width: 0; border-top:1px solid #7e7e7e; border-bottom:1px soid #e5e5e5;}
-</style>
+<link href="../css/member/memberJoin.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <c:import url="../template/subtitle.jsp"></c:import>
 
 <div class="container agree">
-	<h3>이용약관</h2>
+	<h3>이용약관</h3>
 	<textarea >
 		셀프스토리 회원가입 및 약관
 제1장 총 칙
@@ -139,7 +136,7 @@
 	</p>
 </div>
 <div class="container agree">
-	<h3>개인정보취급방침</h2>
+	<h3>개인정보취급방침</h3>
 	<textarea >
 		* 개인정보의 수집.이용목적
   서비스 제공에 관한 계약 이행 및 서비스 제공에 따른 요금정산,회원제 서비스 이용에 따른 본인확인, 개인식별
@@ -172,39 +169,33 @@
 		<label for="check2">위의 개인정보취급방침의 내용을 읽었으며, 이에 동의합니다.</label>
 	</p>
 </div>
-<div class="container">
-		<h3> Member Join Page</h3>
+<div class="container member_inner">
+		
 		<form action="memberJoin" method="post">
-		<!-- path는 parameter 이름!! -->
+		
 		<div class="form-group">
-		<label for="id">id </label>
+		<label for="id">아이디</label>
 		<input type="text" id="id" class="form-control"/>
-		
 		</div>
 		
 		<div class="form-group">
-		<label for="pw">PW </label>
+		<label for="pw">비밀번호 </label>
 		<input type="text" id="pw" class="form-control"/>
-	
 		</div>
 		
 		<div class="form-group">
-		<label for="pw">PW </label>
+		<label for="pw">비밀번호 확인 </label>
 		<input type="text" id="pw2" class="form-control"/>
-		
 		</div>
 		
 		<div class="form-group">
-		<label for="name">name </label>
+		<label for="name">이름 </label>
 		<input type="name" id="name" class="form-control"/>
-		
 		</div>
-		
 		
 		<div class="form-group">
 		<label for="email">Email </label>
 		<input type="email" id="email" class="form-control"/>
-		
 		</div>
 		</form>
 		<button id="btn-save" class="btn btn-warning">회원가입</button>
