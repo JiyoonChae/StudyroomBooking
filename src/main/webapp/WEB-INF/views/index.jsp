@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="./template/bootStrap.jsp"></c:import>
+<link href="../css/common/reset.css" rel="stylesheet" type="text/css">
 <link href="../css/common/header.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -66,8 +67,8 @@ Copyright &copy; Your Website 2020
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!--   <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 		
 </body>
 </html>
