@@ -26,19 +26,29 @@
 	</div>
 	<div class="container">
 			<div class="bbs">
-				<p>
-				<form method="get" name="frmSearch" action="Notice.List.php">
-					<input type="hidden" name="status" value="" /> <select
-						name="valueType" id="select">
-						<option value="all">전체</option>
-						<option value="subject">제목</option>
-						<option value="content">내용</option>
-					</select> <input type="text" name="value" id="textfield" value=""
-						placeholder="검색어입력"> <a
-						href="javascript:document.frmSearch.submit()"><img
-						src="../images/search_btn.jpg" alt="검색"></a>
-				</form>
-				</p>
+			<!-- Search -->
+			<div id="search" class="row">
+				<div class="col-sm-8">
+					<form id="frm" action="./${board}List">
+						<input type="hidden" name="curPage" id="curPage" value=1>
+						<div class="form-group" style="display:inline-block; width:25%; float:left;">
+						  <select class="form-control" id="kind" name="kind">
+						    <option>Title</option>
+						    <option>Writer</option>
+						    <option>Contents</option>
+						  </select>
+						</div>
+						<div class="input-group" style="width:50%;" >
+						    <input type="text" class="form-control" id="search" name="search" placeholder="Search" value="${pager.search}">
+						    <div class="input-group-btn">
+						      <button class="btn btn-default" type="submit">
+						        <i class="glyphicon glyphicon-search"></i>
+						      </button>
+						    </div>
+						  </div>
+					</form>
+				</div>
+			</div>
 
 				<table class="table table-hover">
 					<tr>

@@ -18,13 +18,13 @@ public class BoardVO {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int num;
+	private long num;
 	private String title;
 	private String writer;
 	private String contents;
 	@Column(updatable = false)
 	@CreationTimestamp
 	private Date regDate;
-	private int hit;
+	private long hit;
 	
 }

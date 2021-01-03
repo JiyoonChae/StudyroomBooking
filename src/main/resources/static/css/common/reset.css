@@ -67,9 +67,9 @@ hr {
 	border: 0 none;
 }
 
-li, p, dt, dd, div, span {
+/* li, p, dt, dd, div, span {
 	white-space: normal;
-}
+} */
 
 body, div {
 	font-family: 'Nanum Barun Gothic', Dotum, Arial, Tahoma;
@@ -91,12 +91,12 @@ input, select, textarea {
 	background-color: #FFE1E1
 }
 
-input[type=text], input[type=password] {
+/* input[type=text], input[type=password] {
 	height: 19px;
 	padding: 1px;
 	line-height: 19px;
 	background-color: #fff;
-}
+} */
 
 a {
 	text-decoration: none;

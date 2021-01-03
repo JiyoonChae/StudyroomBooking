@@ -1,20 +1,25 @@
-package com.jy.sb7;
+package com.jy.sb7.board.faq;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 @SpringBootTest
-class SqlSessionTest {
-	
+class FaqRepositoryRest {
+
 	@Autowired
-	private SqlSession sqlSession;
+	private FaqRepository faqRepository;
 	
 	@Test
-	void test() {
-		assertNotNull(sqlSession.getConnection());
+	void saveTest() {
+		
+	}
+	
+	@Test
+	void listTest() {
+		fail("Not yet implemented");
 	}
 
 }
