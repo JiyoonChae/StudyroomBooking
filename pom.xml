@@ -24,7 +24,6 @@
 		   <dependency>
 			    <groupId>org.springframework.boot</groupId>
 			    <artifactId>spring-boot-starter-mail</artifactId>
-			    <version>1.4.3.RELEASE</version>
 			</dependency>
 				
 		<!--tomcat-jasper for JSP in Sprng boot -->

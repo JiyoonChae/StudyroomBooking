@@ -1,4 +1,4 @@
-package com.jy.sb7.auth;
+package com.jy.sb7.auth.email;
 
 import lombok.Data;
 
@@ -8,4 +8,8 @@ public class EmailAuth {
 	  private boolean emailVerified;  
 	   //이메일 토큰
 	  private String emailCheckToken;
+	  
+	  private String address;
+	    private String title;
+	    private String message;
 }

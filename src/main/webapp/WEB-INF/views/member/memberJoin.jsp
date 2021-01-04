@@ -201,21 +201,46 @@
 		<div class="form-group">
 		<label for="email">Email </label>
 		<input type="email" id="email" class="form-control"/>
+		<button type="button" id="emailAuth" class="btn btn-primary" data-toggle="modal" data-target="#myModal" >이메일 인증</button>
 		</div>
 		</form>
 		<button id="btn-save" class="btn btn-warning">회원가입</button>
 	</div>
 	
-	
+	<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          
+          <h4 class="modal-title">이메일 주소 인증</h4>
+        </div>
+        <div class="modal-body">
+          <p>입력하신 이메일로 받은 인증키를 입력하세요</p>
+          <input type="text" id="emailKey" name="key">
+       
+          <button type="button" class="btn btn-warning" id="checkkey">인증하기</button>
+             <div id="check-text"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 	<script type="text/javascript">
 	var idCheck = false;
 	var pwCheck = false;
+	var isCertification=false;
 	function init(){
 		$("#btn-save").on("click", ()=>{
-			if(idCheck&&pwCheck){
+			if(idCheck&&pwCheck&&isCertification){
 				this.save();
 				}else{
-					alert("no");
+					alert("필수 항목 중 입력하지 않거나 이메일 인증 여부를 확인하세요");
 					}
 		
 			});
@@ -241,7 +266,7 @@
 				}).done(function(response){
 					alert("회원가입이 완료되었습니다");
 					alert(response);
-					location.href="/";
+					location.href="./memberLogin";
 						}).fail(function(error){
 								alert(JSON.stringify(error));
 								});  
@@ -259,8 +284,6 @@
 					type: "get",
 					data: {id:id},
 					success: function(data){
-						
-						data = data.trim();
 						var str ="중복된 id 입니다";
 						if(data==0){
 							str="사용 가능한 id입니다"
@@ -286,18 +309,74 @@
 				var pw = $("#pw").val();
 				var pw2 =$(this).val();
 				pwCheck=false;
-				if(pw2==''){
+				if(pw=='' || pw2==''){
 					$("#pwResult").html("Password를 입력하세요");
 					$("#pwResult").removeClass("idCheck0").addClass("idCheck1");
-					}else if(pw==pw2){
-						$("pwResult").html("Password가 일치합니다")
-						$("pwResult").removeClass("idCheck1").addClass("idCheck0");
+					}else if (pw == pw2){
+						$("#pwResult").html("Password가 일치합니다")
+						$("#pwResult").removeClass("idCheck1").addClass("idCheck0");
 						pwCheck=true;
 						}else {
 							$("#pwResult").html("Password가 일치하지 않습니다");
 							$("#pwResult").removeClass("idCheck0").addClass("idCheck1");
 							}
-				})
+				}) //*********************pw check 완료****************************
+
+			//**********************email 중복 체크***************************
+			$("#email").blur(function(){
+				var email = $(this).val();
+				if(email !=null){
+					$.ajax({
+						url:"./memberCheck",
+						type:"get",
+						data: {email:email},
+						success: function(data){
+							var str="중복된 email 입니다"
+						 	if(data==0){
+							 	console.log("사용가능 이메일")
+							 	}
+							}
+						})
+					}
+				})	//***********email 중복체크 end************
+
+			//************ 이메일 인증**********************
+			$("#emailAuth").click(function(){
+				var email = $("#email").val();
+				 
+				if(email==''){
+					alert("메일 주소가 입력되지 않았습니다")
+					}else {
+						$.ajax({
+							type:"GET",
+							url: "./checkEmail",
+							data: {email: email},
+							dataType:'json',
+							success: function(data){
+								console.log("성공?!")
+								console.log(data)
+								$("#checkkey").click(function() {
+							var userkey = $("#emailKey").val();
+							if(userkey == data.key){
+								$("#check-text").html("인증 성공").css("color","purple");
+								isCertification=true;
+							} else{
+							$("#check-text").html("인증 실패").css("color", "red");
+							isCertification=true;
+							}
+				
+							})
+								}
+								
+							});
+						alert("인증번호가 전송되었습니다")
+						
+						}
+				})	
+			//***************이메일 인증 완료***************************
+			//**************이메일 인증 일치 여부 확인*****************
+			
+				
 	</script>
 </body>
 </html>

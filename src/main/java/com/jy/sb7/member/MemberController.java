@@ -8,11 +8,16 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,11 +30,51 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 
+
 @Controller
 @RequestMapping("/member/**")
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private JavaMailSender javaMailSender;
+	
+	Map<String, Object> map = new HashMap<>();
+	
+	@PostMapping("keyCheck")
+	public void keyCheck(String key) throws Exception{
+		System.out.println("넘어온key" +key);
+		System.out.println("저장된맵키:" + map.get("key"));
+		if(key==map.get("key")) {
+			System.out.println("일치 - 성공");
+		}
+	}
+	@RequestMapping(value ="checkEmail", method = {RequestMethod.GET })
+	@ResponseBody 
+	public Map<String, Object> emailCheck(String email) throws Exception{
+		
+		System.out.println("email인증 접근:" + email);
+		Random random = new Random(); 
+		String key=""; //인증번호
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setTo(email); // 스크립트에서 보낸 메일을 받을 사용자 이메일 주소
+		//입력키를 위한 코드
+		for(int i=0; i<3; i++) {
+			int index= random.nextInt(25)+65; // A-Z까지 랜덤 알파벳 생성
+			key+=(char)index;
+  		}
+		int numIndex = random.nextInt(9999)+1000; // 4자리 랜덤 정수를 생성
+		key+=numIndex;
+		System.out.println("인증번호: "+key);
+		message.setSubject("인증번호 입력을 위한 메일 전송");
+		message.setText("인증번호 : "+key);
+		javaMailSender.send(message);
+		System.out.println("이메일 전송 완료!!");
+		map.put("key", key);
+		System.out.println("key : "+key);
+		return map;
+	}
 	
 	@GetMapping("memberJoin")
 	public ModelAndView memberJoin() throws Exception{
@@ -101,34 +146,38 @@ public class MemberController {
 	}
 	
 	@GetMapping("memberCheck")
-	public ModelAndView getIdCheck(MemberVO memberVO) throws Exception{
+	@ResponseBody
+	public int getIdCheck(MemberVO memberVO) throws Exception{
 		System.out.println("membercheck:"+memberVO.getId());
 		System.out.println("email:"+memberVO.getEmail());
 		ModelAndView mv = new ModelAndView();
 		memberVO = memberService.memberCheck(memberVO);
-		System.out.println(memberVO);
-		int result =1; //중복일때
+	//	System.out.println(memberVO.getId());
+	//	System.out.println(memberVO.getEmail());
+		int result =1; //id가 중복일때
 		if(memberVO ==null) {
 			result=0;
 		}
-		mv.addObject("msg", result);
-		mv.setViewName("common/result");
-		return mv;
+		//mv.addObject("msg", result);
+		//mv.setViewName("common/result");
+		return result;
 	}
 	
 	//login
 	@PostMapping("memberLogin")
 	public ModelAndView getMemberLogin (MemberVO memberVO, HttpSession session) throws Exception{
 		ModelAndView mv= new ModelAndView();
-		System.out.println(memberVO.getId());
-		System.out.println(memberVO.getPw());
+		//System.out.println(memberVO.getId());
+		//System.out.println(memberVO.getPw());
 		MemberVO VO = memberService.getMemberLogin(memberVO);
 		if(VO != null) {
 			System.out.println("login 성공");
 			session.setAttribute("member", VO);
 			mv.setViewName("redirect:../");
-			
 		}else {
+			mv.addObject("msg", "로그인 정보가 맞지않습니다");
+			mv.addObject("path", "./memberLogin");
+			mv.setViewName("common/result");
 			System.out.println("login 실패");
 		}
 		return mv;
