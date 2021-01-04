@@ -83,6 +83,9 @@ function calendarMaker(target, date) {
         $(".custom_calendar_table").on("click", "td", function () {
             $(".custom_calendar_table .select_day").removeClass("select_day");
             $(this).removeClass("select_day").addClass("select_day");
+			console.log(this);
         });
     }
 }
+
+//파라미터를 받아야되는데 어케받지 :선택한 날짜 + 시간
