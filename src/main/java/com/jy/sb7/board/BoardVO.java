@@ -13,7 +13,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import lombok.Data;
 
 @Data
-@MappedSuperclass	//매핑정보만 상속받음
+@MappedSuperclass	//매핑정보만 상속됨
 public class BoardVO {
 
 	@Id

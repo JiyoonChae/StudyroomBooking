@@ -2,6 +2,7 @@ package com.jy.sb7.board.notice;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -31,6 +32,32 @@ class NoticeRepositoryTest {
 	}
 	
 	@Test
+	void saveFileTest() throws Exception {
+		NoticeVO noticeVO = new NoticeVO();
+		noticeVO.setTitle("Title + File - Test 1");
+		noticeVO.setContents("Contents + File - Test 1");
+		noticeVO.setWriter("Wrtier + File - Test 1");
+		noticeVO = noticeRepository.save(noticeVO);
+		
+		List<NoticeFileVO> fileList = new ArrayList<>();
+		NoticeFileVO noticeFileVO = new NoticeFileVO();
+		noticeFileVO.setFileName("FileName Test 1-1");
+		noticeFileVO.setOriName("OriName Test 1-1");
+		noticeFileVO.setNoticeVO(noticeVO);
+		fileList.add(noticeFileVO);
+		
+		NoticeFileVO noticeFileVO2 = new NoticeFileVO();
+		noticeFileVO2.setFileName("FileName Test 1-2");
+		noticeFileVO2.setOriName("OriName Test 1-2");
+		noticeFileVO2.setNoticeVO(noticeVO);
+		fileList.add(noticeFileVO2);
+		
+		noticeVO.setNoticeFileVOs(fileList);
+		noticeRepository.save(noticeVO);
+	}
+	
+	
+	//@Test
 	void countTest() {
 		long count = noticeRepository.count();
 		System.out.println("count : " + count);
@@ -38,7 +65,7 @@ class NoticeRepositoryTest {
 		assertNotEquals(0, count);
 	}
 	
-	@Test
+	//@Test
 	void listTest() {
 		List<NoticeVO> list = noticeRepository.findAll();
 		

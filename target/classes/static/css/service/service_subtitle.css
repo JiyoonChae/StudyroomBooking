@@ -8,7 +8,7 @@
 	
 	.subtitle {
 		width: 100%;
-		margin-top: 100px;
+		/* margin-top: 100px; */
 	}
 	
 	ul, li, ol {
@@ -51,11 +51,12 @@
 	.subtap li {
 		cursor: pointer;
 		display: inline-block;
-		padding: 20px 30px;
 		font-size: 18px;
 	}
 	
 	.subtap li a {
+		display: block;
+		padding: 20px 30px;
 		font-size: 18px;
 		color: #333;
 	}

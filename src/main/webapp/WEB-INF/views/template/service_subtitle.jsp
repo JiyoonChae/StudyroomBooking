@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 	<div class="subtitle">
 		<ul class="title02">
 			<h2>
@@ -11,7 +12,7 @@
 	<div class="subtap">
 		<ul>
 			<li class="notice">
-				<a href="${pageContext.request.contextPath}/notice/noticeList" title="notice">공지사항</a>
+				<a href="${pageContext.request.contextPath}/notice/noticeList">공지사항</a>
 			</li>
 			<li class="faq">
 				<a href="${pageContext.request.contextPath}/faq/faqList">FAQ</a>

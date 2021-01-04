@@ -11,7 +11,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 	<link href="../css/common/reset.css" rel="stylesheet" type="text/css">
 	<link href="../css/common/header.css" rel="stylesheet" type="text/css">
-	<link href="../css/common/service_sub.css" rel="stylesheet" type="text/css">
+	<link href="../css/service/service_subtitle.css" rel="stylesheet" type="text/css">
 	<link href="../css/service/notice.css" rel="stylesheet" type="text/css">
 </head>
 <body>

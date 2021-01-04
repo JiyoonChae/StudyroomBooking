@@ -1,8 +1,67 @@
 @charset "UTF-8";
 
-.article_title{margin:100px 0 0 0}
-.article_title h3{font-size:35px;font-weight:400;text-align:center;background:url(../../images/service/line.jpg) no-repeat center bottom;padding:0 0 20px 0}
-.article_title p{font-size:16px;color:#6f6f6f;line-height:23px;text-align:center;margin:20px 0 40px 0;}
-.article_title ul{width:1200px;margin:0 auto 100px auto;position:relative}
-.article_title li{font-size:18px;line-height:25px;margin:23px 0}
-.article_title a{position:absolute;right:0;top:10px}
+.article_title {
+	margin: 100px 0 0 0
+}
+
+.article_title h3 {
+	font-size: 35px;
+	font-weight: 400;
+	text-align: center;
+	background: url(../../images/service/line.jpg) no-repeat center bottom;
+	padding: 0 0 20px 0
+}
+
+.article_title p {
+	font-size: 16px;
+	color: #6f6f6f;
+	line-height: 23px;
+	text-align: center;
+	margin: 20px 0 40px 0;
+}
+
+.article_title ul {
+	width: 1200px;
+	margin: 0 auto 100px auto;
+	position: relative
+}
+
+.article_title li {
+	font-size: 18px;
+	line-height: 25px;
+	margin: 23px 0
+}
+
+.article_title a {
+	position: absolute;
+	right: 0;
+	top: 10px
+}
+
+
+
+.frm .form-group {
+	margin-bottom: 2rem;
+}
+
+.frm .form-group label {
+	font-size: 13px;
+	font-weight: 700;
+}
+
+.frm .form-control {
+	height: 34px;
+	font-family: sans-serif;
+	font-size: 14px;
+	line-height: 1.4;
+	border-radius: .4rem;
+}
+
+.frm .note-editor .note-editing-area .note-placeholder {
+	font-size: 14px;
+	font-family: sans-serif;
+}
+
+.frm .note-editor .note-editing-area .note-editable * {
+	font-size: 14px;
+}
