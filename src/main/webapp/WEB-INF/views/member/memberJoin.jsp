@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<link href="../css/common/subtitle.css" rel="stylesheet" type="text/css">
 <c:import url="../template/bootStrap.jsp"></c:import>
 <link href="../css/member/memberJoin.css" rel="stylesheet" type="text/css">
 <style> 
@@ -16,8 +17,15 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-<c:import url="../template/subtitle.jsp"></c:import>
-
+	<div class="subtitle">
+		<ul class="title02">
+			<h2>
+				<span>studyㆍmeetㆍ work</span>
+				<br>
+				회원가입
+			</h2>
+		</ul>
+	</div>
 <div class="container agree">
 	<h3>이용약관</h3>
 	<textarea >

@@ -5,7 +5,7 @@
     padding: 0
 }
 
-#calendarForm { width:50%; margin: 0 auto;}
+#calendarForm { width:647px; margin: 0 auto;}
 .custom_calendar_table p {
     text-align: center;
 }
@@ -44,3 +44,5 @@
     background-color: #288CFF;
     color: #fff;
 }
+
+.selected {background-color: #704de4;}

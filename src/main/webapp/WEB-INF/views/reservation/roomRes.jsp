@@ -18,7 +18,7 @@
 <style type="text/css">
 	.swiper-container {
     width: 45px;
-    height: 300px;
+    height: 120px;
 }
 ul, li {list-style: none;}
 .reservat_time_wrap {overflow:hidden; background-color: #fff; }
@@ -33,8 +33,9 @@ a {text-decoration: none; cursor: pointer;}
 .time {position: absolute; left: -8px; top: -23px; width: 15px; text-align: center;}
 span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; width: 45px; min-wsidth: 45px; height: 41px; padding:8px; vertical-align: middle; } 
 
-.selected {border:2px solid #5940ac; background-color: #704de4; color:#fff;}
-.purple{ color: #704de4;}
+.selected {border:2px solid #5940ac; background-color: #704de4; }
+.heading {position: relative; width:100%; padding-bottom: 8px; border-bottom: 2px solid #704de4;}
+
 </style>
 </head>
 <body>
@@ -48,10 +49,10 @@ span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; 
 			</h2>
 		</ul>
 	</div>
-	
+	<div class="container"> 
 	<div id="calendarForm"></div>
 	
-	<div>시간선택</div>
+	<div class="heading"><h5>시간선택</h5></div>
 	<!-- Slider main container -->
 
 	<div class="reserve_time_wrap">
@@ -134,18 +135,18 @@ span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; 
     </div>
 </div>
 
-<div> 예약 일시 </div>
+<div class="heading"> <h5>예약 일시</h5> </div>
 <div>2021. </div>
+<div class="heading"><h5>공간 사용료</h5></div>
+
+<button class="btn btn-warning">바로 결제</button>
+<button class="btn btn-info">현장 결제</button>
+</div>
 <script type="text/javascript" src="../js/calendar.js" ></script>
 <script type="text/javascript">
 var mySwiper = new Swiper('.swiper-container');
 
-$(".price").click(function(){
-	var time = $(this).siblings().text();
-	console.log(time);
-	$(this).addClass("selected")
-	
-});
+
 
 </script>
 </body>

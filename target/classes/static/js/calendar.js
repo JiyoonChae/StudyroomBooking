@@ -84,8 +84,51 @@ function calendarMaker(target, date) {
             $(".custom_calendar_table .select_day").removeClass("select_day");
             $(this).removeClass("select_day").addClass("select_day");
 			console.log(this);
+			console.log(year);
+			console.log(month);
         });
     }
 }
+
+/*$(".price").click(function(){
+	var time = $(this).siblings().text();
+	console.log(time);
+	//$(this).addClass("selected");
+	//
+	if($(this).hasClass("selected")){
+		$(this).removeClass("selected");
+		$(this).css("background-color", "#ffd014");
+	}else{
+		$(this).addClass("selected");
+		$(this).css("background-color", "#704de4");
+	}
+	
+	 
+});*/
+//4시 클릭 후 9시 클릭하면 중간에 5-8시도 자동 클릭되게
+$(".time_list li").on('click',function(){
+	alert($(this).slice(3,6).html());
+	$(this).slice(0,3).css("color", "red");
+	
+	
+	$(this).children().addClass("selected");
+	var re = $(this).children().hasClass("selected");
+	alert( $(this).children().find(".time").text());
+	
+	var min = 24;
+	var max = -1;
+	var reserveTime = $(this).children().find(".time").text();
+	
+	min = 7;
+	max = 11;
+	
+	
+	/*var startTime= $(this).siblings().text();
+	var lastTime=$(this).siblings().text();
+	alert(startTime + " _ " + lastTime);*/
+	
+	$(".time li").slice(min, max).css("background-color","red");
+});
+$("li").slice(1,6).css('color','red');
 
 //파라미터를 받아야되는데 어케받지 :선택한 날짜 + 시간

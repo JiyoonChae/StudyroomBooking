@@ -34,7 +34,7 @@
             <a class="nav-link" href="#">이용안내</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">실시간예약</a>
+            <a class="nav-link" href="${pageContext.request.contextPath}/res/roomRes">실시간예약</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/notice/noticeList">고객지원</a>
