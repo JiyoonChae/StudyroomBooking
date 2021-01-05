@@ -8,12 +8,18 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.web.multipart.MultipartFile;
 
 @SpringBootTest
 class NoticeRepositoryTest {
 
 	@Autowired
 	private NoticeRepository noticeRepository;
+		
 	
 	//@Test
 	void saveTest() throws Exception {
@@ -31,18 +37,19 @@ class NoticeRepositoryTest {
 		}
 	}
 	
-	@Test
+	
+	//@Test
 	void saveFileTest() throws Exception {
 		NoticeVO noticeVO = new NoticeVO();
-		noticeVO.setTitle("Title + File - Test 1");
-		noticeVO.setContents("Contents + File - Test 1");
-		noticeVO.setWriter("Wrtier + File - Test 1");
+		noticeVO.setTitle("Title + File - Test 2");
+		noticeVO.setContents("Contents + File - Test 2");
+		noticeVO.setWriter("Wrtier + File - Test ");
 		noticeVO = noticeRepository.save(noticeVO);
 		
 		List<NoticeFileVO> fileList = new ArrayList<>();
 		NoticeFileVO noticeFileVO = new NoticeFileVO();
-		noticeFileVO.setFileName("FileName Test 1-1");
-		noticeFileVO.setOriName("OriName Test 1-1");
+		noticeFileVO.setFileName("FileName Test 2-1");
+		noticeFileVO.setOriName("OriName Test 2-1");
 		noticeFileVO.setNoticeVO(noticeVO);
 		fileList.add(noticeFileVO);
 		
@@ -78,6 +85,24 @@ class NoticeRepositoryTest {
 		}
 		
 		assertNotNull(list);
+	}
+	
+	@Test
+	void pageableListTest() {
+		Pageable pageable = PageRequest.of(0, 10, Direction.DESC);
+		Page<NoticeVO> page = noticeRepository.findAll(pageable);
+		
+		if(page.hasContent()) {
+			List<NoticeVO> noticeList = page.getContent();
+			
+			for(NoticeVO noticeVO : noticeList) {
+				System.out.println(noticeVO.getNum());
+				System.out.println(noticeVO.getTitle());
+				System.out.println(noticeVO.getWriter());
+				System.out.println(noticeVO.getContents());
+				System.out.println("---------------------");
+			}
+		}
 	}
 
 }

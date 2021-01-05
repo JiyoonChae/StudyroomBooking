@@ -41,11 +41,11 @@
 					<!-- <label for="contents">내용</label> -->
 					<textarea class="form-control" id="contents" name="contents"></textarea>
 				</div>
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label for="files">업로드</label>
 					<input type="file" class="form-control" name="files">
 					<input type="file" class="form-control" name="files">
-				</div>
+				</div> -->
 				<button type="submit" class="btn btn-primary">등록하기</button>
 			</form>
 		</div>
@@ -57,8 +57,28 @@
 			height: 400,		
 			minHeight: null,	
 			maxHeight: null,
-			placeholder : "내용을 입력해주세요"
+			placeholder : "내용을 입력해주세요",
+			/* onImageUpload: function(files, editor, welEditable) {
+				sendFile(files[0], editor, welEditable);
+			} */
 		});
+
+
+		/* function sendFile(file, editor, welEditable) {
+			var formData = new FormData();
+			formData.append('file', file);
+
+			$.ajax({
+				data: form_data,
+				type: "POST",
+				url: '/summernote',
+				cache: false,
+				contentType: false,
+				success: function(data) {
+					data = data.trim();
+					$("#contents").summernote('editor.insertImage', data);
+			});
+		} */
 	</script>
 </div>
 </body>
