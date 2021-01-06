@@ -32,7 +32,7 @@ public class BoardVO {
 	
 	@Column(updatable = false)
 	@CreationTimestamp
-	@DateTimeFormat(pattern = "YYYY-MM-DD HH:MM:SS")
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private LocalDateTime regDate;
 	
 	private long hit;
