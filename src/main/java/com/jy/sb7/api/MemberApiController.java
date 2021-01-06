@@ -20,5 +20,4 @@ public class MemberApiController {
 			int result = memberService.setMemberJoin(memberVO);
 			return result;
 		}
-		
 }

@@ -13,7 +13,7 @@
   	</insert>
   	
   	<select id="memberCheck" parameterType="MemberVO" resultType="MemberVO">
-  		select * from member where email =#{email} or id=#{id}
+  		select * from member where email =#{email}
   	</select>
   
   
