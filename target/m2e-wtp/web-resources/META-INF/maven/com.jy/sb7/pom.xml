@@ -20,8 +20,12 @@
 	</properties>
 
 	<dependencies>
-	
-
+		<!-- 메일 전송 -->
+		   <dependency>
+			    <groupId>org.springframework.boot</groupId>
+			    <artifactId>spring-boot-starter-mail</artifactId>
+			</dependency>
+				
 		<!--tomcat-jasper for JSP in Sprng boot -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>

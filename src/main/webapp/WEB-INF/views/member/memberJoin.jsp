@@ -7,19 +7,27 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<link href="../css/common/subtitle.css" rel="stylesheet" type="text/css">
 <c:import url="../template/bootStrap.jsp"></c:import>
-<style type="text/css">
-	.agree{ width:1200px; position:relative; }
-	h3 {display:block; font-weigth:bold;}
-	.agree textarea {width:100%; padding:15px 0; font-size:13px; color:#999; line-height: 25px; height: 190px; border-left-width:0; border-right-width: 0; border-top:1px solid #7e7e7e; border-bottom:1px soid #e5e5e5;}
+<link href="../css/member/memberJoin.css" rel="stylesheet" type="text/css">
+<style> 
+	.idCheck0 { color: blue;}
+	.idCheck1 { color: red;}
 </style>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-<c:import url="../template/subtitle.jsp"></c:import>
-
+	<div class="subtitle">
+		<ul class="title02">
+			<h2>
+				<span>studyㆍmeetㆍ work</span>
+				<br>
+				회원가입
+			</h2>
+		</ul>
+	</div>
 <div class="container agree">
-	<h3>이용약관</h2>
+	<h3>이용약관</h3>
 	<textarea >
 		셀프스토리 회원가입 및 약관
 제1장 총 칙
@@ -139,7 +147,7 @@
 	</p>
 </div>
 <div class="container agree">
-	<h3>개인정보취급방침</h2>
+	<h3>개인정보취급방침</h3>
 	<textarea >
 		* 개인정보의 수집.이용목적
   서비스 제공에 관한 계약 이행 및 서비스 제공에 따른 요금정산,회원제 서비스 이용에 따른 본인확인, 개인식별
@@ -172,52 +180,80 @@
 		<label for="check2">위의 개인정보취급방침의 내용을 읽었으며, 이에 동의합니다.</label>
 	</p>
 </div>
-<div class="container">
-		<h3> Member Join Page</h3>
+<div class="container member_inner">
+		
 		<form action="memberJoin" method="post">
-		<!-- path는 parameter 이름!! -->
+		
 		<div class="form-group">
-		<label for="id">id </label>
+		<label for="id">아이디</label>
 		<input type="text" id="id" class="form-control"/>
-		
+		 <div id="idResult"></div>
 		</div>
 		
 		<div class="form-group">
-		<label for="pw">PW </label>
+		<label for="pw">비밀번호 </label>
 		<input type="text" id="pw" class="form-control"/>
-	
 		</div>
 		
 		<div class="form-group">
-		<label for="pw">PW </label>
+		<label for="pw">비밀번호 확인 </label>
 		<input type="text" id="pw2" class="form-control"/>
-		
+		<div id="pwResult"></div>
 		</div>
 		
 		<div class="form-group">
-		<label for="name">name </label>
+		<label for="name">이름 </label>
 		<input type="name" id="name" class="form-control"/>
-		
 		</div>
-		
 		
 		<div class="form-group">
 		<label for="email">Email </label>
 		<input type="email" id="email" class="form-control"/>
-		
+		<button type="button" id="emailAuth" class="btn btn-primary" data-toggle="modal" data-target="#myModal" >이메일 인증</button>
 		</div>
 		</form>
 		<button id="btn-save" class="btn btn-warning">회원가입</button>
 	</div>
 	
-	
+	<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          
+          <h4 class="modal-title">이메일 주소 인증</h4>
+        </div>
+        <div class="modal-body">
+          <p>입력하신 이메일로 받은 인증키를 입력하세요</p>
+          <input type="text" id="emailKey" name="key">
+       
+          <button type="button" class="btn btn-warning" id="checkkey">인증하기</button>
+             <div id="check-text"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 	<script type="text/javascript">
+	var idCheck = false;
+	var pwCheck = false;
+	var isCertification=false;
 	function init(){
 		$("#btn-save").on("click", ()=>{
-			this.save();
+			if(idCheck&&pwCheck&&isCertification){
+				this.save();
+				}else{
+					alert("필수 항목 중 입력하지 않거나 이메일 인증 여부를 확인하세요");
+					}
+		
 			});
 	}
-
+	//***********************회원가입 DB로 보내기
 		function save() {
 			//alert("user의 save 함수");
 			let data ={
@@ -238,13 +274,117 @@
 				}).done(function(response){
 					alert("회원가입이 완료되었습니다");
 					alert(response);
-					location.href="/";
+					location.href="./memberLogin";
 						}).fail(function(error){
 								alert(JSON.stringify(error));
 								});  
 		}
 
 		init();
+
+		//****************id 중복 체크 ***************************
+		$("#id").blur(function(){
+			var id =$(this).val();
+			//alert(id);
+			if(id != ''){
+				$.ajax({
+					url: "./memberCheck",
+					type: "get",
+					data: {id:id},
+					success: function(data){
+						var str ="중복된 id 입니다";
+						if(data==0){
+							str="사용 가능한 id입니다"
+								console.log("dddd"+str)
+							idCheck=true;
+							$("#idResult").removeClass("idCheck1").addClass("idCheck0");
+							}else{
+								$("#idResult").addClass("idCheck1");
+								idCheck=false;
+								}
+						$("#idResult").html(str);
+					}
+					})
+				}else{
+				$("#idResult").html("id를 입력하세요");
+				$("#idResult").addClass("idCheck1");
+				} 
+			
+			}) //************id 중복 체크 완료 *****************************
+
+			//******************pw 일치 체크 *******************************
+			$("#pw2").blur(function(){
+				var pw = $("#pw").val();
+				var pw2 =$(this).val();
+				pwCheck=false;
+				if(pw=='' || pw2==''){
+					$("#pwResult").html("Password를 입력하세요");
+					$("#pwResult").removeClass("idCheck0").addClass("idCheck1");
+					}else if (pw == pw2){
+						$("#pwResult").html("Password가 일치합니다")
+						$("#pwResult").removeClass("idCheck1").addClass("idCheck0");
+						pwCheck=true;
+						}else {
+							$("#pwResult").html("Password가 일치하지 않습니다");
+							$("#pwResult").removeClass("idCheck0").addClass("idCheck1");
+							}
+				}) //*********************pw check 완료****************************
+
+			//**********************email 중복 체크***************************
+			$("#email").blur(function(){
+				var email = $(this).val();
+				if(email !=null){
+					$.ajax({
+						url:"./memberCheck",
+						type:"get",
+						data: {email:email},
+						success: function(data){
+							var str="중복된 email 입니다"
+						 	if(data==0){
+							 	console.log("사용가능 이메일")
+							 	}
+							}
+						})
+					}
+				})	//***********email 중복체크 end************
+
+			//************ 이메일 인증**********************
+			$("#emailAuth").click(function(){
+				var email = $("#email").val();
+				 
+				if(email==''){
+					alert("메일 주소가 입력되지 않았습니다")
+					}else {
+						$.ajax({
+							type:"GET",
+							url: "./checkEmail",
+							data: {email: email},
+							dataType:'json',
+							success: function(data){
+								console.log("성공?!")
+								console.log(data)
+								$("#checkkey").click(function() {
+							var userkey = $("#emailKey").val();
+							if(userkey == data.key){
+								$("#check-text").html("인증 성공").css("color","purple");
+								isCertification=true;
+							} else{
+							$("#check-text").html("인증 실패").css("color", "red");
+							isCertification=true;
+							}
+				
+							})
+								}
+								
+							});
+						alert("인증번호가 전송되었습니다")
+						
+						}
+				})	
+			//***************이메일 인증 완료***************************
+			//**************이메일 인증 일치 여부 확인*****************
+			
+				
 	</script>
 </body>
 </html>
