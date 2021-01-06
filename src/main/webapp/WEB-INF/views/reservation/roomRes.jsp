@@ -33,7 +33,6 @@ a {text-decoration: none; cursor: pointer;}
 .time {position: absolute; left: -8px; top: -23px; width: 15px; text-align: center;}
 span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; width: 45px; min-wsidth: 45px; height: 41px; padding:8px; vertical-align: middle; } 
 
-.selected {border:2px solid #5940ac; background-color: #704de4; }
 .heading {position: relative; width:100%; padding-bottom: 8px; border-bottom: 2px solid #704de4;}
 
 </style>
@@ -136,7 +135,7 @@ span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; 
 </div>
 
 <div class="heading"> <h5>예약 일시</h5> </div>
-<div>2021. </div>
+<div class="reserve_info"> </div>
 <div class="heading"><h5>공간 사용료</h5></div>
 
 <button class="btn btn-warning">바로 결제</button>

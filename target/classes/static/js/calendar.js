@@ -80,12 +80,17 @@ function calendarMaker(target, date) {
             calendarMaker($(target), nowDate);
         });
         //일자 선택 클릭
+		var selectDate= 0;
         $(".custom_calendar_table").on("click", "td", function () {
             $(".custom_calendar_table .select_day").removeClass("select_day");
             $(this).removeClass("select_day").addClass("select_day");
-			console.log(this);
+			selectDate = $(this).text();
+			console.log(selectDate);
 			console.log(year);
 			console.log(month);
+			
+			$(".reserve_info").text(year+"."+month+"."+selectDate);
+			
         });
     }
 }
@@ -101,12 +106,71 @@ function calendarMaker(target, date) {
 	}else{
 		$(this).addClass("selected");
 		$(this).css("background-color", "#704de4");
+	} 
+});*/
+
+//4시 클릭 후 9시 클릭하면 중간에 5-8시도 자동 클릭되게
+var min = 24;
+var max = -1;
+var selectTime =0;
+$(".time_list li").click(function() {	
+	selectTime = parseInt($(this).children().find(".time").text());
+	console.log("select : " + selectTime);
+	
+	if(!$(this).hasClass("selected")) {
+		for(var i=0; i<24; i++) {
+			if( selectTime > max - 1 ) { 
+				max = selectTime + 1;
+				$(this).addClass("selected");
+				$(this).children().find(".price").css("background-color", "#704de4");
+			}
+			if( selectTime < min ) {
+				min = selectTime;
+				$(this).addClass("selected");
+				$(this).children().find(".price").css("background-color","#704de4");
+			}
+		}
+		css();
+	}else {
+	
+		$(this).removeClass("selected");
+		$(this).children().find(".price").css("background-color", "#ffd014");
+		
 	}
 	
-	 
-});*/
-//4시 클릭 후 9시 클릭하면 중간에 5-8시도 자동 클릭되게
-$(".time_list li").on('click',function(){
+	
+	
+	console.log(min + " - " + max);
+	
+});
+
+function css(){
+for(var i=min; i<max-1; i++){ //선택 시간의 최소값과 최대값 만큼 반복해서 중간에 낀 시간에 css를 주려고함..
+	console.log("반복문최소:" +min)
+	console.log("c최대: "+ max)
+			var restTime = i+1;     //중간에 낀 시간 반복문으로 알아내기 2-9시 면 3,4,5,6,7
+		//	var ps =document.getElementsByClassName("test").innerText;          //전체 시간 list중 3,4,5,6,7 과 일치하는 태그를 찾아 css를 주려고함.
+			console.log("Restime"+restTime) //여기까지는 의도한대로 잘 나옴..
+			
+			$('.time').each(function(){
+  					var test = $(this).text();
+ 				 console.log(test);
+				if(restTime == test){
+				$(this).parents('li').addClass("selected");
+				$(this).siblings().css("background-color","#704de4");
+			}
+});
+			
+				
+		
+			
+			
+		
+		}
+	}
+
+
+/*$(".time_list li").on('click',function(){
 	alert($(this).slice(3,6).html());
 	$(this).slice(0,3).css("color", "red");
 	
@@ -127,8 +191,7 @@ $(".time_list li").on('click',function(){
 	var lastTime=$(this).siblings().text();
 	alert(startTime + " _ " + lastTime);*/
 	
-	$(".time li").slice(min, max).css("background-color","red");
+	/*$(".time li").slice(min, max).css("background-color","red");
 });
-$("li").slice(1,6).css('color','red');
-
+$("li").slice(1,6).css('color','red');*/
 //파라미터를 받아야되는데 어케받지 :선택한 날짜 + 시간
