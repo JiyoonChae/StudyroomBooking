@@ -1,5 +1,7 @@
 package com.jy.sb7.board.notice;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +38,11 @@ public class NoticeController {
 	public ModelAndView getList() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		Pageable pageable = PageRequest.of(0, 10, Direction.DESC);
-		Page<NoticeVO> page;
+//		Pageable pageable = PageRequest.of(0, 10, Direction.DESC);
+//		Page<NoticeVO> page;
+		List<NoticeVO> noticeList = noticeService.getList();
 		
-		
+		mv.addObject("list", noticeList);
 		mv.setViewName("board/boardList");
 		return mv;
 	}
@@ -70,7 +73,6 @@ public class NoticeController {
 		System.out.println("Notice Insert Controller 진입");
 		
 		ModelAndView mv = new ModelAndView();
-		  
 		noticeVO = noticeService.setInsert(noticeVO);
 		
 		if(noticeVO!=null) {

@@ -53,19 +53,19 @@
 				<table class="table table-hover">
 					<tr>
 						<th>번호</th>
-						<th>내용</th>
-						<th>작성자</th>
+						<th>제목</th>
 						<th>등록일</th>
 						<th>조회수</th>
-					<tr>
-						<td onclick="event.cancelBubble=true;">11</td>
-						<td class="type01"><a href="Notice.View.php?articleIndex=193">[중요]
-								거리두기 시행으로 인한 이용 변동사항 안내 (20/11/18 부터 ~ 별도공지시까지 적용 ) - 20.12.21
-								(월) UPDATE</a></td>
-						<td>관리자</td>
-						<td>20/11/18(수)</td>
-						<td>0</td>
 					</tr>
+					<c:forEach items="${list}" var="vo">
+					<tr>
+						<td>${vo.num}</td>
+						<td>${vo.title}</td>
+						<td>${vo.regDate}</td>
+						<td>${vo.hit}</td>
+					</tr>
+					</c:forEach>
+						
 				</table>
 			</div>
 			<div class="paging">

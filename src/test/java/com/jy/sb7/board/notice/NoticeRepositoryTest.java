@@ -21,7 +21,7 @@ class NoticeRepositoryTest {
 	private NoticeRepository noticeRepository;
 		
 	
-	//@Test
+	@Test
 	void saveTest() throws Exception {
 		/* 테스트 데이터 생성 */
 		for(int i=0; i<100; i++) {
@@ -59,7 +59,7 @@ class NoticeRepositoryTest {
 		noticeFileVO2.setNoticeVO(noticeVO);
 		fileList.add(noticeFileVO2);
 		
-		noticeVO.setNoticeFileVOs(fileList);
+		//noticeVO.setNoticeFileVOs(fileList);
 		noticeRepository.save(noticeVO);
 	}
 	
@@ -87,9 +87,9 @@ class NoticeRepositoryTest {
 		assertNotNull(list);
 	}
 	
-	@Test
+	//@Test
 	void pageableListTest() {
-		Pageable pageable = PageRequest.of(0, 10, Direction.DESC);
+		Pageable pageable = PageRequest.of(0, 10);
 		Page<NoticeVO> page = noticeRepository.findAll(pageable);
 		
 		if(page.hasContent()) {
@@ -103,6 +103,8 @@ class NoticeRepositoryTest {
 				System.out.println("---------------------");
 			}
 		}
+		
+		assertNotNull(page.getContent());
 	}
 
 }

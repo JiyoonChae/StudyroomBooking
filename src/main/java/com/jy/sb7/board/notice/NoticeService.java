@@ -28,7 +28,9 @@ public class NoticeService {
 	private String filePath;							//파일 저장 디렉터리명 받아오기
 	
 	
+	
 	public void setInsert(NoticeVO noticeVO, MultipartFile[] files) throws Exception {
+		System.out.println("NoticeVO + MultipartFile Insert");
 		noticeVO = noticeRepository.save(noticeVO);
 		System.out.println("Notice Insert --- Num : " + noticeVO.getNum());
 		
@@ -52,15 +54,16 @@ public class NoticeService {
 			noticeFileList.add(noticeFileVO);
 		}
 		
-		noticeVO.setNoticeFileVOs(noticeFileList);
+		//noticeVO.setNoticeFileVOs(noticeFileList);
 		noticeRepository.save(noticeVO);
 	}
 	
 	public NoticeVO setInsert(NoticeVO noticeVO) throws Exception {
+		System.out.println("NoticeVO insert");
 		return noticeRepository.save(noticeVO);
 	}
 	
 	public List<NoticeVO> getList() throws Exception {
-		return null;
+		return noticeRepository.findAll();
 	}
 }
