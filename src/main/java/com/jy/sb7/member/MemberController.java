@@ -144,7 +144,17 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:../";
 	}
-	
+	@GetMapping("emailCheck")
+	@ResponseBody
+	public int emailCheck(MemberVO memberVO) throws Exception {
+		System.out.println("email check 컨트롤러:" +memberVO.getEmail());
+		memberVO = memberService.emailCheck(memberVO);
+		int result =1; //EMAIL 중복일때
+		if(memberVO ==null) {
+			result=0;
+		}
+		return result;
+	}
 	@GetMapping("memberCheck")
 	@ResponseBody
 	public int getIdCheck(MemberVO memberVO) throws Exception{

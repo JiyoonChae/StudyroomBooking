@@ -67,7 +67,7 @@ function calendarMaker(target, date) {
             "</table>";
         return calendar_html_code;
     }
-
+ var selectDate= 0;
     function calMoveEvtFn() {
         //전달 클릭
         $(".custom_calendar_table").on("click", ".prev", function () {
@@ -80,7 +80,7 @@ function calendarMaker(target, date) {
             calendarMaker($(target), nowDate);
         });
         //일자 선택 클릭
-		var selectDate= 0;
+		
         $(".custom_calendar_table").on("click", "td", function () {
             $(".custom_calendar_table .select_day").removeClass("select_day");
             $(this).removeClass("select_day").addClass("select_day");
@@ -113,6 +113,7 @@ function calendarMaker(target, date) {
 var min = 24;
 var max = -1;
 var selectTime =0;
+var revTime=0;
 $(".time_list li").click(function() {	
 	selectTime = parseInt($(this).children().find(".time").text());
 	console.log("select : " + selectTime);
@@ -129,27 +130,43 @@ $(".time_list li").click(function() {
 				$(this).addClass("selected");
 				$(this).children().find(".price").css("background-color","#704de4");
 			}
-		}
+		} //for문 종료
 		css();
-	}else {
-	
-		$(this).removeClass("selected");
-		$(this).children().find(".price").css("background-color", "#ffd014");
-		
-	}
-	
-	
-	
+	} else if($(this).hasClass("selected")) {
+		if (min<=selectTime<=max){
+		//alert("선택된시간: "+selectTime);
+			$('.time').each(function(){
+  				var test = $(this).text();
+					if(min<=test<selectTime || test>selectTime){
+						console.log("여기까지옴");
+						$(this).parents('li').removeClass("selected");
+						$(this).siblings().css("background-color", "#ffd014");
+						}
+			});
+			$(this).addClass("selected");
+			$(this).children().find(".price").css("background-color","#704de4");
+			min = selectTime;
+			max = selectTime + 1;
+			} //if문 종료
+		};  //else if 종료
 	console.log(min + " - " + max);
+	revtime = max-min;
+	$(".time_info").text(min+":00 ~"+max+":00  "+revtime+"시간");
 	
-});
+	var totalPrice = 1500 * revtime;
+ $(".totalPrice").text(totalPrice +" 원");
+});  //시간 선택 end!!
+
+
+ //공간사용료
+
 
 function css(){
 for(var i=min; i<max-1; i++){ //선택 시간의 최소값과 최대값 만큼 반복해서 중간에 낀 시간에 css를 주려고함..
 	console.log("반복문최소:" +min)
-	console.log("c최대: "+ max)
+	console.log("최대: "+ max)
 			var restTime = i+1;     //중간에 낀 시간 반복문으로 알아내기 2-9시 면 3,4,5,6,7
-		//	var ps =document.getElementsByClassName("test").innerText;          //전체 시간 list중 3,4,5,6,7 과 일치하는 태그를 찾아 css를 주려고함.
+			 //전체 시간 list중 3,4,5,6,7 과 일치하는 태그를 찾아 css를 주려고함.
 			console.log("Restime"+restTime) //여기까지는 의도한대로 잘 나옴..
 			
 			$('.time').each(function(){
@@ -158,40 +175,14 @@ for(var i=min; i<max-1; i++){ //선택 시간의 최소값과 최대값 만큼 �
 				if(restTime == test){
 				$(this).parents('li').addClass("selected");
 				$(this).siblings().css("background-color","#704de4");
-			}
-});
-			
-				
-		
-			
-			
-		
+				}
+			});
 		}
 	}
 
 
-/*$(".time_list li").on('click',function(){
-	alert($(this).slice(3,6).html());
-	$(this).slice(0,3).css("color", "red");
+
 	
-	
-	$(this).children().addClass("selected");
-	var re = $(this).children().hasClass("selected");
-	alert( $(this).children().find(".time").text());
-	
-	var min = 24;
-	var max = -1;
-	var reserveTime = $(this).children().find(".time").text();
-	
-	min = 7;
-	max = 11;
-	
-	
-	/*var startTime= $(this).siblings().text();
-	var lastTime=$(this).siblings().text();
-	alert(startTime + " _ " + lastTime);*/
-	
-	/*$(".time li").slice(min, max).css("background-color","red");
-});
-$("li").slice(1,6).css('color','red');*/
-//파라미터를 받아야되는데 어케받지 :선택한 날짜 + 시간
+
+ //파라미터를 받아야되는데 어케받지 :선택한 날짜 + 시간
+ 

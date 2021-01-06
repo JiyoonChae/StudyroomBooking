@@ -136,7 +136,9 @@ span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; 
 
 <div class="heading"> <h5>예약 일시</h5> </div>
 <div class="reserve_info"> </div>
+<div class="time_info"></div>
 <div class="heading"><h5>공간 사용료</h5></div>
+<div class="totalPrice"></div>
 
 <button class="btn btn-warning">바로 결제</button>
 <button class="btn btn-info">현장 결제</button>

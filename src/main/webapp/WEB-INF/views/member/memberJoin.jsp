@@ -209,6 +209,7 @@
 		<div class="form-group">
 		<label for="email">Email </label>
 		<input type="email" id="email" class="form-control"/>
+		<div id="emailCheck"></div>
 		<button type="button" id="emailAuth" class="btn btn-primary" data-toggle="modal" data-target="#myModal" >이메일 인증</button>
 		</div>
 		</form>
@@ -335,14 +336,21 @@
 				var email = $(this).val();
 				if(email !=null){
 					$.ajax({
-						url:"./memberCheck",
+						url:"./emailCheck",
 						type:"get",
 						data: {email:email},
 						success: function(data){
-							var str="중복된 email 입니다"
-						 	if(data==0){
-							 	console.log("사용가능 이메일")
-							 	}
+							var str ="중복된 email 입니다";
+							if(data==0){
+								str="사용 가능한 email입니다"
+									console.log("dddd"+str)
+								idCheck=true;
+								$("#emailCheck").removeClass("idCheck1").addClass("idCheck0");
+								}else{
+									$("#emailCheck").addClass("idCheck1");
+									idCheck=false;
+									}
+							$("#emailCheck").html(str);
 							}
 						})
 					}
