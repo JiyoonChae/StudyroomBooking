@@ -12,4 +12,8 @@ public class ReservationController {
 	public String setRes() throws Exception{
 		return "reservation/roomRes";
 	}
+	@GetMapping("resConfirm")
+	public String confirmRes() throws Exception{
+		return "reservation/resConfirm";
+	}
 }
