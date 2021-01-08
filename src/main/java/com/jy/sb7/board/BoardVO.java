@@ -1,9 +1,6 @@
 package com.jy.sb7.board;
 
-import java.sql.Blob;
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -12,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -32,8 +28,7 @@ public class BoardVO {
 	
 	@Column(updatable = false)
 	@CreationTimestamp
-	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
-	private LocalDateTime regDate;
+	private Date regDate;
 	
 	private long hit;
 	

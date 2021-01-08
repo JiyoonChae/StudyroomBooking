@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,21 @@ class NoticeRepositoryTest {
 	private NoticeRepository noticeRepository;
 		
 	
-	@Test
+	//@Test
+	void findTest() throws Exception {
+		Optional<NoticeVO> optional = noticeRepository.findById(102L);
+		NoticeVO noticeVO = optional.get();
+		
+		System.out.println(noticeVO.getNum());
+		System.out.println(noticeVO.getTitle());
+		System.out.println(noticeVO.getRegDate());
+		System.out.println(noticeVO.getHit());
+		
+		assertNotNull(noticeVO);
+	}
+	
+	
+	//@Test
 	void saveTest() throws Exception {
 		/* 테스트 데이터 생성 */
 		for(int i=0; i<100; i++) {

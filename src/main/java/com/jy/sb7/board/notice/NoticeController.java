@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jy.sb7.board.BoardVO;
+import com.jy.sb7.utill.Pager;
+
 
 @Controller
 @RequestMapping(value = "/notice/**")
@@ -35,15 +38,20 @@ public class NoticeController {
 
 	
 	@GetMapping("noticeList")
-	public ModelAndView getList() throws Exception {
+	public ModelAndView getList(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-//		Pageable pageable = PageRequest.of(0, 10, Direction.DESC);
-//		Page<NoticeVO> page;
-		List<NoticeVO> noticeList = noticeService.getList();
+		Pageable pageable = PageRequest.of(pager.getPage(), pager.getSize());
+		Page<NoticeVO> page = noticeService.getList(pageable);
+		pager.makePage(page);
 		
-		mv.addObject("list", noticeList);
+		System.out.println(pager.getStartNum());
+		System.out.println(pager.getLastNum());
+		
+		mv.addObject("pager", pager);
+		mv.addObject("page", page);
 		mv.setViewName("board/boardList");
+		
 		return mv;
 	}
 	
@@ -70,19 +78,34 @@ public class NoticeController {
 	
 	@PostMapping("noticeWrite") 
 	public ModelAndView setInsert(NoticeVO noticeVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
 		System.out.println("Notice Insert Controller 진입");
 		
-		ModelAndView mv = new ModelAndView();
 		noticeVO = noticeService.setInsert(noticeVO);
 		
 		if(noticeVO!=null) {
 			System.out.println(noticeVO.getNum());
 		}
+		
 		mv.setViewName("redirect:./noticeList");
-		  
 		return mv;
 	}
 	
 	
+	@GetMapping("noticeSelect")
+	public ModelAndView getOne(NoticeVO noticeVO) throws Exception {
+		System.out.println("noticeSelect");
+		ModelAndView mv = new ModelAndView();
+		
+		noticeVO.setHit(noticeVO.getHit()+1);
+		int hitUpdate = noticeService.setUpdateHit(noticeVO);
+		System.out.println("조회수 업그레이드 : "+hitUpdate);
+		
+		noticeVO = noticeService.getOne(noticeVO);
+		
+		mv.addObject("notice", noticeVO);
+		mv.setViewName("board/boardSelect");
+		return mv;
+	}
 	
 }

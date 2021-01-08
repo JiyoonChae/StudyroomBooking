@@ -20,9 +20,11 @@
 					</li> --%>
 					<li class="nav-item"><a class="nav-link" href="#">공간(룸)소개</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">이용안내</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">실시간예약</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/notice/noticeList">고객지원</a>
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/res/roomRes">실시간예약</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/notice/noticeList">고객지원</a>
 					</li>
 				</ul>
 			</div>
@@ -32,18 +34,20 @@
 				<ul class="navbar-nav ml-auto">
 					<c:choose>
 						<c:when test="${not empty member}">
-							<li class="nav-item"><a class="nav-link" href="#">My Page</a></li>
-							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/member/memberLogout">LogOut</a>
+							<li class="nav-item">
+								<a class="nav-link" href="${pageContext.request.contextPath}/">My Page</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="${pageContext.request.contextPath}/member/memberLogout">LogOut</a>
 							</li>
 						</c:when>
 						<c:otherwise>
-							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/member/memberJoin">Sign
-									Up</a></li>
-							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/member/memberLogin">Log
-									In</a></li>
+							<li class="nav-item">
+								<a class="nav-link" href="${pageContext.request.contextPath}/member/memberJoin">Sign Up</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="${pageContext.request.contextPath}/member/memberLogin">LogIn</a>
+							</li>
 						</c:otherwise>
 					</c:choose>
 				</ul>

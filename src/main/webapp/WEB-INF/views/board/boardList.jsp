@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 	<link href="../css/common/reset.css" rel="stylesheet" type="text/css">
 	<link href="../css/common/header.css" rel="stylesheet" type="text/css">
+	<link href="../css/common/footer.css" rel="stylesheet" type="text/css">
 	<link href="../css/service/service_subtitle.css" rel="stylesheet" type="text/css">
 	<link href="../css/service/notice.css" rel="stylesheet" type="text/css">
 </head>
@@ -25,11 +27,11 @@
 		</div>
 	</div>
 	<div class="container">
-			<div class="bbs">
+		<div class="inner">
 			<!-- Search -->
 			<div id="search" class="row">
 				<div class="col-sm-8">
-					<form id="frm" action="./${board}List">
+					<%-- <form id="frm" action="./${board}List">
 						<input type="hidden" name="curPage" id="curPage" value=1>
 						<div class="form-group" style="display:inline-block; width:25%; float:left;">
 						  <select class="form-control" id="kind" name="kind">
@@ -46,34 +48,70 @@
 						      </button>
 						    </div>
 						  </div>
-					</form>
+					</form> --%>
 				</div>
 			</div>
 
-				<table class="table table-hover">
-					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>등록일</th>
-						<th>조회수</th>
-					</tr>
-					<c:forEach items="${list}" var="vo">
-					<tr>
-						<td>${vo.num}</td>
-						<td>${vo.title}</td>
-						<td>${vo.regDate}</td>
-						<td>${vo.hit}</td>
-					</tr>
-					</c:forEach>
-						
-				</table>
-			</div>
-			<div class="paging">
-				<ul>
-					<li class="on">1</li>
-				</ul>
-			</div>
-		</div>	
+			<table class="table table-hover list_table">
+				<colgroup>
+					<col width="10%">
+					<col width="*">
+					<col width="20%">
+					<col width="10%">
+				</colgroup>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>등록일</th>
+					<th>조회수</th>
+				</tr>
+				<c:forEach items="${page.content}" var="vo">
+				<tr>
+					<td class="num">${vo.num}</td>
+					<td class="title"><a href="./noticeSelect?num=${vo.num}&hit=${vo.hit}">${vo.title}</a></td>
+					<td class="regDate"><fmt:formatDate value="${vo.regDate}" pattern="yy/MM/dd HH:mm"/></td>
+					<td class="hit">${vo.hit}</td>
+				</tr>
+				</c:forEach>
+			</table>
+		</div>
+		
+		<!-- Page -->
+		<div class="pager">
+			<ul class="pagination justify-content-center">
+				<c:if test="${pager.prev}">
+					<li class="page-item"><a href="./${board}List?page=${pager.startNum-2}">&#60;</a></li>
+				</c:if>
+				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+					<li class="page-item page-btn"><a href="./${board}List?page=${i-1}">${i}</a>
+				</c:forEach>
+				<c:if test="${pager.next}">
+					<li class="page-item"><a href="./${board}List?page=${pager.lastNum}">&#62;</a></li>
+				</c:if>
+			</ul>
+		</div>
+		
+		<!-- //Page -->
+		<p>
+			<a href="${pageContext.request.contextPath}/notice/noticeWrite" class="btn btn-warning btn-lg btn-write">글 작성</a>
+		</p>
+	</div>
+	<c:import url="../template/footer.jsp"></c:import>
+	
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$(".pager li.page-btn").click(function() {
+			alert($(this).hasClass("on"));
+			if(!$(this).hasClass("on")) {
+				$(".pager .btn-page.on").removeClass("on");
+				$(this).addClass("on");
+				alert($(this).hasClass("on"));
+			}
+		});
+
+	});
+		
+	</script>
 </div>
 </body>
 </html>
