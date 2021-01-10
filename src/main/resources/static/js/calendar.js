@@ -106,6 +106,7 @@ var selectTime =0;
 var revTime=0;
 var totalPrice =0;
 var user =1;
+
 //원하는 시간 클릭 시 함수 적용 ----------------------
 $(".time_list li").click(function() {	
 	selectTime = parseInt($(this).children().find(".time").text());
@@ -159,7 +160,7 @@ $(".time_list li").click(function() {
 getUsers();  //인원수 선택 후 총금액 다시 계산해서 html에 금액 출력하는 함수!
 
  //공간사용료 최종 금액: 인원선택 후 계산 시작--------
-var totalPrice2 =0;
+var totalPrice2 =0; 
 function getUsers() {
 	$("#users").blur(function(){
 	 user = $("#users").val();
@@ -202,7 +203,24 @@ $(".room").click(function() {
 	
 
  //파라미터를 받아야되는데 어케받지 :선택한 날짜 + 시간
-$("#cardPay").click(function(){
+   
+ $('#myModal').on('shown.bs.modal', function () {
+	$(".reserveRoom").val(roomType);
+	$(".reserveDate").val(bookDate);
+	$(".startTime").val(min+"시");
+	$(".endTime").val(max+"시");
+	$(".reserveUser").val(user+"명");
+	if(totalPrice2==0){
+		$("#roomPrice").val(totalPrice)
+	}else{
+		$("#roomPrice").val(totalPrice2)
+	}
+	
+
+console.log("예약확정----");
+});
+    
+$("#storePay").click(function(){
 	console.log("파라미터보내장------") 
 console.log("룸타입: "+roomType);
 //날짜 year, month, date
@@ -215,10 +233,45 @@ console.log("예약시간: "+ revTime);
 console.log("인원수 : "+ user);
 //총금액 totalPrice
 console.log("총금액" +totalPrice2);
+var id = "<c:out value='${id}' />";
+var email= $("#email").val();
+console.log(id)
+console.log(email)
 console.log("파라미터값-----------------")
 })
  //룸타입 roomType
 
+//예약 확정 버튼 누르면 DB로 보내서 저장하기.
+$("#confirmRes").click(function(){
+	//예약번호 만들기
+	var revNum= Math.floor(Math.random() * 100000);
+	//id, email 정보 session 에서 받아오기
+	var id = $("#id").val();
+	var email= $("#email").val();
+	var roomPrice = $("#roomPrice").val();
+	var payment = $("#payment").val();
+	$.ajax({
+		url:"./roomConfirm",
+		type:"post",
+		data:{
+			revNum:revNum, 
+		
+			roomType: roomType,
+			roomDate: bookDate,
+			startTime: min,
+			endTime: max,
+			roomTime: revTime,
+			roomUser: user,
+			roomPrice: roomPrice,
+			payment: payment
+			},
+		success: function(data){
+			alert("예약완료");
+		}
+	}); //ajax완료
+	
+	
+})
 
 
 /*$(".price").click(function(){

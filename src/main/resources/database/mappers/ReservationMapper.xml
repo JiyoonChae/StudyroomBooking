@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.jy.sb7.res.ReservationMapper">
+  	
+  	
+  	<insert id="roomConfirm" parameterType="ReservationVO">
+		insert into reservation (revNum, id, email, startTime, endTime, roomTime, roomUser, roomDate, roomType, payment, roomPrice) 
+		values(#{revNum}, #{id}, #{email}, #{startTime}, #{endTime}, #{roomTime}, #{roomUser}, #{roomDate}, #{roomType}, #{payment}, #{roomPrice});
+  	</insert>
+  	
+  	
+  
+  
+  </mapper>

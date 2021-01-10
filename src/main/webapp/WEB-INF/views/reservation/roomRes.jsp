@@ -181,11 +181,45 @@ span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; 
 
 	<div class="heading"><h5>공간 사용료</h5></div>
 		<div class="totalPrice"></div>
-	
 <div>	
+
+    <input type="hidden" value="${member.id}" name="id"  id="id">
+	<input type="hidden" value="${member.email}" name="email" id="email">
+	
 <button class="btn btn-warning" id="cardPay">바로 결제</button>
-<button class="btn btn-info" id="pay">현장 결제</button>
+<button class="btn btn-info" id="storePay" data-toggle="modal" data-target="#myModal">현장 결제</button>
 </div>
+
+ <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">예약 확정</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+          <div><span>스터디룸 :</span><input type="text" name="roomType" class="reserveRoom"></div>
+          <div><span>예약 날짜: </span> <input type="text" name="roomDate" class="reserveDate"></div>
+          <div><span>시작 시간 :</span><input type="text" name="startTime" class="startTime"></div>
+           <div><span>종료 시간 :</span><input type="text" name="endTime" class="endTime"></div>
+           <div><span>인원 : </span><input type="text" name="roomUser" class="reserveUser"></div>
+          	<div><span>총 금액 :</span> <input type="text" name="roomPrice" id="roomPrice"></div>
+          
+        </div>
+        <div class="modal-footer">
+        	<p>예약을 확정 하시겠습니까?</p>
+        	<input type="hidden" value="현장결제" id="payment" name="payment" >
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="confirmRes">확인</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
 
 <script type="text/javascript" src="../js/calendar.js" ></script>
 <script type="text/javascript">

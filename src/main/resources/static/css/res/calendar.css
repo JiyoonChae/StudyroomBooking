@@ -45,3 +45,5 @@
     color: #fff;
 }
 
+.close {margin: 0 !important;}
+.modal-title {justify-content: center; line-height: 45px;}

@@ -334,7 +334,7 @@
 			//**********************email 중복 체크***************************
 			$("#email").blur(function(){
 				var email = $(this).val();
-				if(email !=null){
+				if(email !=''){
 					$.ajax({
 						url:"./emailCheck",
 						type:"get",
@@ -353,7 +353,10 @@
 							$("#emailCheck").html(str);
 							}
 						})
-					}
+					}else{
+						$("#emailCheck").html("email를 입력하세요");
+						$("#emailCheck").addClass("idCheck1");
+						} 
 				})	//***********email 중복체크 end************
 
 			//************ 이메일 인증**********************
