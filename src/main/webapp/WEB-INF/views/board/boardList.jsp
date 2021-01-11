@@ -54,10 +54,10 @@
 
 			<table class="table table-hover list_table">
 				<colgroup>
-					<col width="10%">
+					<col width="8%">
 					<col width="*">
-					<col width="20%">
-					<col width="10%">
+					<col width="14%">
+					<col width="8%">
 				</colgroup>
 				<tr>
 					<th>번호</th>
@@ -83,7 +83,7 @@
 					<li class="page-item"><a href="./${board}List?page=${pager.startNum-2}">&#60;</a></li>
 				</c:if>
 				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-					<li class="page-item page-btn"><a href="./${board}List?page=${i-1}">${i}</a>
+					<li class="page-item page-btn" title="${i}"><a href="./${board}List?page=${i-1}">${i}</a>
 				</c:forEach>
 				<c:if test="${pager.next}">
 					<li class="page-item"><a href="./${board}List?page=${pager.lastNum}">&#62;</a></li>
@@ -92,9 +92,11 @@
 		</div>
 		
 		<!-- //Page -->
+		<c:if test="${member.type eq 3}">
 		<p>
-			<a href="${pageContext.request.contextPath}/notice/noticeWrite" class="btn btn-warning btn-lg btn-write">글 작성</a>
+			<a href="${pageContext.request.contextPath}/notice/noticeWrite" class="btn btn-lg btn-write">글 작성</a>
 		</p>
+		</c:if>
 	</div>
 	<c:import url="../template/footer.jsp"></c:import>
 	
@@ -109,8 +111,14 @@
 			}
 		});
 
-	});
 		
+	});
+
+	var page = ${param.page};
+	if($(".pager li.page-btn").attr("title").equal(page)) {
+		alert($(this).html());
+		
+	}
 	</script>
 </div>
 </body>

@@ -22,6 +22,9 @@ public class NoticeService {
 	private NoticeRepository noticeRepository;
 	
 	@Autowired
+	private NoticeFileRepository NoticeFileRepository;
+	
+	@Autowired
 	private FilePathGenerator filePathGenerator;		//파일을 저장할 디렉터리
 	
 	@Autowired
@@ -40,37 +43,41 @@ public class NoticeService {
 		return optional.get();
 	}
 	
-	public void setInsert(NoticeVO noticeVO, MultipartFile[] files) throws Exception {
-		System.out.println("NoticeVO + MultipartFile Insert");
-		noticeVO = noticeRepository.save(noticeVO);
-		System.out.println("Notice Insert --- Num : " + noticeVO.getNum());
-		
-		File file = filePathGenerator.getUseResourceLoader(filePath);
-		System.out.println("Notice Insert --- File : " + file.getAbsolutePath());
-		
-		List<NoticeFileVO> noticeFileList = new ArrayList<NoticeFileVO>();
-		
-		for(MultipartFile multipartFile : files) {
-			if(multipartFile.getSize()==0) {
-				continue;
-			}
-			
-			String fileName = fileManager.saveUUIDTransferTo(multipartFile, file);
-			
-			NoticeFileVO noticeFileVO = new NoticeFileVO();
-			noticeFileVO.setFileName(fileName);
-			noticeFileVO.setOriName(multipartFile.getOriginalFilename());
-			noticeFileVO.setNoticeVO(noticeVO);
-			
-			noticeFileList.add(noticeFileVO);
-		}
-		
-		//noticeVO.setNoticeFileVOs(noticeFileList);
-		noticeRepository.save(noticeVO);
+	public NoticeFileVO getFileDown(NoticeFileVO noticeFileVO) throws Exception {
+		Optional<NoticeFileVO> optional = NoticeFileRepository.findById(noticeFileVO.getFileNum());
+		return optional.get();
 	}
 	
+	/* 파일 업로드 insert */
+//	public void setInsert(NoticeVO noticeVO, MultipartFile[] files) throws Exception {	
+//		noticeVO = noticeRepository.save(noticeVO);
+//		
+//		File file = filePathGenerator.getUseResourceLoader(filePath);
+//		System.out.println("Notice File : " + file.getAbsolutePath());
+//		
+//		List<NoticeFileVO> noticeFileList = new ArrayList<NoticeFileVO>();
+//		
+//		for(MultipartFile multipartFile : files) {
+//			if(multipartFile.getSize()==0) {
+//				continue;
+//			}
+//			
+//			String fileName = fileManager.saveUUIDTransferTo(multipartFile, file);
+//			
+//			NoticeFileVO noticeFileVO = new NoticeFileVO();
+//			noticeFileVO.setFileName(fileName);
+//			noticeFileVO.setOriName(multipartFile.getOriginalFilename());
+//			noticeFileVO.setNoticeVO(noticeVO);
+//			
+//			noticeFileList.add(noticeFileVO);
+//		}
+//		noticeVO.setNoticeFileVOs(noticeFileList);
+//		noticeRepository.save(noticeVO);
+//	}
+	
+	/* summernote insert*/
 	public NoticeVO setInsert(NoticeVO noticeVO) throws Exception {
-		System.out.println("NoticeVO insert");
+		System.out.println("Summernote Insert");
 		return noticeRepository.save(noticeVO);
 	}
 	
@@ -81,4 +88,22 @@ public class NoticeService {
 	public Page<NoticeVO> getList(Pageable pageable) throws Exception {
 		return noticeRepository.findByNumGreaterThanOrderByNumDesc(0L, pageable);
 	}
+	
+	
+	public int setUpdate(NoticeVO noticeVO, MultipartFile[] files) throws Exception {
+		return noticeRepository.setUpdate(noticeVO.getTitle(), noticeVO.getContents(), noticeVO.getNum());
+	}
+	
+	public boolean setDelete(NoticeVO noticeVO) throws Exception {
+		long deleteNum = noticeVO.getNum();
+		noticeRepository.deleteById(deleteNum);
+		
+		boolean result = false;
+		if( noticeRepository.findById(deleteNum) == null) {
+			result = true;
+		}
+		return result;
+		//return noticeRepository.getCheckCount(deleteNum);
+	}
+	
 }

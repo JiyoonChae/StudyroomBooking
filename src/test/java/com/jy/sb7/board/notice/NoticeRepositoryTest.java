@@ -20,7 +20,23 @@ class NoticeRepositoryTest {
 
 	@Autowired
 	private NoticeRepository noticeRepository;
+	
+	
+	//@Test
+	void deleteByIdTest() throws Exception {
+		noticeRepository.deleteById(119L);
 		
+		assertNull(noticeRepository.findById(71L).get());
+	}
+	
+	//@Test
+	void deleteTest() throws Exception {
+		NoticeVO noticeVO = new NoticeVO();
+		noticeVO.setNum(70);
+		noticeRepository.delete(noticeVO);
+		
+		assertNull(noticeRepository.findById(70L).get());
+	}
 	
 	//@Test
 	void findTest() throws Exception {

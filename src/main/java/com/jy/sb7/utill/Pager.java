@@ -18,6 +18,10 @@ public class Pager {
 	private boolean isPrev;
 	private boolean isNext;
 	
+	private String type;
+	private String search;
+	
+	
 	
 	public Integer getPage() {
 		if(this.page == null) {
@@ -44,6 +48,36 @@ public class Pager {
 		}
 		this.size = size;
 	}
+	
+	
+	public String getType() {
+		if(this.type == null) {
+			this.type = "";
+		}
+		return type;
+	}
+	public void setType(String type) {
+		if(type == null) {
+			type = "";
+		}
+		this.type = type;
+	}
+	
+	public String getSearch() {
+		if(this.search == null) {
+			this.search = "";
+		}
+		return search;
+	}
+	public void setSearch(String search) {
+		if(search == null) {
+			search = "";
+		}
+		this.search = search;
+	}
+	
+	
+	
 	
 	
 	public void makePage(Page<NoticeVO> page) {

@@ -45,11 +45,28 @@
 						<tr>
 							<td colspan="2" class="contents">${notice.contents}</td>
 						</tr>
+						<!-- 파일 다운로드 -->
+						<%-- <c:if test="${not empty notice.noticeFileVOs}">
+						<tr>
+							<td colspan="2" class="files">
+							<c:forEach items="${notice.noticeFileVOs}" var="file">
+								<p class="filedown">${file.oriName} <a href="${board}FileDown?fileNum=${file.fileNum}" class="btn btn-sm btn-outline-warning">다운</a></p>
+							</c:forEach>
+							</td>
+						</tr>
+						</c:if> --%>
+						
 					</table>
 				</div>
 				<div class="btn btn_toList">
 					<a href="./noticeList">목록으로</a>
 				</div>
+				<c:if test="${member.type eq 3}">
+				<div class="btn-update-delete">
+					<a href="./noticeUpdate?num=${notice.num}" class="btn btn-lg btn-outline-info">글수정</a>
+					<a href="./noticeDelete?num=${notice.num}" class="btn btn-lg btn-outline-danger">글삭제</a>
+				</div>
+				</c:if>
 			</div>
 		</div>
 	<c:import url="../template/footer.jsp"></c:import>

@@ -27,30 +27,28 @@
 		</div>
 
 		<div class="container">
-			<form action="./${board}Write" method="post" enctype="multipart/form-data" class="frm">
+			<form action="./${board}Update?num=${notice.num}" method="post" enctype="multipart/form-data" class="frm">
 				<div class="form-group">
 					<label for="title">제목</label>
-					<input type="text" class="form-control" placeholder="제목을 입력하세요" id="title" name="title">
+					<input type="text" class="form-control" value="${notice.title}" placeholder="제목을 입력하세요" id="title" name="title">
 				</div>
 				<div class="form-group">
 					<label for="writer">작성자</label>
-					<input type="text" class="form-control" value="${member.id}" id="writer" name="writer">
+					<input type="text" class="form-control" value="${member.id}" readonly="readonly" id="writer" name="writer">
 				</div>
 				<div class="form-group">
 					<!-- <label for="contents">내용</label> -->
 					<textarea class="form-control" id="contents" name="contents"></textarea>
 				</div>
-				<!-- <div class="form-group">
-					<label for="files">업로드</label>
-					<input type="file" class="form-control" name="files">
-					<input type="file" class="form-control" name="files">
-				</div> -->
-				<button type="submit" class="btn btn-lg btn-write">등록하기</button>
+				<button type="submit" class="btn btn-lg btn-write">수정하기</button>
 			</form>
 		</div>
 	</div>
 
-	<script src="../js/service/noticeWrite.js"></script>
+    <script src="../js/service/noticeWrite.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$('#contents').summernote('code', '${notice.contents}');
+	</script>
 </div>
 </body>
 </html>

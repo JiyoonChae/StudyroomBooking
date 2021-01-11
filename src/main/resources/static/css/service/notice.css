@@ -95,6 +95,7 @@
 .list_table td a {
 	display: block;
 	cursor: pointer;
+	font-size: 15px;
 }
 
 .list_table td a:hover {
@@ -110,7 +111,6 @@
 
 
 .pager .page-item {
-	/* display: inline-block; */
 	width: 36px;
 	height: 36px;
 	color: #212529;
@@ -148,8 +148,9 @@
 .btn-write {
 	display: block;
 	float: right;
-	margin: 20px 0 60px auto;
+	margin-top: 20px;
 	background-color: #ffb400;
+	border: none;
 	color: #fff;
 }
 
@@ -185,11 +186,15 @@
 	font-size: 15px;
 }
 
-.select_table td.contents {
+.select_table td.contents, td.files {
 	text-align: left;
 	vertical-align: middle;
 	padding:20px;
 	font-size: 15px;
+}
+
+.select_table .files .filedown {
+	padding-bottom: 5px;
 }
 
 .btn_toList {
@@ -215,8 +220,9 @@
 	color: #fff;
 }
 
-
-
+.btn-update-delete {
+	float: right;
+}
 
 
 /* @media screen and (max-width:991px) {

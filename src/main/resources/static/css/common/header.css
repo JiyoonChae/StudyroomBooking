@@ -1,26 +1,17 @@
 @charset "UTF-8";
 	.header {
-		width:100%;
-		height:60px;
+		width: 100%;
+		height: 80px;
 	}
 	
 	.header nav {
-		height: 60px;
-		font-size:18px;
+		height: 80px;
+		font-size: 20px;
 	}
-	
+
 	.midbtn {
  		position: relative;
  	}
- 	
- 	/* .btn{
- 		position: absolute;
- 		left: 45%;
- 		text-align: center;
- 		width: 250px;
- 		margin:20px auto !important;
- 		background: #f9b000;
- 	} */
  	
  	ul, li {
 		list-style: none;
@@ -42,3 +33,46 @@
  		line-heigth: 85px;
  		text-align: center; 		
  	}
+ 	
+ 	 	
+ 	/* .btn{
+ 		position: absolute;
+ 		left: 45%;
+ 		text-align: center;
+ 		width: 250px;
+ 		margin:20px auto !important;
+ 		background: #f9b000;
+ 	} */
+ 	
+ 	
+ 	
+@media screen and (min-width: 992px) {
+	.container {
+		max-width: 1200px;
+	}
+	
+	.logo {
+		font-size: 24px;
+	}
+	
+	.logo span.size20 {
+		font-size: 20px;
+		color: #fff;
+	}
+	
+	.navbar-collapse .menu li {
+ 		margin-right: 20px;
+ 	}
+	
+	.navbar-collapse .menu li a {
+ 		font-size: 18px;
+ 	}
+ 	
+ 	.navbar-collapse .member li a {
+ 		font-size: 16px;
+ 	}
+}
+	
+
+ 	
+ 	
