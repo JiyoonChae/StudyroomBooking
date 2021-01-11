@@ -207,11 +207,11 @@ $(".room").click(function() {
  $('#myModal').on('shown.bs.modal', function () {
 	$(".reserveRoom").val(roomType);
 	$(".reserveDate").val(bookDate);
-	$(".startTime").val(min+"시");
-	$(".endTime").val(max+"시");
-	$(".reserveUser").val(user+"명");
+	$(".startTime").val(min+" 시");
+	$(".endTime").val(max+" 시");
+	$(".reserveUser").val(user+"인");
 	if(totalPrice2==0){
-		$("#roomPrice").val(totalPrice)
+		$("#roomPrice").val(totalPrice+" 원")
 	}else{
 		$("#roomPrice").val(totalPrice2)
 	}
@@ -255,7 +255,6 @@ $("#confirmRes").click(function(){
 		type:"post",
 		data:{
 			revNum:revNum, 
-		
 			roomType: roomType,
 			roomDate: bookDate,
 			startTime: min,
@@ -269,9 +268,7 @@ $("#confirmRes").click(function(){
 			alert("예약완료");
 		}
 	}); //ajax완료
-	
-	
-})
+}) //현장결제 완료
 
 
 /*$(".price").click(function(){

@@ -14,13 +14,11 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <c:import url="../template/bootStrap.jsp"></c:import>
 <style type="text/css">
-	.swiper-container {
-    width: 45px;
-    height: 120px;
-}
+.swiper-container { width: 45px; height: 120px; }
 ul, li {list-style: none;}
 .reservat_time_wrap {overflow:hidden; background-color: #fff; }
 .swiper-container {width:647px;}
@@ -35,8 +33,29 @@ a {text-decoration: none; cursor: pointer;}
 span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; width: 45px; min-wsidth: 45px; height: 41px; padding:8px; vertical-align: middle; } 
 
 .heading {position: relative; width:100%; padding-bottom: 8px; border-bottom: 2px solid #704de4; margin-top: 30px;}
-
+.buttons {margin-top: 30px;}
+.btn-res {background: #704de4; color:#fff; font-weight: bold;}
+/* modal css*/
+.modal-body {padding: 24px 26px 26px;}
+.close {margin: 0 !important;}
+.modal-header {padding:0;}
+.modal-title {text-align:left;  padding: 20px 25px;  background: #704de4; font-size: 20px; color:#fff; box-sizing: border-box;}
+.title {margin-top: 20px; font-size: 25px; line-height: 44px; color:#000; text-align: center;}
+.reserve-info {margin-top:30px; border-top:2px solid #704de4;}
+.reserve-info-wrap {padding: 0 20px; border-bottom: 1px solid #ccc;}
+.reserve-info-wrap input {border:none; text-align: right; outline:none; font-weight: bold;}
+.reserve-info-wrap li {position: relative; padding:20px 0 18px  100px; font-size:16px; text-align: right; border-bottom: 1px solid #ccc;}
+.reserve-info-wrap .tit {position: absolute; left:0; color:#656565;}
+#roomPrice {color: #704de4;}
 </style>
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		var IMP = window.IMP;
+		IMP.init('imp85640668');
+	 	})
+</script>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
@@ -167,8 +186,8 @@ span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; 
 	<!-- 선택된 예약 정보 출력 -->
 	<div class="heading"> <h5>예약 일시</h5> </div>
 		<div class="reservation">
-		<div class="reserve_info"> </div>
-		<div class="time_info"></div>
+		<div class="reserve_info" style="font-size:20px;"></div>
+		<div class="time_info" style="font-size:20px;"></div>
 		</div>
 		
 	<div class="heading" > <h5>인원 선택</h5></div>
@@ -180,14 +199,13 @@ span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; 
 	
 
 	<div class="heading"><h5>공간 사용료</h5></div>
-		<div class="totalPrice"></div>
-<div>	
+		<div class="totalPrice" style="font-size:20px;"></div>
+	<div>	
 
-    <input type="hidden" value="${member.id}" name="id"  id="id">
-	<input type="hidden" value="${member.email}" name="email" id="email">
-	
-<button class="btn btn-warning" id="cardPay">바로 결제</button>
-<button class="btn btn-info" id="storePay" data-toggle="modal" data-target="#myModal">현장 결제</button>
+	<div class="buttons">	
+		
+		<button class="btn btn-res" id="storePay" data-toggle="modal" data-target="#myModal">예약하기</button>
+	</div>
 </div>
 
  <!-- Modal -->
@@ -196,24 +214,30 @@ span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; 
     
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header" style="display: block;">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">예약 확정</h4>
         </div>
         <div class="modal-body">
-          <p>Some text in the modal.</p>
-          <div><span>스터디룸 :</span><input type="text" name="roomType" class="reserveRoom"></div>
-          <div><span>예약 날짜: </span> <input type="text" name="roomDate" class="reserveDate"></div>
-          <div><span>시작 시간 :</span><input type="text" name="startTime" class="startTime"></div>
-           <div><span>종료 시간 :</span><input type="text" name="endTime" class="endTime"></div>
-           <div><span>인원 : </span><input type="text" name="roomUser" class="reserveUser"></div>
-          	<div><span>총 금액 :</span> <input type="text" name="roomPrice" id="roomPrice"></div>
-          
+          <p class="title">결제하시겠습니까? </p>
+          <div class="reserve-info">
+          <ul class="reserve-info-wrap">
+          	<li><span class="tit">스터디룸 </span><input type="text" name="roomType" class="reserveRoom"></li>
+          	<li><span class="tit">예약 날짜 </span> <input type="text" name="roomDate" class="reserveDate"></li>
+          	<li><span class="tit">시작 시간 </span><input type="text" name="startTime" class="startTime"></li>
+          	<li><span class="tit">종료 시간 </span><input type="text" name="endTime" class="endTime"></li>
+          	<li><span class="tit">인원 </span><input type="text" name="roomUser" class="reserveUser"></li>
+          	<li style="border-botton:none;"><span class="tit">총 금액</span> <input type="text" name="roomPrice" id="roomPrice"></li>
+          </ul>
+         
+       
+          </div>
         </div>
         <div class="modal-footer">
         	<p>예약을 확정 하시겠습니까?</p>
         	<input type="hidden" value="현장결제" id="payment" name="payment" >
-          <button type="button" class="btn btn-default" data-dismiss="modal" id="confirmRes">확인</button>
+        	<button class="btn btn-warning" id="cardPay">바로 결제</button>
+          <button type="button" class="btn btn-res" data-dismiss="modal" id="confirmRes">현장결제</button>
         </div>
       </div>
       
@@ -222,9 +246,45 @@ span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; 
 
 
 <script type="text/javascript" src="../js/calendar.js" ></script>
+
 <script type="text/javascript">
 var mySwiper = new Swiper('.swiper-container');
 
+$("#cardPay").click(function(){
+	
+	requestPay();
+	console.log("페이까지옴")
+	//결제 api 사용
+})
+
+function requestPay(){
+	IMP.request_pay({
+    pg : 'html5_inicis ',
+    pay_method : 'card',
+    merchant_uid : 'merchant_' + new Date().getTime(),
+    name : '주문명:결제테스트',
+    amount : 1000,
+    buyer_email : 'iamport@siot.do',
+    buyer_name : '구매자이름',
+    buyer_tel : '010-1234-5678',
+   // buyer_addr : '서울특별시 강남구 삼성동',
+    //buyer_postcode : '123-456'
+}, function(rsp) {
+    if ( rsp.success ) {
+        var msg = '결제가 완료되었습니다.';
+        msg += '고유ID : ' + rsp.imp_uid;
+        msg += '상점 거래ID : ' + rsp.merchant_uid;
+        msg += '결제 금액 : ' + rsp.paid_amount;
+        msg += '카드 승인번호 : ' + rsp.apply_num;
+    } else {
+        var msg = '결제에 실패하였습니다.';
+        msg += '에러내용 : ' + rsp.error_msg;
+    }
+
+    alert(msg);
+});
+}
+	
 
 
 

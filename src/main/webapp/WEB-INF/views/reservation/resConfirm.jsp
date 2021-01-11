@@ -46,6 +46,9 @@
 		<article>
 			<div class="heading"><h3>예약 정보</h3></div>
 			<div class="reserve-info">
+				<p class="reserve-date">예약 번호
+				<span class="details"> 예약번호 프린트</span>
+				</p>
 				<p class="reserve-date">예약 날짜
 				<span class="details"> 날짜, 시간 받아서 프린트</span>
 				</p>

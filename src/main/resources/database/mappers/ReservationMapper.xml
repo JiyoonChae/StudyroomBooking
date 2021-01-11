@@ -7,8 +7,8 @@
   	
   	
   	<insert id="roomConfirm" parameterType="ReservationVO">
-		insert into reservation (revNum, id, email, startTime, endTime, roomTime, roomUser, roomDate, roomType, payment, roomPrice) 
-		values(#{revNum}, #{id}, #{email}, #{startTime}, #{endTime}, #{roomTime}, #{roomUser}, #{roomDate}, #{roomType}, #{payment}, #{roomPrice});
+		insert into reservation (revNum, id, email, startTime, endTime, roomTime, roomUser, roomDate, roomType, payment, roomPrice, bookDate) 
+		values(#{revNum}, #{id}, #{email}, #{startTime}, #{endTime}, #{roomTime}, #{roomUser}, #{roomDate}, #{roomType}, #{payment}, #{roomPrice}, sysdate());
   	</insert>
   	
   	
