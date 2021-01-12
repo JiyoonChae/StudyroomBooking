@@ -203,7 +203,8 @@ span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; 
 	<div>	
 
 	<div class="buttons">	
-		
+		<input type="hidden" name="name" value="${member.name}" id="name">
+		<input type="hidden" name="phone" value="${member.phone}" id="phone">
 		<button class="btn btn-res" id="storePay" data-toggle="modal" data-target="#myModal">예약하기</button>
 	</div>
 </div>
@@ -229,62 +230,23 @@ span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; 
           	<li><span class="tit">인원 </span><input type="text" name="roomUser" class="reserveUser"></li>
           	<li style="border-botton:none;"><span class="tit">총 금액</span> <input type="text" name="roomPrice" id="roomPrice"></li>
           </ul>
-         
-       
           </div>
         </div>
         <div class="modal-footer">
         	<p>예약을 확정 하시겠습니까?</p>
-        	<input type="hidden" value="현장결제" id="payment" name="payment" >
-        	<button class="btn btn-warning" id="cardPay">바로 결제</button>
-          <button type="button" class="btn btn-res" data-dismiss="modal" id="confirmRes">현장결제</button>
+        
+        	<button class="btn btn-warning" id="cardPay" title="바로결제">바로 결제</button>
+          <button type="button" class="btn btn-res" data-dismiss="modal" id="confirmRes" title="현장결제">현장결제</button>
         </div>
-      </div>
       
     </div>
   </div>
 
 
 <script type="text/javascript" src="../js/calendar.js" ></script>
-
+<script type="text/javascript" src="../js/import.js" ></script>
 <script type="text/javascript">
 var mySwiper = new Swiper('.swiper-container');
-
-$("#cardPay").click(function(){
-	
-	requestPay();
-	console.log("페이까지옴")
-	//결제 api 사용
-})
-
-function requestPay(){
-	IMP.request_pay({
-    pg : 'html5_inicis ',
-    pay_method : 'card',
-    merchant_uid : 'merchant_' + new Date().getTime(),
-    name : '주문명:결제테스트',
-    amount : 1000,
-    buyer_email : 'iamport@siot.do',
-    buyer_name : '구매자이름',
-    buyer_tel : '010-1234-5678',
-   // buyer_addr : '서울특별시 강남구 삼성동',
-    //buyer_postcode : '123-456'
-}, function(rsp) {
-    if ( rsp.success ) {
-        var msg = '결제가 완료되었습니다.';
-        msg += '고유ID : ' + rsp.imp_uid;
-        msg += '상점 거래ID : ' + rsp.merchant_uid;
-        msg += '결제 금액 : ' + rsp.paid_amount;
-        msg += '카드 승인번호 : ' + rsp.apply_num;
-    } else {
-        var msg = '결제에 실패하였습니다.';
-        msg += '에러내용 : ' + rsp.error_msg;
-    }
-
-    alert(msg);
-});
-}
-	
 
 
 

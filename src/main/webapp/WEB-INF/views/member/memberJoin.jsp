@@ -244,14 +244,15 @@
 	var idCheck = false;
 	var pwCheck = false;
 	var isCertification=false;
+	var isAgreed = false;
 	function init(){
 		$("#btn-save").on("click", ()=>{
-			if(idCheck&&pwCheck&&isCertification){
-				this.save();
+			isChecked();
+				if(idCheck&&pwCheck&&isCertification&&isAgreed){
+					this.save();
 				}else{
-					alert("필수 항목 중 입력하지 않거나 이메일 인증 여부를 확인하세요");
-					}
-		
+						alert("필수 항목 중 입력하지 않거나 이메일 인증 여부를 확인하세요");
+						}
 			});
 	}
 	//***********************회원가입 DB로 보내기
@@ -274,7 +275,6 @@
 				dataType: "json" //요청을 서버로해서 응답이 왔을 때 기본적으로 모든 것이 string인 json형식으로 오는데 =>javascript 오브젝트로 변환시켜줌
 				}).done(function(response){
 					alert("회원가입이 완료되었습니다");
-					alert(response);
 					location.href="./memberLogin";
 						}).fail(function(error){
 								alert(JSON.stringify(error));
@@ -283,6 +283,19 @@
 
 		init();
 
+
+			//약관동의
+		function isChecked() {
+			var ch =$("#check").is(":checked");
+			var ch2= $("#check2").is(":checked");
+			console.log(ch);
+			console.log(ch2)
+			if(ch && ch2){
+				isAgreed = true;
+			}else{
+				alert("약관에 동의해주세요")
+				}
+			}
 		//****************id 중복 체크 ***************************
 		$("#id").blur(function(){
 			var id =$(this).val();
@@ -329,8 +342,21 @@
 							$("#pwResult").html("Password가 일치하지 않습니다");
 							$("#pwResult").removeClass("idCheck0").addClass("idCheck1");
 							}
-				}) //*********************pw check 완료****************************
+				}) 
 
+				$("#pw").change(function(){
+					var pw = $(this).val();
+					var pw2 =$("#pw2").val();
+					if (pw == pw2){
+						$("#pwResult").html("Password가 일치합니다")
+						$("#pwResult").removeClass("idCheck1").addClass("idCheck0");
+					}else{
+						$("#pwResult").html("Password가 일치하지 않습니다");
+						$("#pwResult").removeClass("idCheck0").addClass("idCheck1");
+						}
+					})//*********************pw check 완료****************************
+					
+					
 			//**********************email 중복 체크***************************
 			$("#email").blur(function(){
 				var email = $(this).val();

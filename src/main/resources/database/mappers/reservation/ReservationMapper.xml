@@ -5,6 +5,9 @@
   
   <mapper namespace="com.jy.sb7.res.ReservationMapper">
   	
+  	<select id="getResInfo" parameterType="ReservationVO" resultType="ReservationVO">
+  		select * from reservation where revNum = #{revNum}
+  	</select>
   	
   	<insert id="roomConfirm" parameterType="ReservationVO">
 		insert into reservation (revNum, id, email, startTime, endTime, roomTime, roomUser, roomDate, roomType, payment, roomPrice, bookDate) 

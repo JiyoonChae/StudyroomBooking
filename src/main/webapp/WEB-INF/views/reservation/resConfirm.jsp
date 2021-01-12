@@ -47,13 +47,13 @@
 			<div class="heading"><h3>예약 정보</h3></div>
 			<div class="reserve-info">
 				<p class="reserve-date">예약 번호
-				<span class="details"> 예약번호 프린트</span>
+				<span class="details"> ${resInfo.revNum }</span>
 				</p>
 				<p class="reserve-date">예약 날짜
-				<span class="details"> 날짜, 시간 받아서 프린트</span>
+				<span class="details"> ${resInfo.roomDate}  ${resInfo.roomTime} 시간</span>
 				</p>
 				<p class="reserve-date">예약 인원
-					<span class="details"> 인원수</span>
+					<span class="details"> ${resInfo.roomUser} 인</span>
 				</p>
 			</div>
 		</article>
@@ -68,7 +68,7 @@
 						<label for="name">예약자</label>
 					</dt>
 					<dd class="flex">
-						<input type="text" id="name">	
+						<input type="text" id="name" value="${member.name}" readonly="readonly">	
 					</dd>
 				</dl>
 				<dl class="flex_box">
@@ -76,7 +76,7 @@
 						<label for="phone">연락처</label>
 					</dt>
 					<dd class="flex">
-						<input type="text" id="phone">	
+						<input type="text" id="phone" value="${member.phone}" readonly="readonly">	
 					</dd>
 				</dl>
 				<dl class="flex_box">
@@ -84,7 +84,7 @@
 						<label for="email">이메일</label>
 					</dt>
 					<dd class="flex">
-						<input type="text" id="email">	
+						<input type="text" id="email" value="${member.email }" readonly="readonly">	
 					</dd>
 				</dl>
 				<dl class="flex_box">
@@ -100,6 +100,23 @@
 			
 		</article>
 		
+		<!-- 결제 정보 start-->
+			<article>
+			<div class="heading"><h3>결제 정보</h3></div>
+			<div class="reserve-info">
+				<p class="reserve-date">결제 번호
+				<span class="details"> ${pay.merchant_uid}</span>
+				</p>
+				<p class="reserve-date">결제 완료 금액
+				<span class="details"> ${pay.paid_amount} 원</span>
+				</p>
+				<p class="reserve-date">결제 날짜
+					<span class="details"> ${pay.orderDate}</span>
+				</p>
+			</div>
+		</article>
+		
+		<!-- 결제정보 end -->
 		<!-- 서비스 동의 -->
 		
 			<article data-v-85987b28="" id="service-agree" class="box_form box_notice error">
@@ -129,8 +146,7 @@
              </article>
 		
 			<div>	
-				<button class="btn btn-warning" id="cardPay">바로 결제</button>
-				<button class="btn btn-info" id="pay">현장 결제</button>
+				<button class="btn btn-warning" id="confirm">확인</button>
 				</div>
 	</div> <!--  contentsbox 끝> -->
 	
