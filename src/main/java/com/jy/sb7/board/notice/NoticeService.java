@@ -99,11 +99,12 @@ public class NoticeService {
 		noticeRepository.deleteById(deleteNum);
 		
 		boolean result = false;
-		if( noticeRepository.findById(deleteNum) == null) {
+		System.out.println("------  "+noticeRepository.findById(deleteNum));
+		if( noticeRepository.findById(deleteNum).isEmpty()) {
 			result = true;
 		}
+		System.out.println(result + " : delete 결과");
 		return result;
-		//return noticeRepository.getCheckCount(deleteNum);
 	}
 	
 }

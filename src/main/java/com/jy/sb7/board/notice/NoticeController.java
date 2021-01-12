@@ -3,6 +3,7 @@ package com.jy.sb7.board.notice;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -48,10 +50,7 @@ public class NoticeController {
 		Pageable pageable = PageRequest.of(pager.getPage(), pager.getSize());
 		Page<NoticeVO> page = noticeService.getList(pageable);
 		pager.makePage(page);
-		
-		System.out.println(pager.getStartNum());
-		System.out.println(pager.getLastNum());
-		
+				
 		mv.addObject("pager", pager);
 		mv.addObject("page", page);
 		mv.setViewName("board/boardList");
@@ -60,7 +59,7 @@ public class NoticeController {
 	}
 	
 	@GetMapping("noticeWrite")
-	public ModelAndView setInsert(@ModelAttribute NoticeVO noticeVO, HttpSession session) throws Exception {
+	public ModelAndView setInsert() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("board/boardWrite");
 		return mv;
@@ -84,8 +83,6 @@ public class NoticeController {
 	@PostMapping("noticeWrite")
 	public ModelAndView setInsert(NoticeVO noticeVO) throws Exception {
 		System.out.println("Notice Insert");
-		ModelAndView mv = new ModelAndView();
-		
 		noticeVO = noticeService.setInsert(noticeVO);
 		
 		String msg = "공지사항 등록 실패";
@@ -94,6 +91,7 @@ public class NoticeController {
 			msg = "공지사항 등록 성공";
 		}
 		
+		ModelAndView mv = new ModelAndView();
 		mv.addObject("msg", msg);
 		mv.addObject("path", "./noticeList");
 		mv.setViewName("common/result");
@@ -172,9 +170,9 @@ public class NoticeController {
 		ModelAndView mv = new ModelAndView();
 		
 		boolean result = noticeService.setDelete(noticeVO);
-		String msg = "삭제가 완료되었습니다.";
+		String msg = "해당 번호의 게시글이 존재하지 않습니다.";
 		if(result) {
-			msg = "해당 번호의 게시글이 존재하지 않습니다.";
+			msg = "삭제 성공";
 		}
 		
 		mv.addObject("msg", msg);

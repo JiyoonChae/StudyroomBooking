@@ -225,6 +225,18 @@
 }
 
 
+
+/* write */
+.check {
+	color: red;
+	font-size: 12px;
+	margin-top: 5px;
+}
+
+
+
+
+
 /* @media screen and (max-width:991px) {
 	
 	.list_table th {

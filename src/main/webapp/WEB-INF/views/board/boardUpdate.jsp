@@ -31,10 +31,12 @@
 				<div class="form-group">
 					<label for="title">제목</label>
 					<input type="text" class="form-control" value="${notice.title}" placeholder="제목을 입력하세요" id="title" name="title">
+					<div class="check"></div>
 				</div>
 				<div class="form-group">
 					<label for="writer">작성자</label>
-					<input type="text" class="form-control" value="${member.id}" readonly="readonly" id="writer" name="writer">
+					<input type="text" class="form-control" value="${member.id}" id="writer" name="writer">
+					<div class="check"></div>
 				</div>
 				<div class="form-group">
 					<!-- <label for="contents">내용</label> -->

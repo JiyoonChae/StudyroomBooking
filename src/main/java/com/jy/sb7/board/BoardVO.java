@@ -6,7 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -21,8 +23,11 @@ public class BoardVO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long num;
+	@NotEmpty
 	private String title;
+	@NotEmpty
 	private String writer;
+	@Lob
 	@Column(length = 100000000)
 	private String contents;
 	
