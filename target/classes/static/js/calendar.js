@@ -199,6 +199,23 @@ var roomType =1;
 $(".room").click(function() {
 	roomType= $(this).val();
 	console.log("룸타입: "+roomType);
+	//$("#users").attr("max", 3); 
+	switch(roomType) {
+    case "1": 
+		$("#users").attr("max", 3); 
+         break
+    case "2": 
+		$("#users").attr("max", 4);
+         break
+    case "3": 
+		$("#users").attr("max", 7);
+		break
+	case "4": $("#users").attr("max", 9);
+		break
+    default: $("#users").attr("max", 12);
+         break
+	}
+	
 })
 	
 
