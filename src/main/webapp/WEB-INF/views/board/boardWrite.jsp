@@ -10,8 +10,8 @@
 	<c:import url="../template/bootStrap.jsp"></c:import>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-	<link href="../css/common/reset.css" rel="stylesheet" type="text/css">
-	<link href="../css/common/header.css" rel="stylesheet" type="text/css">
+<!-- 	<link href="../css/common/reset.css" rel="stylesheet" type="text/css">
+	<link href="../css/common/header.css" rel="stylesheet" type="text/css"> -->
 	<link href="../css/service/service_subtitle.css" rel="stylesheet" type="text/css">
 	<link href="../css/service/notice.css" rel="stylesheet" type="text/css">
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">

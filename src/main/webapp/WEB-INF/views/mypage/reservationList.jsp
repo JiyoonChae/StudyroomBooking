@@ -10,8 +10,8 @@
 	<c:import url="../template/bootStrap.jsp"></c:import>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-<!-- 	<link href="../css/common/reset.css" rel="stylesheet" type="text/css">
-	<link href="../css/common/header.css" rel="stylesheet" type="text/css"> -->
+	<link href="../css/common/reset.css" rel="stylesheet" type="text/css">
+	<link href="../css/common/header.css" rel="stylesheet" type="text/css">
 	<link href="../css/common/footer.css" rel="stylesheet" type="text/css">
 	<link href="../css/service/service_subtitle.css" rel="stylesheet" type="text/css">
 	<link href="../css/service/notice.css" rel="stylesheet" type="text/css">
@@ -23,9 +23,8 @@
 	<div class="sub">
 		
 		<div class="article_title" >
-			<c:if test="${board eq 'notice'}">
-				<h3>공지사항</h3>
-				<p>스터디룸의 정보와 소식을 확인하실 수 있습니다.</p>
+			<c:if test="${page eq 'reservation'}">
+				<h3>예약내역 리스트</h3>
 			</c:if>
 		</div>
 	</div>
@@ -83,32 +82,8 @@
 				</c:if>
 			</ul>
 		</div>
-		
-		<!-- //Page -->
-		<c:if test="${member.type eq 3}">
-		<p><a href="${pageContext.request.contextPath}/${board}/${board}Write" class="btn btn-lg btn-write">글 작성</a></p>
-		</c:if>
 	</div>
 	<c:import url="../template/footer.jsp"></c:import>
-	
-	<script type="text/javascript">
-	$(document).ready(function() {
-		$(".pager li.page-btn").click(function() {
-			alert($(this).hasClass("on"));
-			if(!$(this).hasClass("on")) {
-				$(".pager .btn-page.on").removeClass("on");
-				$(this).addClass("on");
-				alert($(this).hasClass("on"));
-			}
-		});
-	});
-
-	var page = ${param.page};
-	if($(".pager li.page-btn").attr("title").equal(page)) {
-		alert($(this).html());
-		
-	}
-	</script>
 </div>
 </body>
 </html>
