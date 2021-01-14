@@ -9,7 +9,8 @@
 		<typeAlias type="java.lang.Long" alias="Long"/>
 		
 		<typeAlias type="com.jy.sb7.member.MemberVO" alias="MemberVO"/>
-		
+		<typeAlias type="com.jy.sb7.res.ReservationVO" alias="ReservationVO"/>
+		<typeAlias type="com.jy.sb7.res.pay.PayVO" alias="PayVO"/>
 		
 	</typeAliases>
 </configuration>  

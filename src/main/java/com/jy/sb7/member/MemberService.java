@@ -10,7 +10,9 @@ public class MemberService {
 	@Autowired
 	private MemberMapper memberMapper;
 
-	
+	public MemberVO emailCheck(MemberVO memberVO) throws Exception{
+		return memberMapper.emailCheck(memberVO);
+	}
 	public MemberVO memberCheck(MemberVO memberVO) throws Exception{
 		return memberMapper.memberCheck(memberVO);
 	}
