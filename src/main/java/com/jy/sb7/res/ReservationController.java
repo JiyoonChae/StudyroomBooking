@@ -22,8 +22,12 @@ public class ReservationController {
 	private PayService payService;
 	
 	@GetMapping("roomRes")
-	public String setRes() throws Exception{
-		return "reservation/roomRes";
+	public ModelAndView setRes() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("예약 컨트롤러 진입");
+		
+		mv.setViewName("reservation/roomRes");
+		return mv;
 	}
 	@GetMapping("resConfirm")
 	public ModelAndView getResPage(ReservationVO resVO, HttpSession session) throws Exception{

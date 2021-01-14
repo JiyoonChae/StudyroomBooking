@@ -45,11 +45,11 @@ function requestPay(){
 				},
 				success: function(result) {
 					console.log(result);
-					confirmRes();
+					confirmRes(); //여기서 예약 정보들을 예약테이블에 저장해줘야함. function호출하면될듯
 				}			
 		}).done(function(data){
-			alert("서버로 잘 넘어감!")
-			//여기서 예약 정보들을 예약테이블에 저장해줘야함. function호출하면될듯
+			alert("결제가 완료되었습니다")
+			
 		})
         
     } else {

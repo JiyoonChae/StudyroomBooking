@@ -219,11 +219,11 @@ $(".room").click(function() {
 })
 	
 
- //파라미터를 받아야되는데 어케받지 :선택한 날짜 + 시간
+ //파라미터를 받아야되는데 어케받지 : 모달 오픈시
   var finalPrice =0;  //결제 api에 출력할 금액
   var revNum=0; //예약번호생성
  $('#myModal').on('shown.bs.modal', function () {
-	revNum= Math.floor(Math.random() * 100000);
+	revNum= Math.floor(Math.random() * 100000); //랜덤 예약번호 생성
 	$(".reserveRoom").val(roomType);
 	$(".reserveDate").val(bookDate);
 	$(".startTime").val(min+" 시");
@@ -236,11 +236,6 @@ $(".room").click(function() {
 		$("#roomPrice").val(totalPrice2+" 원")
 		finalPrice = totalPrice2;
 	}
-/*	$.post(
-		"../pay/payComplete", {amount:finalPrice, revNum:revNum},function(result){
-			console.log("결제할금액 전달" + result)
-		}
-	)*/
 
 console.log("예약확정----");
 });
@@ -258,13 +253,10 @@ console.log("예약시간: "+ revTime);
 console.log("인원수 : "+ user);
 //총금액 totalPrice
 console.log("총금액" +totalPrice2);
-var id = "<c:out value='${id}' />";
-var email= $("#email").val();
-console.log(id)
-console.log(email)
+
 console.log("파라미터값-----------------")
 })
- //룸타입 roomType
+ //잘 나오는지 확인용
 
 //현장결제 버튼 누르면 DB로 보내서 저장하기.
 var payment;
@@ -278,8 +270,6 @@ $("#confirmRes").click(function(){
 }) //현장결제 완료
 
 function confirmRes (){
-	//var roomPrice = $("#roomPrice").val();
-	
 	$.ajax({
 		url:"./roomConfirm",
 		type:"post",
@@ -300,17 +290,4 @@ function confirmRes (){
 			//예약 확정 페이지로 이동 resConfirm
 		}
 	}); //ajax완료
-	}
-/*$(".price").click(function(){
-	var time = $(this).siblings().text();
-	console.log(time);
-	//$(this).addClass("selected");
-	//
-	if($(this).hasClass("selected")){
-		$(this).removeClass("selected");
-		$(this).css("background-color", "#ffd014");
-	}else{
-		$(this).addClass("selected");
-		$(this).css("background-color", "#704de4");
-	} 
-});*/
+} //confirmRes() 완료

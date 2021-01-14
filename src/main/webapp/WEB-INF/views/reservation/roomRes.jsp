@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,13 +14,13 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
 
 <c:import url="../template/bootStrap.jsp"></c:import>
 <style type="text/css">
 .swiper-container { width: 45px; height: 120px; }
 ul, li {list-style: none;}
-.reservat_time_wrap {overflow:hidden; background-color: #fff; }
+.reserve_time_wrap {overflow:hidden; background-color: #fff; }
 .swiper-container {width:647px;}
 .swiper-wrapper {position: relative; width:100%; height:100%; display: flex; box-sizing: content-box; margin: 0 auto;}
 
@@ -48,7 +48,7 @@ span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; 
 .reserve-info-wrap .tit {position: absolute; left:0; color:#656565;}
 #roomPrice {color: #704de4;}
 </style>
-
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -72,7 +72,7 @@ span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; 
 	<!-- 스터디룸 이미지 파일 출력 -->
 	<div class="imgContainer">
 		<div class="img">
-			<img src="../images/rooms/room_view01.jpg" alt="2-3인용"> 
+			<img src="http://localhost/images/rooms/room_view01.jpg" alt="2-3인용"> 
 			<input type="radio" class="room" name="room" value="1"> 최대 2-3인실
 		</div>
 		<div class="img">
@@ -92,7 +92,6 @@ span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; 
 			<input type="radio" class="room" name="room" value="5"> 최대 10-12인실
 		</div>
 	</div>
-	
 	<!--  이미지 출력 end -->
 	
 	<!-- 예약 정보 start: 날짜, 시간, 인원, 총 요금 출력 -->
@@ -200,14 +199,15 @@ span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; 
 
 	<div class="heading"><h5>공간 사용료</h5></div>
 		<div class="totalPrice" style="font-size:20px;"></div>
-	<div>	
+	
 
 	<div class="buttons">	
 		<input type="hidden" name="name" value="${member.name}" id="name">
 		<input type="hidden" name="phone" value="${member.phone}" id="phone">
 		<button class="btn btn-res" id="storePay" data-toggle="modal" data-target="#myModal">예약하기</button>
 	</div>
-</div>
+	
+</div> <!-- container 종료 -->
 
  <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -240,7 +240,8 @@ span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; 
         </div>
       
     </div>
-  </div>
+ </div> 
+ </div> 
 
 
 <script type="text/javascript" src="../js/calendar.js" ></script>

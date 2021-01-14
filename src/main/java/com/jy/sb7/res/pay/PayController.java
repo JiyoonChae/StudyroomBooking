@@ -17,13 +17,7 @@ public class PayController {
 	private PayService payService;
 	
 	@PostMapping("payComplete")
-	public ModelAndView setPaymentInsert(PayVO payVO, ReservationVO resVO ) throws Exception{
-//		long amount = payVO.getAmount();
-//		System.out.println("결제할 금액: "+amount);
-//		long revNum = payVO.getRevNum();
-//		System.out.println("예약 번호: "+revNum);
-//		//db가서 먼저 저장하고 오기  setRevNum 
-//		int result = payService.setRevNumInsert(payVO);
+	public ModelAndView setPaymentInsert(PayVO payVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
 		System.out.println("pay controlloer까지 옴 -----------");
