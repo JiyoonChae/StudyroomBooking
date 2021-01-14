@@ -50,7 +50,7 @@
 		</div>
 	</div>
 
-	<script src="../js/service/noticeWrite.js"></script>
+	<script src="../js/service/boardWrite.js"></script>
 </div>
 </body>
 </html>

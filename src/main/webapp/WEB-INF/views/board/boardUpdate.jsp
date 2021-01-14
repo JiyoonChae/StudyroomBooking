@@ -47,7 +47,9 @@
 		</div>
 	</div>
 
-    <script src="../js/service/noticeWrite.js" type="text/javascript"></script>
+	<script src="../js/service/boardWrite.js"></script>
+	<c:if test="${board eq 'notice'}"><script src="../js/service/noticeWrite.js"></script></c:if>
+	<c:if test="${board eq 'faq'}"><script src="../js/service/faqWrite.js"></script></c:if>
 	<script type="text/javascript">
 		$('#contents').summernote('code', '${notice.contents}');
 	</script>

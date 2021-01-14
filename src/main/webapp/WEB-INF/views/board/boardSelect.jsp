@@ -7,7 +7,6 @@
 	<meta charset="UTF-8">
 	<title>StudyRoom Booking</title>
 	<c:import url="../template/bootStrap.jsp"></c:import>
-	<%-- <c:import url="../template/bootstrap3.jsp"></c:import> --%>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 	<link href="../css/common/reset.css" rel="stylesheet" type="text/css">
@@ -61,7 +60,7 @@
 				<div class="btn btn_toList">
 					<a href="./noticeList">목록으로</a>
 				</div>
-				<c:if test="${member.type eq 3}">
+				<c:if test="${member.type eq 3 && member.id eq notice.writer}">
 				<div class="btn-update-delete">
 					<a href="./noticeUpdate?num=${notice.num}" class="btn btn-lg btn-outline-info">글수정</a>
 					<a href="./noticeDelete?num=${notice.num}" class="btn btn-lg btn-outline-danger">글삭제</a>
