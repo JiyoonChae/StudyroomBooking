@@ -25,40 +25,44 @@
  <div class="login">
 	<form action="./memberLogin" method="post" id="frm">
  	 <div class="form-group">
-    <label for="id">ID</label>
-    <input type="text" class="form-control" id="id" name="id">
-  </div>
-  <div class="form-group">
-    <label for="pw">Password:</label>
-    <input type="password" class="form-control" id="pw" name="pw">
-  </div>
-  <div class="checkbox">
-    <label><input type="checkbox" id="save"> Remember me</label>
-  </div>
+    	<label for="id">ID</label>
+   		 <input type="text" class="form-control" id="id" name="id">
+  	 </div>
+ 	 <div class="form-group">
+    	<label for="pw">Password:</label>
+    	<input type="password" class="form-control" id="pw" name="pw">
+  	 </div>
+  	<div class="checkbox">
+     	<label><input type="checkbox" id="save"> Remember me</label>
+  	 </div>
   
-  <!--  로그인 버튼  -->
-  <div class="logbtn">로그인</div>
-
- 	<p class="join">
- 	<a href="#">아이디 찾기</a>
- 	<a href="#">비밀번호 찾기</a>
- 	<a href="#">회원가입</a>
- 	</p>
-
-<p>
-	<div id="naverIdLogin"><a id="naverIdLogin_loginButton" href="#" role="button"><img src="https://static.nid.naver.com/oauth/big_g.PNG" width=320></a></div>
-</p>
-<div class="naver">
-	<a id="naverbtn" href="#">
+	  <!--  로그인 버튼  -->
+	  <div class="logbtn">로그인</div>
+	</form>
 	
-	</a>
-</div> 
-<br>
-<div class="kakao">
-	<a href="https://kauth.kakao.com/oauth/authorize?client_id=db6b291272bd77842e5db5fa28f52e1a&redirect_uri=http://localhost/auth/kakao/callback&response_type=code"><img class="kakaoLogin" alt="" src="../images/kakao_login.png" /></a>
-</div>
-</form>
-</div>
+	<div class="options">
+ 	<p class="join">
+ 	<a href="#">아이디 찾기</a><span>|</span>
+ 	<a href="#">비밀번호 찾기</a><span>|</span>
+ 	<a href="${pageContext.request.contextPath}/member/memberJoin">회원가입</a>
+ 	</p>
+	</div>
+	
+	<!-- sns 로그인 -->
+	<div class="snsbtn">
+		<div id="naverIdLogin">
+			<a id="naverIdLogin_loginButton" href="#" role="button">
+			<img class="naverLogin" src="https://static.nid.naver.com/oauth/big_g.PNG" width=320>
+			</a>
+		</div>
+		<div class="kakao">
+			<a href="https://kauth.kakao.com/oauth/authorize?client_id=db6b291272bd77842e5db5fa28f52e1a&redirect_uri=http://localhost/auth/kakao/callback&response_type=code">
+			<img class="kakaoLogin" alt="" src="../images/kakao_login.png" />
+			</a>
+		</div>
+	</div> <!-- sns로그인 끝 -->
+
+</div> <!-- 전체 div끝 -->
 
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script type="text/javascript">

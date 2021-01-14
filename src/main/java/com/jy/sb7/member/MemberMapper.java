@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface MemberMapper {
 	
+	public MemberVO emailCheck(MemberVO memberVO) throws Exception;
 	public MemberVO memberCheck(MemberVO memberVO) throws Exception;
 	
 	//회원가입
