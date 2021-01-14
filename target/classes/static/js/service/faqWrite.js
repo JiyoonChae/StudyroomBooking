@@ -1,5 +1,3 @@
-
-
 $("form").on("submit", function(event) {
 	var title = $(this).find('[name=title]').val();
 	var writer = $(this).find('[name=writer]').val();
@@ -19,4 +17,7 @@ $("form").on("submit", function(event) {
 	} else {
 		$("input[name=writer]").next().text("");
 	}
+	
+	var category = $(".category option:selected").val();
+	$("input[name=category]").val(category);
 });		

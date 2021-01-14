@@ -22,12 +22,12 @@
 	<c:import url="../template/service_subtitle.jsp"></c:import>
 	<div class="sub">
 		<div class="article_title" >
-			<h3><c:if test="${board eq 'notice'}">공지사항 </c:if>작성</h3>
+			<h3><c:if test="${board eq 'qna'}">1:1문의</c:if></h3>
 			<p></p>
 		</div>
 
 		<div class="container">
-			<form action="./${board}Write" method="post" enctype="multipart/form-data" class="frm">
+			<form action="./${board}Write" method="post" enctype="multipart/form-data" class="frmWrite">
 				<div class="form-group">
 					<label for="title">제목</label>
 					<input type="text" class="form-control" placeholder="제목을 입력하세요" id="title" name="title">
@@ -40,11 +40,11 @@
 					<!-- <label for="contents">내용</label> -->
 					<textarea class="form-control" id="contents" name="contents"></textarea>
 				</div>
-				<!-- <div class="form-group">
+				<div class="form-group">
 					<label for="files">업로드</label>
 					<input type="file" class="form-control" name="files">
 					<input type="file" class="form-control" name="files">
-				</div> -->
+				</div>
 				<button type="submit" class="btn btn-lg btn-write">등록하기</button>
 			</form>
 		</div>

@@ -21,11 +21,10 @@
 	<c:import url="../template/header.jsp"></c:import>
 	<c:import url="../template/service_subtitle.jsp"></c:import>
 	<div class="sub">
-		
 		<div class="article_title" >
-			<c:if test="${board eq 'notice'}">
-				<h3>공지사항</h3>
-				<p>스터디룸의 정보와 소식을 확인하실 수 있습니다.</p>
+			<c:if test="${board eq 'faq'}">
+				<h3>자주 묻는 질문</h3>
+				<p></p>
 			</c:if>
 		</div>
 	</div>
@@ -45,27 +44,34 @@
 			</div>
 			<!-- //search -->
 			
-			<table class="table table-hover list_table">
+			<table class="table .table-striped table-toggle table_faq">
 				<colgroup>
-					<col width="8%">
-					<col width="*">
-					<col width="14%">
-					<col width="8%">
+					<col width="20%">
+					<col width="80%">
 				</colgroup>
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>등록일</th>
-					<th>조회수</th>
-				</tr>
-				<c:forEach items="${page.content}" var="vo">
+				<tbody>
+					<c:forEach items="${faqList}" var="faq">
+					<tr>
+						<td class="category">${faq.category}</td>
+						<td class="question"><a href="" class="detail_view">${faq.title}<i class="detail_view_icon open"></i></a></td>
+					</tr>
+					<tr class="view">
+						<td colspan="2">
+							<div class="view_box">
+								<div class="answer">${faq.contents}</div>
+							</div>
+						</td>
+					</tr>
+					</c:forEach>
+				</tbody>
+				<%-- <c:forEach items="${page.content}" var="vo">
 				<tr>
 					<td class="num">${vo.num}</td>
 					<td class="title"><a href="./noticeSelect?num=${vo.num}&hit=${vo.hit}">${vo.title}</a></td>
 					<td class="regDate"><fmt:formatDate value="${vo.regDate}" pattern="yy/MM/dd HH:mm"/></td>
 					<td class="hit">${vo.hit}</td>
 				</tr>
-				</c:forEach>
+				</c:forEach> --%>
 			</table>
 		</div>
 		
@@ -85,30 +91,11 @@
 		</div>
 		
 		<!-- //Page -->
-		<c:if test="${member.type eq 3}">
-		<p><a href="${pageContext.request.contextPath}/notice/noticeWrite" class="btn btn-lg btn-write">글 작성</a></p>
-		</c:if>
+		<%-- <c:if test="${member.type eq 3}"> --%>
+		<p><a href="${pageContext.request.contextPath}/${board}/${board}Write" class="btn btn-lg btn-write">글 작성</a></p>
+		<%-- </c:if> --%>
 	</div>
 	<c:import url="../template/footer.jsp"></c:import>
-	
-	<script type="text/javascript">
-	$(document).ready(function() {
-		$(".pager li.page-btn").click(function() {
-			alert($(this).hasClass("on"));
-			if(!$(this).hasClass("on")) {
-				$(".pager .btn-page.on").removeClass("on");
-				$(this).addClass("on");
-				alert($(this).hasClass("on"));
-			}
-		});
-	});
-
-	var page = ${param.page};
-	if($(".pager li.page-btn").attr("title").equal(page)) {
-		alert($(this).html());
-		
-	}
-	</script>
 </div>
 </body>
 </html>

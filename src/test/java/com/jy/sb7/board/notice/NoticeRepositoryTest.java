@@ -12,8 +12,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.jy.sb7.utill.Pager;
 
 @SpringBootTest
 class NoticeRepositoryTest {
@@ -118,7 +121,7 @@ class NoticeRepositoryTest {
 		assertNotNull(list);
 	}
 	
-	//@Test
+	@Test
 	void pageableListTest() {
 		Pageable pageable = PageRequest.of(0, 10);
 		Page<NoticeVO> page = noticeRepository.findAll(pageable);
@@ -138,4 +141,34 @@ class NoticeRepositoryTest {
 		assertNotNull(page.getContent());
 	}
 
+//	//@Test
+//	void findAllListTest() {
+//		Pageable pageable = PageRequest.of(0, 5, Sort.Direction.DESC, "num");
+//		Page<NoticeVO> page = noticeRepository.findAllSearch("title", pageable);
+//		
+//		System.out.println(page.getTotalElements());
+//		System.out.println(page.hasContent());
+//		
+//		if(page.hasContent()) {
+//			List<NoticeVO> findNoticeList = page.getContent();
+//			
+//			for(NoticeVO noticeVO : findNoticeList) {
+//				System.out.println(noticeVO.getNum());
+//				System.out.println(noticeVO.getTitle());
+//				System.out.println(noticeVO.getWriter());
+//				System.out.println(noticeVO.getContents());
+//				System.out.println("---------------------");
+//			}
+//		}
+//		
+//		assertNotNull(page.getContent());
+//	}
+//	
+//	//@Test
+//	void findAllTest() {
+//		Pageable pageable = PageRequest.of(0, 10);
+//		Page<NoticeVO> page = noticeRepository.findByTitleContainingOrContentsContainingOrderByNumDesc("Title", pageable);
+//		
+//		assertNotNull(page.getContent());
+//	}
 }

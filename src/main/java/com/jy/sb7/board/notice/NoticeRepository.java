@@ -25,6 +25,16 @@ public interface NoticeRepository extends JpaRepository<NoticeVO, Long> {
 	
 //	@Modifying
 //	@Transactional
-//	@Query("select count() from NoticeVO N where N.num=:num")
-//	public int getCheckCount(long num);
+//	@Query("select N from NoticeVO N where N.title LIKE %:search% OR N.contents LIKE %:search%")
+//	public Page<NoticeVO> findAllSearch(String search, Pageable pageable);
+
+	//select * from notice where title like '%search%' or contents like '%search%' order by num desc;
+//	@Modifying
+//	@Transactional
+//	@Query(
+//			nativeQuery = true,
+//			value="select * from notice where title like %:search% or contents like %:search% order by num desc",
+//			countQuery="select count(*) from notice where title like %:search% or contents like %:search%"
+//	)
+//	public Page<NoticeVO> findByTitleContainingOrContentsContainingOrderByNumDesc(String search, Pageable pageable);
 }

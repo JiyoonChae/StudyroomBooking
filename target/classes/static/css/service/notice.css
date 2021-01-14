@@ -73,6 +73,28 @@
 	width: 100%;
 }
 
+/* boardList */
+#frmSearch {
+	margin: 10px 0;
+}
+
+#frmSearch #type {
+	font-size: 15px;
+	width: 150px;
+	height: 32px;
+	margin: 10px 0;
+	padding-left: 5px;
+}
+
+#frmSearch #search {
+	width: 250px;
+	height: 32px;
+	margin: 0 5px;
+	font-size: 14px;
+	padding: 0 10px;
+}
+
+
 .list_table {
 	width: 100%;
 }
@@ -109,7 +131,6 @@
 }
 
 
-
 .pager .page-item {
 	width: 36px;
 	height: 36px;
@@ -142,6 +163,42 @@
 	color: #fff;
 	text-decoration: none;
 }
+/* boardList */
+
+
+
+/* boardListSlide */
+.table_faq td.question .detail_view {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	text-decoration: none;
+	overflow: hidden;
+	display: block;
+	padding: 21px 80px 20px 0;
+	
+}
+
+
+.table_faq td.question .detail_view .detail_view_icon {
+	position: absolute;
+	right: 30px;
+	background-size: 684px 663px;
+	background-image: url("../../images/service/all_images.png");
+	width: 14px;
+	height: 8px;	
+}
+
+.table_faq td.question .detail_view .open {	
+	background-position: -453px -232px;
+		
+}
+
+.table_faq td.question .detail_view .close {
+	background-position: -471px -232px;
+}
+/* boardListSlide */
 
 
 
@@ -158,7 +215,7 @@
 	background-color: #ffb400;
 	color: #fff;
 }
-
+/* list End */
 
 
 
@@ -227,34 +284,18 @@
 
 
 /* write */
+
+#frmWrite .select_box {
+	width: 20%;
+}
+
 .check {
 	color: red;
 	font-size: 12px;
 	margin-top: 5px;
 }
 
-
-
-
-
-/* @media screen and (max-width:991px) {
-	
-	.list_table th {
-		text-align: center;
-		vertical-align: middle;
-		background: #f9f9fa;
-		height: 50px;
-		font-size: 15px;
-		font-weight: bold;
-	}
-	
-	.list_table td {
-		line-height: 25px;
-		padding: 0 20px auto;
-		font-size: 13px;		
-	}
-} */
-
+/* write End */
 
 
 @media screen and (max-width:767px) {

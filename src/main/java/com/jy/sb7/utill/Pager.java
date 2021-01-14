@@ -2,6 +2,7 @@ package com.jy.sb7.utill;
 
 import org.springframework.data.domain.Page;
 
+import com.jy.sb7.board.faq.FaqVO;
 import com.jy.sb7.board.notice.NoticeVO;
 
 import lombok.Data;
@@ -58,7 +59,7 @@ public class Pager {
 	}
 	public void setType(String type) {
 		if(type == null) {
-			type = "";
+			type = "title";
 		}
 		this.type = type;
 	}
@@ -75,8 +76,6 @@ public class Pager {
 		}
 		this.search = search;
 	}
-	
-	
 	
 	
 	
@@ -113,4 +112,38 @@ public class Pager {
 		}
 	}
 	
+	
+	
+	public void makePage(Page<FaqVO> faqPage, int blockSize) {
+		//1. totalCount로 totalPage 계산
+		//2. totalPage로 totalBlock 계산
+		//int blockSize = 5;
+		int totalBlock = faqPage.getTotalPages() / blockSize;
+		if( faqPage.getTotalPages() % blockSize != 0 ) {
+			totalBlock++;
+		}
+		
+		//3. 현재 페이지번호로 현재 블럭번호 계산
+		int curBlock = (faqPage.getNumber()+1) / blockSize;
+		if( (faqPage.getNumber()+1) % blockSize != 0) {
+			curBlock++;
+		}
+		
+		//4. 현재 블럭번호로 블럭의 startNum, lastNum 계산
+		this.startNum = (curBlock-1) * blockSize +1;
+		this.lastNum = curBlock * blockSize;
+		
+		//5. 현재 블럭이 마지막 블럭과 같다면 lastNum 수정 및 next 버튼 비활성화
+		isNext = true;
+		if(curBlock == totalBlock) {
+			lastNum = faqPage.getTotalPages();
+			isNext = false;
+		}
+		
+		//6. 이전블럭 유무 계산
+		isPrev = false;
+		if(curBlock > 1) {
+			isPrev = true;
+		}
+	}
 }

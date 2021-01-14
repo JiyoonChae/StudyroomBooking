@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.jy.sb7.utill.FileManager;
 import com.jy.sb7.utill.FilePathGenerator;
+import com.jy.sb7.utill.Pager;
 
 @Service
 public class NoticeService {
@@ -88,6 +89,11 @@ public class NoticeService {
 	public Page<NoticeVO> getList(Pageable pageable) throws Exception {
 		return noticeRepository.findByNumGreaterThanOrderByNumDesc(0L, pageable);
 	}
+	
+//	public Page<NoticeVO> getSearchList(Pager pager, Pageable pageable) throws Exception {
+//		return noticeRepository.findAllSearch(pager.getSearch(), pageable);
+//	}
+	
 	
 	
 	public int setUpdate(NoticeVO noticeVO, MultipartFile[] files) throws Exception {

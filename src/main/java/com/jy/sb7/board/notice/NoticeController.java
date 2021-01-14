@@ -26,6 +26,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jy.sb7.board.BoardVO;
 import com.jy.sb7.utill.Pager;
 
+import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
+
 
 @Controller
 @RequestMapping(value = "/notice/**")
@@ -47,8 +49,15 @@ public class NoticeController {
 	public ModelAndView getList(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+//		System.out.println("----------------------");
+//		System.out.println(pager.getType());
+//		System.out.println(pager.getSearch());
+//		System.out.println(pager.getPage());
+//		System.out.println("----------------------");
+		
 		Pageable pageable = PageRequest.of(pager.getPage(), pager.getSize());
 		Page<NoticeVO> page = noticeService.getList(pageable);
+		//Page<NoticeVO> page = noticeService.getSearchList(pager, pageable);
 		pager.makePage(page);
 				
 		mv.addObject("pager", pager);
@@ -56,6 +65,18 @@ public class NoticeController {
 		mv.setViewName("board/boardList");
 		
 		return mv;
+	}
+	
+	@PostMapping("noticeList")
+	public String getList(Pager pager, Model model) throws Exception {
+		Pageable pageable = PageRequest.of(pager.getPage(), pager.getSize());
+		Page<NoticeVO> page = noticeService.getList(pageable);
+		pager.makePage(page);
+		
+		model.addAttribute("pager", pager);
+		model.addAttribute("page", page);
+		
+		return "redirect:./noticeList";
 	}
 	
 	@GetMapping("noticeWrite")
