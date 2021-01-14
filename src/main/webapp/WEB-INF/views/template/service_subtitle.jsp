@@ -18,7 +18,7 @@
 				<a href="${pageContext.request.contextPath}/faq/faqList">FAQ</a>
 			</li>
 			<li class="qna">
-				<a href="${pageContext.request.contextPath}/qna/qnaList">1:1문의</a>
+				<a href="${pageContext.request.contextPath}/qna/qnaWrite">1:1문의</a>
 			</li>
 		</ul>
 	</div>

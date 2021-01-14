@@ -20,7 +20,7 @@ import lombok.EqualsAndHashCode;
 public class NoticeVO extends BoardVO {
 	
 	//LAZY : 해당 리스트가 필요할 시 select join 진행
-	//@OneToMany(mappedBy = "noticeVO", fetch = FetchType.LAZY, cascade = CascadeType.ALL)	//참조
-	//private List<NoticeFileVO> noticeFileVOs;
+//	@OneToMany(mappedBy = "noticeVO", fetch = FetchType.LAZY, cascade = CascadeType.ALL)	//참조
+//	private List<NoticeFileVO> noticeFileVOs;
 	
 }

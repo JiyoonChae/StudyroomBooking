@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>StudyRoom Booking</title>
 	<c:import url="../template/bootStrap.jsp"></c:import>
-	<%-- <c:import url="../template/bootstrap3.jsp"></c:import> --%>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 	<link href="../css/common/reset.css" rel="stylesheet" type="text/css">
@@ -23,63 +23,51 @@
 	<c:import url="../template/service_subtitle.jsp"></c:import>
 	<div class="sub">
 		<div class="article_title" >
-			<h3><c:if test="${board eq 'notice'}">공지사항 </c:if>작성</h3>
+			<h3>
+				<c:if test="${board eq 'notice'}">공지사항 </c:if>
+				<c:if test="${board eq 'faq'}">FAQ </c:if>
+				작성
+			</h3>
 			<p></p>
 		</div>
 
 		<div class="container">
-			<form action="./${board}Write" method="post" enctype="multipart/form-data" class="frm">
+			<form action="./${board}Write" method="post" enctype="multipart/form-data" class="frm" id="frmWrite">
+				<c:if test="${board eq 'faq'}">
+				<div class="form-group select_box">
+					<label for="category">카테고리</label>
+					<select class="form-control category">
+						<option value="회원">회원</option>
+						<option value="예약결제">예약 및 결제</option>
+						<option value="취소환불">취소 및 환불</option>
+						<option value="공간이용후기">공간이용 및 후기</option>
+						<option value="기타">기타</option>
+					</select>
+					<input type="hidden" class="form-control" id="category" name="category">
+				</div>
+				</c:if>
 				<div class="form-group">
-					<label for="title">제목</label>
-					<input type="text" class="form-control" placeholder="제목을 입력하세요" id="title" name="title">
+					<label for="title">질문</label>
+					<input type="text" class="form-control" placeholder="내용을 입력해주세요" id="title" name="title">
+					<div class="check"></div> 
 				</div>
 				<div class="form-group">
 					<label for="writer">작성자</label>
 					<input type="text" class="form-control" value="${member.id}" id="writer" name="writer">
+					<div class="check"></div>
 				</div>
 				<div class="form-group">
 					<!-- <label for="contents">내용</label> -->
 					<textarea class="form-control" id="contents" name="contents"></textarea>
 				</div>
-				<!-- <div class="form-group">
-					<label for="files">업로드</label>
-					<input type="file" class="form-control" name="files">
-					<input type="file" class="form-control" name="files">
-				</div> -->
-				<button type="submit" class="btn btn-primary">등록하기</button>
+				<button type="submit" class="btn btn-lg btn-write">등록하기</button>
 			</form>
 		</div>
 	</div>
 
-	<script type="text/javascript">
-		//summernote
-		$("#contents").summernote({
-			height: 400,		
-			minHeight: null,	
-			maxHeight: null,
-			placeholder : "내용을 입력해주세요",
-			/* onImageUpload: function(files, editor, welEditable) {
-				sendFile(files[0], editor, welEditable);
-			} */
-		});
-
-
-		/* function sendFile(file, editor, welEditable) {
-			var formData = new FormData();
-			formData.append('file', file);
-
-			$.ajax({
-				data: form_data,
-				type: "POST",
-				url: '/summernote',
-				cache: false,
-				contentType: false,
-				success: function(data) {
-					data = data.trim();
-					$("#contents").summernote('editor.insertImage', data);
-			});
-		} */
-	</script>
+	<script src="../js/service/boardWrite.js"></script>
+	<c:if test="${board eq 'notice'}"><script src="../js/service/noticeWrite.js"></script></c:if>
+	<c:if test="${board eq 'faq'}"><script src="../js/service/faqWrite.js"></script></c:if>
 </div>
 </body>
 </html>

@@ -65,7 +65,6 @@ Copyright &copy; Your Website 2020
     </div>
     <!-- /.container -->
   </footer>
-
-		
+	
 </body>
 </html>
