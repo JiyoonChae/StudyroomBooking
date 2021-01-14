@@ -4,19 +4,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Admin</title>
 <c:import url="./template/bootstrap.jsp"></c:import>
 <link href="../css/admin/style.css" rel="stylesheet">
 </head>
 <body class="sb-nav-fixed">
+	<header>
 	<c:import url="./template/navigation.jsp"></c:import>
+	</header>
 	<!-- Page Wrapper -->
-	<div id="layoutSidenav">
-    	
+	<div id="layoutSidenav">    	
 		<!-- Sidebar -->
         <c:import url="./template/sidebar.jsp"></c:import>
         <!-- End of Sidebar -->
+        
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid">
