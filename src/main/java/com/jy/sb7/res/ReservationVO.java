@@ -6,11 +6,7 @@ import com.jy.sb7.member.MemberVO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-<<<<<<< HEAD
-@Data
-public class ReservationVO {
 
-=======
 @Data 
 public class ReservationVO extends MemberVO{
 	private long revNum;
@@ -23,6 +19,5 @@ public class ReservationVO extends MemberVO{
 	private int roomPrice;
 	private String payment;
 	
-	
->>>>>>> Reservation
+
 }
