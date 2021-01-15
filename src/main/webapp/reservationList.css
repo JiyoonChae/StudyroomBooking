@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.container {
+	width: 100%;
+}
+
+.reservation_list {
+	width: 100%;
+	max-width: 1244px;
+	margin: 0 auto;
+	padding: 30px 35px 100px;
+}

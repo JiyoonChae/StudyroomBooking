@@ -8,7 +8,7 @@
 	
 	.subtitle {
 		width: 100%;
-		/* margin-top: 100px; */
+		margin-top: 56px;
 	}
 	
 	ul, li, ol {
@@ -59,10 +59,51 @@
 		padding: 20px 30px;
 		font-size: 18px;
 		color: #333;
+		text-decoration: none;
 	}
 	
 	.tapon {
 		background: #ffb400;
 		display: inline;
 		color: #fff;
+	}
+	
+	
+	
+	.article_title {
+		margin: 100px 0 0 0
+	}
+	
+	.article_title h3 {
+		font-size: 35px;
+		font-weight: 400;
+		text-align: center;
+		background: url(../../images/service/line.jpg) no-repeat center bottom;
+		padding: 0 0 20px 0
+	}
+	
+	.article_title p {
+		font-size: 16px;
+		color: #6f6f6f;
+		line-height: 23px;
+		text-align: center;
+		margin: 20px 0 40px 0;
+	}
+	
+	.article_title ul {
+		width: 1200px;
+		margin: 0 auto 100px auto;
+		position: relative
+	}
+	
+	.article_title li {
+		font-size: 18px;
+		line-height: 25px;
+		margin: 23px 0
+	}
+	
+	.article_title a {
+		position: absolute;
+		right: 0;
+		top: 10px
 	}

@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 	<div class="subtitle">
 		<ul class="title02">
 			<h2>
-				<span>studyㆍmeetㆍ work</span>
+				<span>study ㆍ meet ㆍ work</span>
 				<br>고객지원
 			</h2>
 		</ul>
@@ -22,7 +23,7 @@
 			</li>
 		</ul>
 	</div>
-	
+
 	<script type="text/javascript">
 		var path = window.location.pathname;
 		path = path.substring(path.indexOf("/")+1, path.lastIndexOf("/"));
