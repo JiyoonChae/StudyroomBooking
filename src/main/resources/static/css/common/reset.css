@@ -5,59 +5,50 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, img, dl, dt
 	padding: 0;
 	margin: 0;
 	font-family: 'NanumBarunGothic', sans-serif;
-	font-size: 13px;
+	font-size: 100%;
 	color: #333;
-}
-
-header, nav {
-	font-size:18px;
 }
 
 html {
 	overflow-y: scroll;
 }
 
+body {
+	font-family: 'Nanum Barun Gothic', Dotum, Arial, Tahoma;
+	font-size: 1rem;
+	color: #666;
+	overflow-x: hidden;
+}
+
+ul, li, ol {
+	list-style: none;
+}
+
+a { 
+	text-decoration: none; 
+	cursor: pointer; 
+}
+
+a:hover, a:focus { 
+	text-decoration: none; 
+}
+
+img {
+	border: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
 select, input {
 	vertical-align: middle;
 	text-align: left;
 }
 
-form legend, table caption {
-	width: 0;
-	height: 0;
-	font-size: 0;
-	text-indent: -9999px;
-	line-height: 0;
-}
-
-input[type=radio], input[type=checkbox], input[type=image] {
-	margin: 0;
-	border: none;
-	background: none;
-	outline: none;
-}
-
-textarea {
-	font-size: 12px;
-	overflow: auto;
-}
-
-fieldset, iframe {
-	border: 0 none;
-}
-
-table, div {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-address, caption, cite, code, dfn, em, var {
-	font-style: normal;
-	font-weight: normal;
-}
-
-ul, li, ol {
-	list-style: none;
+label {
+	display: inline-block;
+	cursor: pointer;
 }
 
 hr {
@@ -67,16 +58,6 @@ hr {
 	border: 0 none;
 }
 
-/* li, p, dt, dd, div, span {
-	white-space: normal;
-} */
-
-body, div {
-	font-family: 'Nanum Barun Gothic', Dotum, Arial, Tahoma;
-	font-size: 12px;
-	color: #000000;
-}
-
 input, select, textarea {
 	padding: 0;
 	margin: 0;
@@ -84,6 +65,8 @@ input, select, textarea {
 	font-size: 12px;
 	color: #333333;
 	border: 1px solid #d7d7d7;
+	box-sizing: border-box;
+	vertical-align: middle;
 }
 
 .checkinput {
@@ -91,25 +74,7 @@ input, select, textarea {
 	background-color: #FFE1E1
 }
 
-/* input[type=text], input[type=password] {
-	height: 19px;
-	padding: 1px;
-	line-height: 19px;
-	background-color: #fff;
-} */
 
-a {
-	text-decoration: none;
-}
-
-label {
-	display: inline-block;
-	cursor: pointer;
-}
-
-img {
-	border: none;
-}
 
 /* Font */
 @font-face {

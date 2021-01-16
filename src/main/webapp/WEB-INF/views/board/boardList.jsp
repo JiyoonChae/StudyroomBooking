@@ -8,10 +8,10 @@
 	<meta charset="UTF-8">
 	<title>StudyRoom Booking</title>
 	<c:import url="../template/bootStrap.jsp"></c:import>
-	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.gstatic.com" rel="preconnect" >
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 	<link href="../css/common/reset.css" rel="stylesheet" type="text/css">
-	<link href="../css/common/header.css" rel="stylesheet" type="text/css">
+<!-- 	<link href="../css/common/header.css" rel="stylesheet" type="text/css"> -->
 	<link href="../css/common/footer.css" rel="stylesheet" type="text/css">
 	<link href="../css/service/service_subtitle.css" rel="stylesheet" type="text/css">
 	<link href="../css/service/notice.css" rel="stylesheet" type="text/css">
@@ -19,9 +19,9 @@
 <body>
 <div id="wrap">
 	<c:import url="../template/header.jsp"></c:import>
-	<c:import url="../template/service_subtitle.jsp"></c:import>
+	
 	<div class="sub">
-		
+		<c:import url="../template/subtitle/service_subtitle.jsp"></c:import>
 		<div class="article_title" >
 			<c:if test="${board eq 'notice'}">
 				<h3>공지사항</h3>
@@ -29,6 +29,7 @@
 			</c:if>
 		</div>
 	</div>
+	
 	<div class="container">
 		<div class="inner">
 			<!-- Search -->
@@ -86,7 +87,7 @@
 		
 		<!-- //Page -->
 		<c:if test="${member.type eq 3}">
-		<p><a href="${pageContext.request.contextPath}/notice/noticeWrite" class="btn btn-lg btn-write">글 작성</a></p>
+		<p><a href="${pageContext.request.contextPath}/${board}/${board}Write" class="btn btn-lg btn-write">글 작성</a></p>
 		</c:if>
 	</div>
 	<c:import url="../template/footer.jsp"></c:import>
@@ -103,11 +104,11 @@
 		});
 	});
 
-	var page = ${param.page};
+/* 	var page = ${param.page};
 	if($(".pager li.page-btn").attr("title").equal(page)) {
 		alert($(this).html());
 		
-	}
+	} */
 	</script>
 </div>
 </body>
