@@ -29,8 +29,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
-
-
 @Controller
 @RequestMapping("/member/**")
 public class MemberController {
@@ -42,6 +40,7 @@ public class MemberController {
 	
 	Map<String, Object> map = new HashMap<>();
 	
+	//이메일 인증 key 확인
 	@PostMapping("keyCheck")
 	public void keyCheck(String key) throws Exception{
 		System.out.println("넘어온key" +key);
@@ -50,6 +49,8 @@ public class MemberController {
 			System.out.println("일치 - 성공");
 		}
 	}
+	
+	//이메일 인증 요청
 	@RequestMapping(value ="checkEmail", method = {RequestMethod.GET })
 	@ResponseBody 
 	public Map<String, Object> emailCheck(String email) throws Exception{
@@ -76,6 +77,7 @@ public class MemberController {
 		return map;
 	}
 	
+	//회원가입 페이지
 	@GetMapping("memberJoin")
 	public ModelAndView memberJoin() throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -83,6 +85,7 @@ public class MemberController {
 		return mv;
 	}
 	
+	//네이버 로그인
 	@RequestMapping(value ="personalInfo", method={RequestMethod.GET, RequestMethod.POST})
 	public void personalInfo(HttpServletRequest requeset)throws Exception{
 		String token ="AAAANjm6a2HyubXjEyyscLUO1zNrFB9xLzfiCQPGRoso--DsMZSMEmEc-MyFP6K9n7qXJtKZhCYwor3c3TAn-vJlc6Y";
@@ -115,7 +118,8 @@ public class MemberController {
 	    }
 		
 	}
-
+	
+	
 	@RequestMapping(value="callback", method={RequestMethod.GET, RequestMethod.POST})
 	public String callback(HttpServletRequest request) throws Exception{
 		return"member/callback";
@@ -196,4 +200,31 @@ public class MemberController {
 	public void getMemberLogin() throws Exception{
 		
 	}
+	
+	@PostMapping("findMyId")
+	@ResponseBody
+	public String findMyId(MemberVO memberVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("아이디 찾기 컨트롤러 들어옴"); 
+		memberVO = memberService.findMyId(memberVO);
+		String msg;
+		if(memberVO ==null) {
+			System.out.println("아이디찾기 실패");
+			msg = "아이디 찾기 실패";
+			/*
+			 * mv.addObject("msg", msg); mv.addObject("path", "./memberLogin");
+			 * mv.setViewName("common/result"); return mv;
+			 */
+		}else {
+			System.out.println("아이디찾기 성공");
+			msg = memberVO.getId();
+			
+		}
+		//ajax의 success에 id어떻게 넘기지ㅜㅜ?
+		return msg;
+	}
+	
+	//임시비번 전송
+	//비번 체크를 위한 확인 id, email일치여부 
+	//일치하면 임시비번으로 업데이트 하고 이메일 보내야함.
 }

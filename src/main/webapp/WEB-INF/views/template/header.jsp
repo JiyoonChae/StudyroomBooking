@@ -34,7 +34,7 @@
 								</li>
 							</c:if>
 							<li class="nav-item">
-								<a class="nav-link" href="${pageContext.request.contextPath}/member/memberLogout">LogOut</a>
+								<a class="nav-link" href="https://kauth.kakao.com/oauth/logout?client_id=db6b291272bd77842e5db5fa28f52e1a&logout_redirect_uri=http://localhost/member/memberLogout&state=logout HTTP/1.1">LogOut</a>
 							</li>
 						</c:when>
 						<c:otherwise>

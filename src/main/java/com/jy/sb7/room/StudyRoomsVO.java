@@ -1,9 +1,11 @@
 package com.jy.sb7.room;
 
+import com.jy.sb7.res.ReservationVO;
+
 import lombok.Data;
 
 @Data
-public class StudyRoomsVO {
+public class StudyRoomsVO{
 
 	private long roomNum;
 	private String roomName;

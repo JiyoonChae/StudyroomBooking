@@ -10,8 +10,9 @@
 .price {font-size: 20px; }
 .unit {font-size:  14px; color: #949494;}
 
-.info_photo {position:relative; margin-top:30px; min-height: 170px; font-size: 16px; line-height: 22px; background: grey;}
-.photo { width: 140px; height: 140px; position: absolute; left:0; top:0; background:  yellow; margin-left:30px;}
+.info_photo {position:relative; margin-top:30px; min-height: 170px; font-size: 16px; line-height: 22px; background: #fff;}
+.photo { width: 140px; height: 140px; position: absolute; left:0; top:0; margin-left:30px;}
+img {width: 140px; height: 140px;}
 .rm_name {width:430px; display: block; padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid #ebebeb; font-size: 24px; color:#000; position:absolute; right: 0;}
 
 ul{display: block; list-style: none;}
@@ -30,4 +31,6 @@ dd input {display: inline-block; position: absolute; right:0; background-color: 
 font-size: 16px; border-radius: 0; color: #000; border: 1px solid #e0e0e0; padding:0 16px; line-height: 1.2; }
 textarea {display:inline-block; position: absolute; right: 0; width: 580px; height: 134px; background-color: #fff; padding:15px 16px; 
 font-size: 16px; border-radius: 0; color:#000; border:1px solid #e0e0e0; resize: none;}
+.confirm {margin-left:300px; margin-top: 100px;}
+#confirm{width: 70px;}
 

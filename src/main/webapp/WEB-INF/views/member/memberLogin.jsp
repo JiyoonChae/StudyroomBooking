@@ -42,7 +42,7 @@
 	
 	<div class="options">
  	<p class="join">
- 	<a href="#">아이디 찾기</a><span>|</span>
+ 	<a href="#" data-toggle="modal" data-target="#myModal">아이디 찾기</a><span>|</span>
  	<a href="#">비밀번호 찾기</a><span>|</span>
  	<a href="${pageContext.request.contextPath}/member/memberJoin">회원가입</a>
  	</p>
@@ -64,38 +64,113 @@
 
 </div> <!-- 전체 div끝 -->
 
+
+
+<!-- id찾기 Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">아이디 찾기</h4>
+      </div>
+      <div class="modal-body">
+        <p>가입한 이름과 메일을 적어주세요</p>
+         <div class="reserve-info">
+          <ul class="reserve-info-wrap">
+          	<li><span class="tit">이름 </span><input type="text" name="name" class="name"></li>
+          	<li><span class="tit">email </span> <input type="text" name="email" class="email"></li>
+          </ul>
+          <button id="find">찾기</button>
+          <div id="findResult"></div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div> <!-- id찾기 모달 end -->
+
+
+<!-- pw찾기 Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">비밀번호 찾기</h4>
+      </div>
+      <div class="modal-body">
+        <p>가입한 아이디와 메일주소를 적어주세요</p>
+         <div class="reserve-info">
+          <ul class="reserve-info-wrap">
+          	<li><span class="tit">ID </span><input type="text" name="id" class="pw-id"></li>
+          	<li><span class="tit">email </span> <input type="text" name="email" class="pw-email"></li>
+          </ul>
+          <button id="pwfind">찾기</button>
+          <div id="findResult"></div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div> <!-- id찾기 모달 end -->
+
+
+
+
+
+
+
+
+
+
+
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script type="text/javascript">
 	$(".logbtn").click(function(){
 		$("#frm").submit();
-		
 		})
 
+	$("#find").click(function(){
+		var name = $(".name").val();
+		var email = $(".email").val();
+		$.ajax({
+			url:"./findMyId",
+			type: "post",
+			data: {name:name, email:email},
+			success: function(data){
+				console.log(data);
+				//id받아서 
+				$("#findResult").text(data).css("color", "blue");
+				}
+			})
+		})
 
-	//	function login() {
-	//		let data ={
-	//			id: $("#id").val(),
-//				pw: $("#pw").val(),
-//					};
-			//console.log(data); ->자바스크립트 오브젝트
-			//ajax통신을 이용해서 파라미터(데이터)를 json으로 변경하여 insert요청.
-	//		$.ajax({
-	//			type: "POST",
-	//			url:"./memberLogin",
-	//			data: JSON.stringify(data), //위에 data 객체를 java로 보낼 때 json으로 변경해서 보내야함. http body 데이터!
-	//			contentType: "application/json; charset=utf-8", // body데이터가 어떤 데이터타입인지 알려주는 것
-	//			dataType: "json", //요청을 서버로해서 응답이 왔을 때 기본적으로 모든 것이 string인 json형식으로 오는데 =>javascript 오브젝트로 변환시켜줌
-	//			success: function(result){
-	//				console.log(result)
-	//				alert("로그인이 완료되었습니다");
-	//				alert(result);
-	//				location.href="/";
-	//				}
-	//					}).fail(function(error){
-	//							alert(JSON.stringify(error));
-	//							});  
-	//	}
-
+	//비번찾기: id,mail 일치 확인 - 일치하면 이멜로 랜덤비번보내기 -> db에 비번 update
+	$("#pwfind").click(function(){
+		var id = $(".id").val();
+		var email = $(".email").val();
+		$.ajax({
+			url:"./findMyPw",
+			type: "post",
+			data: {id:id, email:email},
+			success: function(data){
+				console.log(data);
+				
+				$("#findResult").text("이메일로 임시 비밀번호를 전송하였습니다").css("color", "blue");
+				}
+			})
+		})
 
 <!-- 네이버아디디로로그인 초기화 Script -->
 	<!-- (3) LoginWithNaverId Javscript 설정 정보 및 초기화 -->

@@ -5,9 +5,28 @@
   
   <mapper namespace="com.jy.sb7.res.ReservationMapper">
   	
-  	<select id="getResInfo" parameterType="ReservationVO" resultType="ReservationVO">
-  		select * from reservation where revNum = #{revNum}
+  	<select id="getResInfo" parameterType="ReservationVO" resultMap="getInfoResult">
+  		select R.*, SR.* from reservation R left join studyRooms SR on (SR.roomNum = R.roomType) where R.revNum = #{revNum}
   	</select>
+  	<resultMap type="ReservationVO" id="getInfoResult">
+		<id column="revNum" property="revNum"/>
+		<result column="startTime" property="startTime"/>
+		<result column="endTime" property="endTime"/>
+		<result column="roomTime" property="roomTime"/>
+		<result column="roomUser" property="roomUser"/>
+		<result column="roomDate" property="roomDate"/>
+		<result column="roomType" property="roomType"/>
+		<result column="roomPrice" property="roomPrice"/>
+		<result column="payment" property="payment"/>
+		<association property="studyRoomsVO" javaType="StudyRoomsVO">
+			<id column="roomNum" property="roomNum" />
+			<result column="roomName" property="roomName" />
+			<result column="min" property="min" />
+			<result column="max" property="max" />
+			<result column="fileUrl" property="fileUrl" />
+			<result column="oriName" property="oriName" />
+		</association>
+	</resultMap>
   	
   	<insert id="roomConfirm" parameterType="ReservationVO">
 		insert into reservation (revNum, id, email, startTime, endTime, roomTime, roomUser, roomDate, roomType, payment, roomPrice, bookDate) 

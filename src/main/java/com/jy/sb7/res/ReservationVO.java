@@ -1,6 +1,8 @@
 package com.jy.sb7.res;
 
 
+import java.sql.Date;
+
 import com.jy.sb7.member.MemberVO;
 import com.jy.sb7.room.StudyRoomsVO;
 
@@ -19,6 +21,7 @@ public class ReservationVO extends MemberVO{
 	private int roomType;
 	private int roomPrice;
 	private String payment;
+	private Date bookDate;
 	
 	private StudyRoomsVO studyRoomsVO;
 }

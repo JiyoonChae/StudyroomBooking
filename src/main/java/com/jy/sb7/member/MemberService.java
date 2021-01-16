@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 public class MemberService {
 	@Autowired
 	private MemberMapper memberMapper;
+	
+	public MemberVO findMyId(MemberVO memberVO) throws Exception {
+		return memberMapper.findMyId(memberVO);
+	}
 
 	public MemberVO emailCheck(MemberVO memberVO) throws Exception{
 		return memberMapper.emailCheck(memberVO);
