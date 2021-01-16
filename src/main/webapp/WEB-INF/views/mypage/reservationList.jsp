@@ -31,24 +31,46 @@
 				<section class="filter_area">
 					<div class="inner_width">
 						<div class="sorting_filter">
-							<label for="sorting">예약번호순정렬</label> <select id="sort">
-								<option selected="selected" value="[object Object]">예약번호순정렬</option>
-								<option value="[object Object]">이용일자순정렬</option>
+							<!-- <label for="sorting">예약번호순정렬</label> -->
+							<select id="sort">
+								<option selected="selected" value="revNum">예약번호순정렬</option>
+								<option value="roomDate">이용일자순정렬</option>
 							</select>
 						</div>
 						<div class="sorting_filter">
 							<label for="sorting">전체</label> <select id="filter">
-								<option selected="selected" value="[object Object]">전체</option>
-								<option value="[object Object]">승인대기</option>
-								<option value="[object Object]">결제대기</option>
-								<option value="[object Object]">예약확정</option>
-								<option value="[object Object]">이용완료</option>
-								<option value="[object Object]">취소환불</option>
-								<option value="[object Object]">변경요청</option>
+								<option selected="selected" value="all">전체</option>
+								<option value="현장결제">현장결제</option>
+								<option value="결제완료">결제완료</option>
+								<option value="예약완료">예약완료</option>
+								<option value="이용완료">이용완료</option>
+								<!-- <option value="취소환불">취소환불</option>
+								<option value="변경요청">변경요청</option> -->
 							</select>
 						</div>
 					</div>
 				</section>
+				<div class="flex_wrap">
+					<article class="box box_reservation">
+						<div class="inner">
+							<a href="">
+								<div class="img_box">
+									<span class="img"><img alt="룸사진" src=""></span>
+								</div>
+								<div class="info_area">
+									<div class="tags">
+										<span class="tag tag_exploit_finish">이용완료</span>
+									</div>
+									<h3 class="tit_space">2~4인룸</h3>
+									<p class="text"><span class="blind">날짜시간 정보 :</span>2021.01.15(목) 18~20시, 2시간</p>
+									<p class="price"><span class="blind">금액 :</span>12,000원</p>
+								</div>
+								<i class="sp_ico ico_page_next2"><span class="blind">자세히 보기</span></i>
+							</a>
+						</div>
+					</article>
+				</div>
+				
 			</div>
 		</div>
 		<c:import url="../template/footer.jsp"></c:import>

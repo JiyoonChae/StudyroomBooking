@@ -2,6 +2,7 @@ package com.jy.sb7.res;
 
 
 import com.jy.sb7.member.MemberVO;
+import com.jy.sb7.room.StudyRoomsVO;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -19,5 +20,5 @@ public class ReservationVO extends MemberVO{
 	private int roomPrice;
 	private String payment;
 	
-
+	private StudyRoomsVO studyRoomsVO;
 }
