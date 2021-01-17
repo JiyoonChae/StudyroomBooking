@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jy.sb7.board.BoardVO;
 import com.jy.sb7.utill.Pager;
 
 @Controller
@@ -29,9 +31,13 @@ public class FaqController {
 	
 	@GetMapping("faqList")
 	public ModelAndView getList(Pager pager) throws Exception {
+		System.out.println("FAQ List Controller");
+		System.out.println(pager.getSearchType());
+		System.out.println(pager.getKeyword());
+		
 		Pageable pageable = PageRequest.of(pager.getPage(), pager.getSize());
-		Page<FaqVO> page = faqService.getList(pageable);
-		pager.makePage(page, 3);
+		Page<BoardVO> page = faqService.getSearchList(pager, pageable);
+		pager.makePage(page);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("pager", pager);
@@ -71,5 +77,14 @@ public class FaqController {
 		return mv;
 	}
 	
-	
+	@GetMapping("faqUpdate")
+	public String setUpdate(FaqVO faqVO, Model model) throws Exception {
+		System.out.println("FAQ Update Controller");
+		
+		//faqVO = faqService.getOne(faqVO);
+		
+		model.addAttribute("faq", faqVO);
+		
+		return "board/boardUpdate";
+	}
 }

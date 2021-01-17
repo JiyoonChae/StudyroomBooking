@@ -83,9 +83,6 @@ public class NoticeService {
 		return noticeRepository.save(noticeVO);
 	}
 	
-	public List<NoticeVO> getList() throws Exception {
-		return noticeRepository.findAll();
-	}
 	
 	public Page<BoardVO> getList(Pageable pageable) throws Exception {
 		return noticeRepository.findByNumGreaterThanOrderByNumDesc(0L, pageable);

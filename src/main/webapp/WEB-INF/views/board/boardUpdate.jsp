@@ -22,12 +22,29 @@
 	<c:import url="../template/subtitle/service_subtitle.jsp"></c:import>
 	<div class="sub">
 		<div class="article_title" >
-			<h3><c:if test="${board eq 'notice'}">공지사항 </c:if>작성</h3>
+			<h3>
+				<c:if test="${board eq 'notice'}">공지사항 </c:if>
+				<c:if test="${board eq 'faq'}">FAQ </c:if>
+				수정
+			</h3>
 			<p></p>
 		</div>
 
 		<div class="container">
 			<form action="./${board}Update?num=${notice.num}" method="post" enctype="multipart/form-data" class="frm">
+				<c:if test="${board eq 'faq'}">
+				<div class="form-group select_box">
+					<label for="category">카테고리</label>
+					<select class="form-control category">
+						<option>회원</option>
+						<option>예약 및 결제</option>
+						<option>취소 및 환불</option>
+						<option>공간이용 및 후기</option>
+						<option>기타</option>
+					</select>
+					<input type="hidden" class="form-control" id="category" name="category">
+				</div>
+				</c:if>
 				<div class="form-group">
 					<label for="title">제목</label>
 					<input type="text" class="form-control" value="${notice.title}" placeholder="제목을 입력하세요" id="title" name="title">

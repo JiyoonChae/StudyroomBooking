@@ -49,13 +49,6 @@ public class NoticeController {
 	public ModelAndView getList(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> List GET ");
-		System.out.println("----------------------");
-		System.out.println(pager.getSearchType());
-		System.out.println(pager.getKeyword());
-		System.out.println(pager.getPage());
-		System.out.println("----------------------");
-		
 		Pageable pageable = PageRequest.of(pager.getPage(), pager.getSize());
 		Page<BoardVO> page = noticeService.getSearchList(pager, pageable);
 //		Page<BoardVO> page = noticeService.getList(pageable);

@@ -89,7 +89,7 @@
 		</c:if>
 		
 		<!-- //Page -->
-		<c:if test="${member.type eq 3}">
+		<c:if test="${not empty member and member.type eq 3}">
 		<p><a href="${pageContext.request.contextPath}/${board}/${board}Write" class="btn btn-lg btn-write">글 작성</a></p>
 		</c:if>
 	</div>
@@ -112,11 +112,8 @@
 		$(".search-btn").click(function() {
 	 		searchType = $("select[name=searchType]").val();
 			keyword = $("input[name=keyword]").val();
-	
-			alert(searchType + " / " + keyword);
 			
 			$(this).attr("href", "./${board}List?page=0&searchType="+searchType+"&keyword="+keyword);
-			/* $("input[name=keyword]").val(keyword); */
 			$("#frmSearch").submit(); 
 		});	
 	</script>

@@ -37,11 +37,11 @@
 				<div class="form-group select_box">
 					<label for="category">카테고리</label>
 					<select class="form-control category">
-						<option value="회원">회원</option>
-						<option value="예약결제">예약 및 결제</option>
-						<option value="취소환불">취소 및 환불</option>
-						<option value="공간이용후기">공간이용 및 후기</option>
-						<option value="기타">기타</option>
+						<option>회원</option>
+						<option>예약 및 결제</option>
+						<option>취소 및 환불</option>
+						<option>공간이용 및 후기</option>
+						<option>기타</option>
 					</select>
 					<input type="hidden" class="form-control" id="category" name="category">
 				</div>
