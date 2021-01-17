@@ -29,6 +29,19 @@ public class FaqService {
 		return faqRepository.findById(faqVO.getNum()).get();
 	}	
 	
+	public int setUpdate(FaqVO faqVO) throws Exception {
+		return faqRepository.setUpdate(faqVO.getCategory(), faqVO.getTitle(), faqVO.getContents(), faqVO.getNum());
+	}
+	
+	public boolean setDelete(FaqVO faqVO) throws Exception {
+		long deleteNum = faqVO.getNum();
+		faqRepository.deleteById(deleteNum);
+		
+		if(faqRepository.findById(deleteNum).isEmpty()) {
+			return true;
+		}
+		return false;
+	}
 	
 	public FaqVO setInsert(FaqVO faqVO) throws Exception {
 		return faqRepository.save(faqVO);

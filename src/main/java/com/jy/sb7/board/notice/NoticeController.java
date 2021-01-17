@@ -144,7 +144,7 @@ public class NoticeController {
 		
 		noticeVO = noticeService.getOne(noticeVO);
 		
-		mv.addObject("notice", noticeVO);
+		mv.addObject("vo", noticeVO);
 		mv.setViewName("board/boardUpdate");
 		
 		return mv;
@@ -161,7 +161,7 @@ public class NoticeController {
 		String path = "./noticeUpdate?num="+noticeVO.getNum();
 		if(result > 0) {
 			msg = "업데이트 성공";
-			path = "./noticeList";
+			path = "./noticeList?page=0&searchType=all&keyword=";
 		}
 		
 		mv.addObject("msg", msg);
@@ -184,7 +184,7 @@ public class NoticeController {
 		}
 		
 		mv.addObject("msg", msg);
-		mv.addObject("path", "./noticeList");
+		mv.addObject("path", "./noticeList?page=0&searchType=all&keyword=");
 		mv.setViewName("common/result");
 		
 		return mv;

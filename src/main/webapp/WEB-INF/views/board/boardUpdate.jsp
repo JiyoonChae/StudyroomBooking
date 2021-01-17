@@ -31,23 +31,22 @@
 		</div>
 
 		<div class="container">
-			<form action="./${board}Update?num=${notice.num}" method="post" enctype="multipart/form-data" class="frm">
+			<form action="./${board}Update?num=${vo.num}" method="post" enctype="multipart/form-data" class="frm">
 				<c:if test="${board eq 'faq'}">
 				<div class="form-group select_box">
 					<label for="category">카테고리</label>
-					<select class="form-control category">
+					<select class="form-control category" name="category">
 						<option>회원</option>
 						<option>예약 및 결제</option>
 						<option>취소 및 환불</option>
 						<option>공간이용 및 후기</option>
 						<option>기타</option>
 					</select>
-					<input type="hidden" class="form-control" id="category" name="category">
 				</div>
 				</c:if>
 				<div class="form-group">
 					<label for="title">제목</label>
-					<input type="text" class="form-control" value="${notice.title}" placeholder="제목을 입력하세요" id="title" name="title">
+					<input type="text" class="form-control" value="${vo.title}" placeholder="제목을 입력하세요" id="title" name="title">
 					<div class="check"></div>
 				</div>
 				<div class="form-group">
@@ -68,7 +67,8 @@
 	<c:if test="${board eq 'notice'}"><script src="../js/service/noticeWrite.js"></script></c:if>
 	<c:if test="${board eq 'faq'}"><script src="../js/service/faqWrite.js"></script></c:if>
 	<script type="text/javascript">
-		$('#contents').summernote('code', '${notice.contents}');
+		$('#contents').summernote('code', '${vo.contents}');
+		$(".category").val('${vo.category}');
 	</script>
 </div>
 </body>
