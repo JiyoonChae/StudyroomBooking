@@ -53,10 +53,10 @@
 				</colgroup>
 				<tbody>
 					<c:forEach items="${page.content}" var="faq">
-					<tr class="show">
+					<tr class="item">
 						<td class="category">${faq.category}</td>
 						<td class="question">
-							<a href="" class="detail_view">${faq.title}<i class="detail_view_icon open"></i></a>
+							<a href="javascript:void(0);" class="detail_view">${faq.title}<i class="detail_view_icon open"></i></a>
 						</td>						
 					</tr>
 					<tr class="view">
@@ -123,20 +123,17 @@
 			$("#frmSearch").submit(); 
 		});
 
-		
-		$(".detail_view").click(function() {
-			alert("open : "+ $(this).children().hasClass("open"));
-			alert("close : " + $(this).children().hasClass("close"));
-			
+		$(".view").hide();
+		$(".table_faq tr a.detail_view").click(function() {
 			if($(this).children().hasClass("open")) {
-				$(this).children().removeClass("open");
-				$(this).children().addClass("close");
+				$(this).children().removeClass("open").addClass("close");
+				$(this).parent().parent().next().show();
 			} else {
-				$(this).children().removeClass("close");
-				$(this).children().addClass("open");
+				$(this).children().removeClass("close").addClass("open");
+				$(this).parent().parent().next().hide();
 			}
+
 		});
-		
 	</script>
 </div>
 </body>
