@@ -48,8 +48,8 @@
 			
 			<table class="table table-striped table-toggle table_faq">
 				<colgroup>
-					<col width="20%">
-					<col width="80%">
+					<col width="25%">
+					<col width="75%">
 				</colgroup>
 				<tbody>
 					<c:forEach items="${page.content}" var="faq">

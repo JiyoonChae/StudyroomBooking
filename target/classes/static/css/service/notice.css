@@ -180,6 +180,10 @@
 .table_faq td.question .detail_view .close {
 	background-position: -471px -232px;
 }
+
+.table_faq tr.view .view_box {
+	padding: 20px;
+}
 /* boardListSlide */
 
 
