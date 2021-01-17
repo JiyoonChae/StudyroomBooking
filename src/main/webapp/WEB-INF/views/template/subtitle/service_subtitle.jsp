@@ -13,7 +13,7 @@
 	<div class="subtap">
 		<ul>
 			<li class="notice">
-				<a href="${pageContext.request.contextPath}/notice/noticeList">공지사항</a>
+				<a href="${pageContext.request.contextPath}/notice/noticeList?page=0&searchType=all&keyword=">공지사항</a>
 			</li>
 			<li class="faq">
 				<a href="${pageContext.request.contextPath}/faq/faqList">FAQ</a>

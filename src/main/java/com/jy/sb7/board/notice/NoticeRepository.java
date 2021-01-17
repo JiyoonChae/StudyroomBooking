@@ -7,6 +7,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.jy.sb7.board.BoardVO;
 
 public interface NoticeRepository extends JpaRepository<NoticeVO, Long> {
 
@@ -21,7 +24,19 @@ public interface NoticeRepository extends JpaRepository<NoticeVO, Long> {
 	public int setUpdate(String title, String contents, long num);
 	
 	//select * from notice where num > (num) order by num desc;
-	public Page<NoticeVO> findByNumGreaterThanOrderByNumDesc(long num, Pageable pageable);
+	//public Page<NoticeVO> findByNumGreaterThanOrderByNumDesc(long num, Pageable pageable);
+	public Page<BoardVO> findByNumGreaterThanOrderByNumDesc(long num, Pageable pageable);
+	
+	//select * from notice where title like '%?%' order by num desc;
+	public Page<BoardVO> findByTitleContainingOrderByNumDesc(String search, Pageable pageable);
+	
+	//select * from notice where contents like '%?%' order by num desc;
+	public Page<BoardVO> findByContentsContainingOrderByNumDesc(String search, Pageable pageable);
+
+	//select * from notice where title like '%?%' or contents like '%?%' order by num desc;
+	public Page<BoardVO> findByTitleContainingOrContentsContainingOrderByNumDesc(String title, String contents, Pageable pageable);
+	
+	
 	
 //	@Modifying
 //	@Transactional

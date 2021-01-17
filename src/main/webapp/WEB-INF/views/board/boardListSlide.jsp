@@ -24,7 +24,6 @@
 		<div class="article_title" >
 			<c:if test="${board eq 'faq'}">
 				<h3>자주 묻는 질문</h3>
-				<p></p>
 			</c:if>
 		</div>
 	</div>
@@ -33,12 +32,12 @@
 			<!-- Search -->
 			<div class="search">
 				<form method="post" id="frmSearch" action="./${board}List">
-					<select name="type" id="type">
+					<select name="searchType" id="searchType">
 						<option value="all">전체</option>
 						<option value="title">제목</option>
 						<option value="contents">내용</option>
 					</select>
-					<input type="text" name="search" id="search" placeholder="검색어입력">
+					<input type="text" name="keyword" id="keyword" placeholder="검색어입력" value="${param.value}">
 					<a href=""><img src="../images/service/search_btn.jpg" alt="검색"></a>
 				</form>
 			</div>
@@ -50,7 +49,7 @@
 					<col width="80%">
 				</colgroup>
 				<tbody>
-					<c:forEach items="${faqList}" var="faq">
+					<c:forEach items="${page.content}" var="faq">
 					<tr>
 						<td class="category">${faq.category}</td>
 						<td class="question"><a href="" class="detail_view">${faq.title}<i class="detail_view_icon open"></i></a></td>
@@ -64,14 +63,6 @@
 					</tr>
 					</c:forEach>
 				</tbody>
-				<%-- <c:forEach items="${page.content}" var="vo">
-				<tr>
-					<td class="num">${vo.num}</td>
-					<td class="title"><a href="./noticeSelect?num=${vo.num}&hit=${vo.hit}">${vo.title}</a></td>
-					<td class="regDate"><fmt:formatDate value="${vo.regDate}" pattern="yy/MM/dd HH:mm"/></td>
-					<td class="hit">${vo.hit}</td>
-				</tr>
-				</c:forEach> --%>
 			</table>
 		</div>
 		

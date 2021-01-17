@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.jy.sb7.board.BoardVO;
 import com.jy.sb7.utill.FileManager;
 import com.jy.sb7.utill.FilePathGenerator;
 import com.jy.sb7.utill.Pager;
@@ -86,14 +87,21 @@ public class NoticeService {
 		return noticeRepository.findAll();
 	}
 	
-	public Page<NoticeVO> getList(Pageable pageable) throws Exception {
+	public Page<BoardVO> getList(Pageable pageable) throws Exception {
 		return noticeRepository.findByNumGreaterThanOrderByNumDesc(0L, pageable);
 	}
 	
-//	public Page<NoticeVO> getSearchList(Pager pager, Pageable pageable) throws Exception {
-//		return noticeRepository.findAllSearch(pager.getSearch(), pageable);
-//	}
-	
+	public Page<BoardVO> getSearchList(Pager pager, Pageable pageable) throws Exception {
+		String searchType = pager.getSearchType();
+		String keyword = pager.getKeyword();
+		
+		if(searchType.equals("title")) {
+			return noticeRepository.findByTitleContainingOrderByNumDesc(keyword, pageable);
+		} else if(searchType.equals("contents")) {
+			return noticeRepository.findByContentsContainingOrderByNumDesc(keyword, pageable);
+		}
+		return noticeRepository.findByTitleContainingOrContentsContainingOrderByNumDesc(keyword, keyword, pageable);
+	}
 	
 	
 	public int setUpdate(NoticeVO noticeVO, MultipartFile[] files) throws Exception {
@@ -105,11 +113,11 @@ public class NoticeService {
 		noticeRepository.deleteById(deleteNum);
 		
 		boolean result = false;
-		System.out.println("------  "+noticeRepository.findById(deleteNum));
+		System.out.println("삭제할 번호 : "+noticeRepository.findById(deleteNum));
 		if( noticeRepository.findById(deleteNum).isEmpty()) {
 			result = true;
 		}
-		System.out.println(result + " : delete 결과");
+		System.out.println("삭제 결과 : " + result);
 		return result;
 	}
 	

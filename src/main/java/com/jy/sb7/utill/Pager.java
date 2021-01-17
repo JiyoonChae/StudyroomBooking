@@ -2,6 +2,7 @@ package com.jy.sb7.utill;
 
 import org.springframework.data.domain.Page;
 
+import com.jy.sb7.board.BoardVO;
 import com.jy.sb7.board.faq.FaqVO;
 import com.jy.sb7.board.notice.NoticeVO;
 
@@ -19,8 +20,8 @@ public class Pager {
 	private boolean isPrev;
 	private boolean isNext;
 	
-	private String type;
-	private String search;
+	private String searchType;
+	private String keyword;
 	
 	
 	
@@ -51,35 +52,38 @@ public class Pager {
 	}
 	
 	
-	public String getType() {
-		if(this.type == null) {
-			this.type = "";
+	public String getSearchType() {
+		if(this.searchType == null) {
+			this.searchType = "all";
 		}
-		return type;
+		return this.searchType;
 	}
-	public void setType(String type) {
-		if(type == null) {
-			type = "title";
+	public void setSearchType(String searchType) {
+		if(searchType == null) {
+			searchType = "all";
 		}
-		this.type = type;
-	}
-	
-	public String getSearch() {
-		if(this.search == null) {
-			this.search = "";
-		}
-		return search;
-	}
-	public void setSearch(String search) {
-		if(search == null) {
-			search = "";
-		}
-		this.search = search;
+		this.searchType = searchType;
 	}
 	
+	public String getKeyword() {
+		System.out.println("저장된 검색어 : " + this.keyword);
+		if(keyword == null) {
+			keyword = "";
+		}
+		System.out.println("반환할 검색어 : " + this.keyword);
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+//		System.out.println("넘어온 검색어 : " + keyword);
+//		if(keyword == null) {
+//			keyword = "";
+//		}
+		this.keyword = keyword;
+	}
 	
 	
-	public void makePage(Page<NoticeVO> page) {
+	
+	public void makePage(Page<BoardVO> page) {
 		//1. totalCount로 totalPage 계산
 		//2. totalPage로 totalBlock 계산
 		int blockSize = 5;
@@ -111,8 +115,7 @@ public class Pager {
 			isPrev = true;
 		}
 	}
-	
-	
+
 	
 	public void makePage(Page<FaqVO> faqPage, int blockSize) {
 		//1. totalCount로 totalPage 계산

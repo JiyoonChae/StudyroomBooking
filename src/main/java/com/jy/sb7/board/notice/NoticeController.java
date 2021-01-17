@@ -49,15 +49,19 @@ public class NoticeController {
 	public ModelAndView getList(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-//		System.out.println("----------------------");
-//		System.out.println(pager.getType());
-//		System.out.println(pager.getSearch());
-//		System.out.println(pager.getPage());
-//		System.out.println("----------------------");
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> List GET ");
+		System.out.println("----------------------");
+		System.out.println(pager.getSearchType());
+		System.out.println(pager.getKeyword());
+		System.out.println(pager.getPage());
+		System.out.println("----------------------");
 		
 		Pageable pageable = PageRequest.of(pager.getPage(), pager.getSize());
-		Page<NoticeVO> page = noticeService.getList(pageable);
-		//Page<NoticeVO> page = noticeService.getSearchList(pager, pageable);
+		Page<BoardVO> page = noticeService.getSearchList(pager, pageable);
+//		Page<BoardVO> page = noticeService.getList(pageable);
+		if(pager.getKeyword() != "") {
+			System.out.println("검색어 존재");
+		}
 		pager.makePage(page);
 				
 		mv.addObject("pager", pager);
@@ -67,17 +71,7 @@ public class NoticeController {
 		return mv;
 	}
 	
-	@PostMapping("noticeList")
-	public String getList(Pager pager, Model model) throws Exception {
-		Pageable pageable = PageRequest.of(pager.getPage(), pager.getSize());
-		Page<NoticeVO> page = noticeService.getList(pageable);
-		pager.makePage(page);
-		
-		model.addAttribute("pager", pager);
-		model.addAttribute("page", page);
-		
-		return "redirect:./noticeList";
-	}
+	
 	
 	@GetMapping("noticeWrite")
 	public ModelAndView setInsert() throws Exception {
