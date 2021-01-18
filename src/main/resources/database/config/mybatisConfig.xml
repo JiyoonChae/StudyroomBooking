@@ -6,7 +6,9 @@
   <configuration>
 	<typeAliases>
 		<typeAlias type="java.util.List" alias="List"/>
+		<typeAlias type="java.util.HashMap" alias="HashMap"/>
 		<typeAlias type="java.lang.Long" alias="Long"/>
+		<typeAlias type="com.github.pagehelper.Page" alias="Page"/>
 		
 		<typeAlias type="com.jy.sb7.member.MemberVO" alias="MemberVO"/>
 		<typeAlias type="com.jy.sb7.res.ReservationVO" alias="ReservationVO"/>

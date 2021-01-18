@@ -47,7 +47,10 @@
 				</div>
 				</c:if>
 				<div class="form-group">
-					<label for="title">질문</label>
+					<label for="title">
+						<c:if test="${board eq 'notice'}">제목</c:if>
+						<c:if test="${board eq 'faq' or 'qna'}">질문</c:if>
+					</label>
 					<input type="text" class="form-control" placeholder="내용을 입력해주세요" id="title" name="title">
 					<div class="check"></div> 
 				</div>

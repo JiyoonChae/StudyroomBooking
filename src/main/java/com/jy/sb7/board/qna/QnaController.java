@@ -31,12 +31,20 @@ public class QnaController {
 		return "qna/qnaWrite";
 	}
 	
+	
 	@PostMapping("qnaWrite")
 	public ModelAndView setInsert(QnaVO qnaVO) throws Exception {
+		String msg = "1:1 문의 등록 실패. 다시 입력해주세요.";
 		
+		qnaVO = qnaService.setInsert(qnaVO);
+		if(qnaVO != null) {
+			msg = "1:1 문의 완료되었습니다. <br>관리자가 확인 후 답변드릴 예정입니다.";
+		}
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("qna/qnaWrite");
+		mv.addObject("msg", msg);
+		mv.addObject("path", "./qnaWrite");
+		mv.setViewName("common/result");
 		return mv;
 	}
 }

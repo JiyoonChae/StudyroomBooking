@@ -18,6 +18,8 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.jy.sb7.board.BoardVO;
+
 import lombok.Data;
 
 @Data
@@ -27,9 +29,7 @@ public class QnaVO {
 	
 	@Column(updatable = false)
 	private String id;
-	private String name;
 	private String email;
-	private String phone;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +39,7 @@ public class QnaVO {
 	@Lob
 	@Column(length = 100000000)
 	private String contents;
-	private String qnaType;
+	private String category;
 	private String state;
 	
 	@Column(updatable = false)
@@ -48,10 +48,6 @@ public class QnaVO {
 	
 	@UpdateTimestamp
 	private Date updateDate;
-	
-	private long ref;
-	private long step;
-	private long depth;
 	
 	@OneToMany(mappedBy = "qnaVO", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<QnaFileVO> qnaFileVOs;

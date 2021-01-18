@@ -53,9 +53,9 @@
 				<div class="flex_wrap">
 					<article class="box box_reservation">
 						<div class="inner">
-							<a href="">
+							<a href="javascript:void(0);">
 								<div class="img_box">
-									<span class="img"><img alt="룸사진" src=""></span>
+									<span class="img"><img alt="룸사진" src="../images/rooms/room_view01.jpg"></span>
 								</div>
 								<div class="info_area">
 									<div class="tags">
