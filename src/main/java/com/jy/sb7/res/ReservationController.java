@@ -42,7 +42,9 @@ public class ReservationController {
 		System.out.println("받은 예약번호: "+ resVO.getRevNum());
 		resVO = reservationService.getResInfo(resVO);
 		PayVO payVO= payService.getPayInfo(resVO);
-		
+		System.out.println("컨트롤러ID :"+resVO.getId());
+		System.out.println("email :" +resVO.getEmail());
+		System.out.println("price :" +resVO.getRoomPrice());
 		mv.addObject("resInfo", resVO);
 		mv.addObject("room", resVO.getStudyRoomsVO());
 		mv.addObject("member", memberVO);

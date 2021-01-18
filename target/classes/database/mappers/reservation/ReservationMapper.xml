@@ -10,6 +10,7 @@
   	</select>
   	<resultMap type="ReservationVO" id="getInfoResult">
 		<id column="revNum" property="revNum"/>
+		<result column="id" property="id" />
 		<result column="startTime" property="startTime"/>
 		<result column="endTime" property="endTime"/>
 		<result column="roomTime" property="roomTime"/>
@@ -26,6 +27,7 @@
 			<result column="fileUrl" property="fileUrl" />
 			<result column="oriName" property="oriName" />
 		</association>
+		
 	</resultMap>
   	
   	<insert id="roomConfirm" parameterType="ReservationVO">

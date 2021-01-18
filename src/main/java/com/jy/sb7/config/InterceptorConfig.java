@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.jy.sb7.interceptor.NoticeAdminInterceptor;
+import com.jy.sb7.interceptor.ResConfirmInterceptor;
 import com.jy.sb7.interceptor.ReservationInterceptor;
 
 @Configuration
@@ -16,6 +17,8 @@ public class InterceptorConfig implements WebMvcConfigurer {
 	
 	@Autowired
 	private ReservationInterceptor reservationInterceptor;
+	@Autowired
+	private ResConfirmInterceptor resConfirmInterceptor;
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -29,6 +32,9 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
 		registry.addInterceptor(reservationInterceptor)
 		.addPathPatterns("/res/**"); 
+		
+		registry.addInterceptor(resConfirmInterceptor)
+		.addPathPatterns("/res/resConfirm");
 		
 	}
 }
