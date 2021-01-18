@@ -50,31 +50,57 @@
 						</div>
 					</div>
 				</section>
+				
+				
 				<div class="flex_wrap">
-					<article class="box box_reservation">
+					<c:forEach items="${pageInfo.list}" var="vo" varStatus="i">
+					<article class="box box_reservation box_index${i.count}" <c:if test="${i.count % 2 ne 0}">style="float:left;"</c:if>>
 						<div class="inner">
 							<a href="javascript:void(0);">
 								<div class="img_box">
-									<span class="img"><img alt="룸사진" src="../images/rooms/room_view01.jpg"></span>
+									<span class="img"><img alt="룸사진" src="${vo.studyRoomsVO.fileUrl}"></span>
 								</div>
 								<div class="info_area">
 									<div class="tags">
 										<span class="tag tag_exploit_finish">이용완료</span>
 									</div>
-									<h3 class="tit_space">2~4인룸</h3>
-									<p class="text"><span class="blind">날짜시간 정보 :</span>2021.01.15(목) 18~20시, 2시간</p>
-									<p class="price"><span class="blind">금액 :</span>12,000원</p>
+									<h3 class="tit_space">${vo.studyRoomsVO.roomName}</h3>
+									<p class="dateTime"><!-- <span class="blind">날짜시간 정보 :</span> -->
+										<span class="date">${vo.roomDate}</span>(<span class="day"></span>)
+										${vo.startTime}시~${vo.endTime}시, ${vo.roomTime}시간
+									</p>
+									<p class="price"><!-- <span class="blind">금액 :</span> -->${vo.roomPrice}원</p>
 								</div>
 								<i class="sp_ico ico_page_next2"><span class="blind">자세히 보기</span></i>
 							</a>
 						</div>
 					</article>
+					</c:forEach>
 				</div>
 				
+				<!-- Page -->
+				<%-- <c:if test="${pageInfo.total ne 0}"> --%>
+				<div class="pager">
+					<ul class="pagination justify-content-center">
+						<%-- <c:if test="${pageInfo.hasPreviousPage}">
+							<li class="page-item"><a href="./reservationList?page=${pager.startNum-2}&searchType=${pager.searchType}&keyword=${pager.keyword}">&#60;</a></li>
+						</c:if> --%>
+					<%-- 	<c:forEach begin="${pageInfo.st}" end="${pager.lastNum}" var="i">
+							<li class="page-item page-btn"><a href="./reservationList?page=${i+1}">${i+1}</a></li>
+						</c:forEach> --%>
+						<%-- <c:if test="${pager.hasNextPage}">
+							<li class="page-item"><a href="./${board}List?page=${pager.lastNum}&searchType=${pager.searchType}&keyword=${pager.keyword}">&#62;</a></li>
+						</c:if> --%>
+					</ul>
+				</div>
+				<%-- </c:if>	 --%>	
+				<!-- //Page -->
 			</div>
 		</div>
 		<c:import url="../template/footer.jsp"></c:import>
+		
 	</div>
 </div>
+<script type="text/javascript" src="../js/mypage/reservationList.js"></script>
 </body>
 </html>

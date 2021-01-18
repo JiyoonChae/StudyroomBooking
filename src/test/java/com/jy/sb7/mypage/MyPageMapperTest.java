@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.jy.sb7.member.MemberVO;
 import com.jy.sb7.res.ReservationVO;
 import com.jy.sb7.utill.Pager;
@@ -60,35 +61,51 @@ class MyPageMapperTest {
 	
 	@Test
 	void getReservationListTest() throws Exception {
-		MemberVO memberVO = new MemberVO();
-		//memberVO.setId("admin");
+//		MemberVO memberVO = new MemberVO();
+//		memberVO.setId("admin");
+//		HashMap<String, Object> map = new HashMap<String, Object>();
+//		map.put("member", memberVO);
+		
 		ReservationVO reservationVO = new ReservationVO();
 		reservationVO.setId("admin");
 		
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("member", memberVO);
+		Pager pager = new Pager();
+		pager.setPage(2);
+		pager.setSize(1);
 		
 		List<ReservationVO> list = mypageMapper.getReservationList(reservationVO);
-		Page<ReservationVO> page = PageHelper.startPage(0, 10);
+		PageHelper.startPage(pager.getPage(), pager.getSize());
 		
-		for(ReservationVO reservation : list) {
+		PageInfo<ReservationVO> pageInfo = new PageInfo(list);
+		
+		//PageInfo<ReservationVO> pageInfo = mypageMapper.getReservationList(reservationVO);
+		
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		System.out.println("Page Num : "+ pageInfo.getPageNum());
+		System.out.println("Total : " + pageInfo.getTotal());
+		System.out.println("TotalPage = Page Size : " + pageInfo.getPageSize());
+		System.out.println("Start Row : " + pageInfo.getStartRow());
+		System.out.println("End Row : " + pageInfo.getEndRow());
+		System.out.println("Pre Page : " + pageInfo.getPrePage());
+		System.out.println("Next Page : " + pageInfo.getNextPage());
+		System.out.println("First Page : " + pageInfo.getNavigateFirstPage());
+		System.out.println("Last Page : " + pageInfo.getNavigateLastPage());
+		System.out.println("Get Pages : " + pageInfo.getPages());
+		System.out.println("Has Pre? : " + pageInfo.isHasPreviousPage());
+		System.out.println("Has Next? : " + pageInfo.isHasNextPage());
+		System.out.println("Get List 0 : " + pageInfo.getList().get(0));
+		System.out.println("Is First Page? : " + pageInfo.isIsFirstPage());
+		System.out.println("Is Last Page? : " + pageInfo.isIsLastPage());
+		
+		
+		for(ReservationVO reservation : pageInfo.getList()) {
 			System.out.println(reservation.getId());
 			System.out.println(reservation.getRoomDate());
 			System.out.println(reservation.getRoomPrice());
 			System.out.println(reservation.getStudyRoomsVO().getFileUrl());
 			System.out.println("----------------");
 		}
-		
-		
-//		System.out.println(page.getPageSize());
-//		reservationVO = page.get(0); 
-//		
-//		System.out.println(reservationVO.getId());
-//		System.out.println(reservationVO.getRoomDate());
-//		System.out.println(reservationVO.getRoomPrice());
-//		System.out.println(reservationVO.getStudyRoomsVO().getFileUrl());
-		
-		assertNotNull(list);
+		assertEquals(2, pageInfo.getTotal());
 	}
 
 }

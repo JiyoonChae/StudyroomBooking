@@ -86,9 +86,9 @@
 				</c:if>
 			</ul>
 		</div>
-		</c:if>
-		
+		</c:if>		
 		<!-- //Page -->
+		
 		<c:if test="${not empty member and member.type eq 3}">
 		<p><a href="${pageContext.request.contextPath}/${board}/${board}Write" class="btn btn-lg btn-write">글 작성</a></p>
 		</c:if>

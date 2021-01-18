@@ -25,14 +25,13 @@
 					<c:choose>
 						<c:when test="${not empty member}">
 							<c:if test="${member.type eq 3}">
-								<li class="nav-item"><a class="nav-link"
-									href="${pageContext.request.contextPath}/admin/index">Admin</a></li>
-							</c:if>
-							<c:if test="${member.type ne 3}">
 								<li class="nav-item">
-									<a class="nav-link" href="#">MyPage</a>
+									<a class="nav-link" href="${pageContext.request.contextPath}/admin/index">Admin</a>
 								</li>
 							</c:if>
+							<li class="nav-item">
+								<a class="nav-link" href="${pageContext.request.contextPath}/mypage/reservationList">MyPage</a>
+							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="${pageContext.request.contextPath}/member/memberLogout">LogOut</a>
 							</li>
