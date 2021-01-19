@@ -148,6 +148,8 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:../";
 	}
+	
+	//이메일 중복 체크
 	@GetMapping("emailCheck")
 	@ResponseBody
 	public int emailCheck(MemberVO memberVO) throws Exception {
@@ -159,6 +161,8 @@ public class MemberController {
 		}
 		return result;
 	}
+	
+	//아이디 중복체크
 	@GetMapping("memberCheck")
 	@ResponseBody
 	public int getIdCheck(MemberVO memberVO) throws Exception{
@@ -177,7 +181,7 @@ public class MemberController {
 		return result;
 	}
 	
-	//login
+	//login 로그인
 	@PostMapping("memberLogin")
 	public ModelAndView getMemberLogin (MemberVO memberVO, HttpSession session) throws Exception{
 		ModelAndView mv= new ModelAndView();
@@ -200,7 +204,7 @@ public class MemberController {
 	public void getMemberLogin() throws Exception{
 		
 	}
-	
+	//아이디 찾기
 	@PostMapping("findMyId")
 	@ResponseBody
 	public String findMyId(MemberVO memberVO) throws Exception{
@@ -211,22 +215,17 @@ public class MemberController {
 		if(memberVO ==null) {
 			System.out.println("아이디찾기 실패");
 			msg = "아이디 찾기 실패";
-			/*
-			 * mv.addObject("msg", msg); mv.addObject("path", "./memberLogin");
-			 * mv.setViewName("common/result"); return mv;
-			 */
 		}else {
 			System.out.println("아이디찾기 성공");
 			msg = memberVO.getId();
 			
 		}
-		//ajax의 success에 id어떻게 넘기지ㅜㅜ?
+	
 		return msg;
 	}
 	
-	//임시비번 전송
-	
-	
+
+	//비밀번호 찾기
 	@PostMapping("findMyPw")
 	@ResponseBody
 	public int findMyPw(MemberVO memberVO) throws Exception{
@@ -269,5 +268,10 @@ public class MemberController {
 		return result;
 		}
 
+		//비밀번호 변경
+		@GetMapping("updatePw")
+		public void updateMyPw() throws Exception{
+			
+		}
 	
 }
