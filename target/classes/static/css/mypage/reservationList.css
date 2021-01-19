@@ -143,6 +143,9 @@
 .reservation_list .box_reservation .inner .info_area .tags .tag_exploit_finish {
 	background: #afafaf;
 } 
+.reservation_list .box_reservation .inner .info_area .tags .tag_exploit_reserve {
+	background: #afafaf;
+} 
 
 
 .reservation_list .box_reservation .inner .info_area .tit_space {
