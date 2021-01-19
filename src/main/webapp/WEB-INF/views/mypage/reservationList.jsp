@@ -62,7 +62,7 @@
 					
 					<article class="box box_reservation box_index${i.count}" <c:if test="${i.count % 2 ne 0}">style="float:left;"</c:if>>
 						<div class="inner">
-							<a href="javascript:void(0);">
+							<a href="${pageContext.request.contextPath}/res/resConfirm?revNum=${vo.revNum}">
 								<div class="img_box">
 									<span class="img"><img alt="룸사진" src="${vo.studyRoomsVO.fileUrl}"></span>
 								</div>
@@ -72,10 +72,10 @@
 											<c:when test="${roomDate < sysDate}">
 												<span class="tag tag_exploit_finish">이용완료</span>
 											</c:when>
-											<c:when test="${roomDate > sysDate and vo.payment eq '바로결제'}">
+											<c:when test="${roomDate >= sysDate and vo.payment eq '바로결제'}">
 												<span class="tag tag_exploit_payment">결제완료</span>
 											</c:when>
-											<c:when test="${roomDate > sysDate and vo.payment eq '현장결제'}">
+											<c:when test="${roomDate >= sysDate and vo.payment eq '현장결제'}">
 												<span class="tag tag_exploit_offline">${vo.payment}</span>
 											</c:when>
 											<c:otherwise><span class="tag tag_exploit_reserve">예약완료</span></c:otherwise>

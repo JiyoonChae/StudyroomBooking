@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.jy.sb7.interceptor.FaqAdminInterceptor;
 import com.jy.sb7.interceptor.NoticeAdminInterceptor;
 import com.jy.sb7.interceptor.ReservationInterceptor;
 
@@ -13,6 +14,8 @@ public class InterceptorConfig implements WebMvcConfigurer {
 	
 	@Autowired
 	private NoticeAdminInterceptor noticeAdminInterceptor;
+	@Autowired
+	private FaqAdminInterceptor faqAdminInterceptor;
 	
 	@Autowired
 	private ReservationInterceptor reservationInterceptor;
@@ -27,6 +30,12 @@ public class InterceptorConfig implements WebMvcConfigurer {
 		.addPathPatterns("/notice/noticeUpdate")
 		.addPathPatterns("/notice/noticeDelte");
 
+		registry.addInterceptor(faqAdminInterceptor)
+		//Interceptor에서 사용할 URL 작성
+		.addPathPatterns("/faq/faqWrite")
+		.addPathPatterns("/faq/faqUpdate")
+		.addPathPatterns("/faq/faqDelte");
+		
 		registry.addInterceptor(reservationInterceptor)
 		.addPathPatterns("/res/**"); 
 		
