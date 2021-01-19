@@ -52,8 +52,14 @@
 				</section>
 				
 				
+				
 				<div class="flex_wrap">
 					<c:forEach items="${pageInfo.list}" var="vo" varStatus="i">
+					<c:set var="now" value="<%=new java.util.Date() %>" />
+					<c:set var="sysDate"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/></c:set>
+					<c:set var="roomDate"><fmt:parseDate var="reservationDate" value="${i.current.roomDate}" pattern="yyyy-MM-dd"/>
+										<fmt:formatDate value="${reservationDate}" pattern="yyyy-MM-dd"/></c:set>
+					
 					<article class="box box_reservation box_index${i.count}" <c:if test="${i.count % 2 ne 0}">style="float:left;"</c:if>>
 						<div class="inner">
 							<a href="javascript:void(0);">
@@ -62,7 +68,19 @@
 								</div>
 								<div class="info_area">
 									<div class="tags">
-										<span class="tag tag_exploit_finish">이용완료</span>
+										<c:choose>
+											<c:when test="${roomDate < sysDate}">
+												<span class="tag tag_exploit_finish">이용완료</span>
+											</c:when>
+											<c:when test="${roomDate > sysDate and vo.payment eq '바로결제'}">
+												<span class="tag tag_exploit_payment">결제완료</span>
+											</c:when>
+											<c:when test="${roomDate > sysDate and vo.payment eq '현장결제'}">
+												<span class="tag tag_exploit_offline">${vo.payment}</span>
+											</c:when>
+											<c:otherwise><span class="tag tag_exploit_reserve">예약완료</span></c:otherwise>
+										</c:choose>
+										
 									</div>
 									<h3 class="tit_space">${vo.studyRoomsVO.roomName}</h3>
 									<p class="dateTime"><!-- <span class="blind">날짜시간 정보 :</span> -->
@@ -79,21 +97,21 @@
 				</div>
 				
 				<!-- Page -->
-				<%-- <c:if test="${pageInfo.total ne 0}"> --%>
+				<%-- <c:if test="${pageInfo.total ne 0}">
 				<div class="pager">
 					<ul class="pagination justify-content-center">
-						<%-- <c:if test="${pageInfo.hasPreviousPage}">
+						<c:if test="${pageInfo.hasPreviousPage}">
 							<li class="page-item"><a href="./reservationList?page=${pager.startNum-2}&searchType=${pager.searchType}&keyword=${pager.keyword}">&#60;</a></li>
-						</c:if> --%>
-					<%-- 	<c:forEach begin="${pageInfo.st}" end="${pager.lastNum}" var="i">
+						</c:if>
+						<c:forEach begin="${pageInfo.startRow}" end="${pageInfo.endRow}" var="i">
 							<li class="page-item page-btn"><a href="./reservationList?page=${i+1}">${i+1}</a></li>
-						</c:forEach> --%>
-						<%-- <c:if test="${pager.hasNextPage}">
+						</c:forEach>
+						<c:if test="${pageInfo.hasNextPage}">
 							<li class="page-item"><a href="./${board}List?page=${pager.lastNum}&searchType=${pager.searchType}&keyword=${pager.keyword}">&#62;</a></li>
-						</c:if> --%>
+						</c:if>
 					</ul>
 				</div>
-				<%-- </c:if>	 --%>	
+				</c:if>	 --%>	
 				<!-- //Page -->
 			</div>
 		</div>

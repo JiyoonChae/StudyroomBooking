@@ -1,6 +1,3 @@
-/*var price = $(".box_reservation .info_area .price").text();
-console.log(price);
-$(".price").text(addComma(price));*/
 
 $(".price").text(function() {
 	var price = $(this).not(".blind").text();

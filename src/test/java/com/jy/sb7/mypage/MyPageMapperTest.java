@@ -70,8 +70,8 @@ class MyPageMapperTest {
 		reservationVO.setId("admin");
 		
 		Pager pager = new Pager();
-		pager.setPage(2);
-		pager.setSize(1);
+		pager.setPage(1);
+		pager.setSize(4);
 		
 		List<ReservationVO> list = mypageMapper.getReservationList(reservationVO);
 		PageHelper.startPage(pager.getPage(), pager.getSize());

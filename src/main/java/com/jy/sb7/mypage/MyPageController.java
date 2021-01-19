@@ -35,9 +35,10 @@ public class MyPageController {
 		ReservationVO reservationVO = new ReservationVO();
 		reservationVO.setId(memberVO.getId());
 		
+		pager.setPage(1);
+		pager.setSize(4);
 		PageInfo<ReservationVO> pageInfo = mypageService.getReservationList(reservationVO, pager);
 		System.out.println(pageInfo.getTotal());
-		System.out.println(pageInfo.getList().get(1));
 		System.out.println(pageInfo.getPageNum());
 		
 		ModelAndView mv = new ModelAndView();
