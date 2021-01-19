@@ -91,7 +91,7 @@ function calendarMaker(target, date) {
 			console.log(year);
 			console.log(month);
 			bookDate = year+"-"+month+"-"+selectDate;
-			$(".reserve_info").text(year+"."+month+"."+selectDate);
+			$(".reserve_info").text(bookDate);
 			
         });
     }
