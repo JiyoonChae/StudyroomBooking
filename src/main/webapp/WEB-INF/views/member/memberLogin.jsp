@@ -9,12 +9,13 @@
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+<link href="../css/common/reset.css" rel="stylesheet" type="text/css">
 <link href="../css/member/memberLogin.css" rel="stylesheet" type="text/css">
 <c:import url="../template/bootStrap.jsp"></c:import>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
- <c:import url="../template/subtitle.jsp"></c:import>
+<c:import url="../template/subtitle.jsp"></c:import>
  
  <div class="article_title">
  	<p>셀스 스터디룸에 오신것을 환영합니다 <br>
