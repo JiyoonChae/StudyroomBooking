@@ -29,8 +29,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
-
-
 @Controller
 @RequestMapping("/member/**")
 public class MemberController {
@@ -42,6 +40,7 @@ public class MemberController {
 	
 	Map<String, Object> map = new HashMap<>();
 	
+	//이메일 인증 key 확인
 	@PostMapping("keyCheck")
 	public void keyCheck(String key) throws Exception{
 		System.out.println("넘어온key" +key);
@@ -50,6 +49,8 @@ public class MemberController {
 			System.out.println("일치 - 성공");
 		}
 	}
+	
+	//이메일 인증 요청
 	@RequestMapping(value ="checkEmail", method = {RequestMethod.GET })
 	@ResponseBody 
 	public Map<String, Object> emailCheck(String email) throws Exception{
@@ -76,6 +77,7 @@ public class MemberController {
 		return map;
 	}
 	
+	//회원가입 페이지
 	@GetMapping("memberJoin")
 	public ModelAndView memberJoin() throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -83,6 +85,7 @@ public class MemberController {
 		return mv;
 	}
 	
+	//네이버 로그인
 	@RequestMapping(value ="personalInfo", method={RequestMethod.GET, RequestMethod.POST})
 	public void personalInfo(HttpServletRequest requeset)throws Exception{
 		String token ="AAAANjm6a2HyubXjEyyscLUO1zNrFB9xLzfiCQPGRoso--DsMZSMEmEc-MyFP6K9n7qXJtKZhCYwor3c3TAn-vJlc6Y";
@@ -115,7 +118,8 @@ public class MemberController {
 	    }
 		
 	}
-
+	
+	
 	@RequestMapping(value="callback", method={RequestMethod.GET, RequestMethod.POST})
 	public String callback(HttpServletRequest request) throws Exception{
 		return"member/callback";
@@ -144,6 +148,8 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:../";
 	}
+	
+	//이메일 중복 체크
 	@GetMapping("emailCheck")
 	@ResponseBody
 	public int emailCheck(MemberVO memberVO) throws Exception {
@@ -155,6 +161,8 @@ public class MemberController {
 		}
 		return result;
 	}
+	
+	//아이디 중복체크
 	@GetMapping("memberCheck")
 	@ResponseBody
 	public int getIdCheck(MemberVO memberVO) throws Exception{
@@ -173,7 +181,7 @@ public class MemberController {
 		return result;
 	}
 	
-	//login
+	//login 로그인
 	@PostMapping("memberLogin")
 	public ModelAndView getMemberLogin (MemberVO memberVO, HttpSession session) throws Exception{
 		ModelAndView mv= new ModelAndView();
@@ -196,4 +204,74 @@ public class MemberController {
 	public void getMemberLogin() throws Exception{
 		
 	}
+	//아이디 찾기
+	@PostMapping("findMyId")
+	@ResponseBody
+	public String findMyId(MemberVO memberVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("아이디 찾기 컨트롤러 들어옴"); 
+		memberVO = memberService.findMyId(memberVO);
+		String msg;
+		if(memberVO ==null) {
+			System.out.println("아이디찾기 실패");
+			msg = "아이디 찾기 실패";
+		}else {
+			System.out.println("아이디찾기 성공");
+			msg = memberVO.getId();
+			
+		}
+	
+		return msg;
+	}
+	
+
+	//비밀번호 찾기
+	@PostMapping("findMyPw")
+	@ResponseBody
+	public int findMyPw(MemberVO memberVO) throws Exception{
+		//비번 체크를 위한 확인 id, email일치여부 
+		memberVO = memberService.findMyPw(memberVO);
+		
+		String msg;
+		int result=0;
+		if(memberVO != null) {
+			String email =memberVO.getEmail();
+			String id = memberVO.getId();
+			//일치하면 임시비번으로 업데이트 하고 이메일 보내야함.
+			System.out.println("---임시비번 전송 접근---");
+			Random random = new Random(); 
+			String key=""; //인증번호
+			SimpleMailMessage message = new SimpleMailMessage();
+			message.setTo(email); // 메일을 받을 사용자 이메일 주소
+				//임시 비번 생성을 위한 코드
+				for(int i=0; i<3; i++) {
+					int index= random.nextInt(25)+65; // A-Z까지 랜덤 알파벳 생성
+					key+=(char)index;
+					int numIndex = random.nextInt(9999)+1000; // 4자리 랜덤 정수를 생성
+					key+=numIndex;
+		  		}
+		
+			System.out.println("임시비번: "+key);
+			memberVO.setPw(key); 
+			//db에 임시비번 업데이트 하기
+			result = memberService.updateTempPw(memberVO);
+			System.out.println(result);
+			
+			message.setSubject("임시 비밀번호 메일 전송");
+			message.setText("임시 비밀번호 : "+key);
+			javaMailSender.send(message);
+			System.out.println("임시 비번 전송 완료!!");
+			map.put("key", key);
+			msg = "임시 비번 전송 완료!!";
+		}
+		
+		return result;
+		}
+
+		//비밀번호 변경
+		@GetMapping("updatePw")
+		public void updateMyPw() throws Exception{
+			
+		}
+	
 }

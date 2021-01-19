@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jy.sb7.member.MemberVO;
 import com.jy.sb7.res.pay.PayService;
 import com.jy.sb7.res.pay.PayVO;
+import com.jy.sb7.room.StudyRoomsVO;
 
 @Controller
 @RequestMapping("/res/**")
@@ -21,6 +22,7 @@ public class ReservationController {
 	@Autowired
 	private PayService payService;
 	
+	//예약 페이지 연결
 	@GetMapping("roomRes")
 	public ModelAndView setRes() throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -29,22 +31,29 @@ public class ReservationController {
 		mv.setViewName("reservation/roomRes");
 		return mv;
 	}
+	
+	//예약 확정 페이지
 	@GetMapping("resConfirm")
 	public ModelAndView getResPage(ReservationVO resVO, HttpSession session) throws Exception{
-		//방금 예약한 revNum을 받아서 출력,,?
 		ModelAndView mv = new ModelAndView();
 		MemberVO memberVO =(MemberVO)session.getAttribute("member");
 		
+		StudyRoomsVO sVO = new StudyRoomsVO();
 		System.out.println("받은 예약번호: "+ resVO.getRevNum());
 		resVO = reservationService.getResInfo(resVO);
 		PayVO payVO= payService.getPayInfo(resVO);
-		
+		System.out.println("컨트롤러ID :"+resVO.getId());
+		System.out.println("email :" +resVO.getEmail());
+		System.out.println("price :" +resVO.getRoomPrice());
 		mv.addObject("resInfo", resVO);
+		mv.addObject("room", resVO.getStudyRoomsVO());
 		mv.addObject("member", memberVO);
 		mv.addObject("pay", payVO);
 		mv.setViewName("reservation/resConfirm");
 		return mv;
 	}
+	
+	//예약 확정 (모달창) 정보 받는 메서드
 	@PostMapping("roomConfirm")
 	public ModelAndView roomConfirm(ReservationVO reservationVO, HttpSession session) throws Exception{
 		ModelAndView mv= new ModelAndView();

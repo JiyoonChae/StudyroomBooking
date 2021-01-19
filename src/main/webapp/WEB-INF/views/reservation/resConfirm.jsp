@@ -32,8 +32,8 @@
 		</div>
 		<!--  이미지 뿌릴까말까,, 그럼 db에 저장해서 가져와야함. -->
 		<div class="info_photo">
-			<h4 class="rm_name">2-3인실 </h4>
-			<span class="photo"><img ></span>
+			<h4 class="rm_name">${room.roomName} (${room.min}~${room.max} 인실) </h4>
+			<span class="photo"><img id="room" src="${room.fileUrl}" alt="room image"> </span>
 		</div>
 		<div class="facility_wrap">
 			<ul class="facility_list">
@@ -50,7 +50,7 @@
 				<span class="details"> ${resInfo.revNum }</span>
 				</p>
 				<p class="reserve-date">예약 날짜
-				<span class="details"> ${resInfo.roomDate}  ${resInfo.roomTime} 시간</span>
+				<span class="details"> ${resInfo.roomDate}  (${resInfo.roomTime} 시간)</span>
 				</p>
 				<p class="reserve-date">예약 인원
 					<span class="details"> ${resInfo.roomUser} 인</span>
@@ -117,35 +117,9 @@
 		</article>
 		
 		<!-- 결제정보 end -->
-		<!-- 서비스 동의 -->
 		
-			<article data-v-85987b28="" id="service-agree" class="box_form box_notice error">
-				<div data-v-85987b28="" class="heading"><h3 data-v-85987b28="">서비스 동의</h3> <span data-v-85987b28="" class="option"><input data-v-85987b28="" type="checkbox" id="terms_agree" class="checkbox"> <label data-v-85987b28="" for="terms_agree">전체 동의</label></span></div> <div data-v-85987b28="" class="list_wrap terms_wrap"><ul data-v-85987b28="" class="notice_list"><li data-v-85987b28=""><input data-v-85987b28="" type="checkbox" id="term1" class="checkbox"> <label data-v-85987b28="" for="term1">
-                    위 공간의 예약조건 확인 및 결제진행 동의
-                    <span data-v-85987b28="" class="txt_required">(필수)</span></label></li> <li data-v-85987b28=""><input data-v-85987b28="" type="checkbox" id="term2" class="checkbox"> <label data-v-85987b28="" for="term2">
-                    환불규정 안내에 대한 동의
-                    <span data-v-85987b28="" class="txt_required">(필수)</span></label></li> <li data-v-85987b28="" class=""><div data-v-85987b28="" class="confirm_box"><input data-v-85987b28="" type="checkbox" id="term3" class="checkbox"> <label data-v-85987b28="" for="term3">
-                      개인정보 제3자 제공 동의
-                      <span data-v-85987b28="" class="txt_required">(필수)</span></label> <a data-v-85987b28="" class="btn_view_terms"><span data-v-85987b28="" class="sp_icon ico_view_terms"><em data-v-85987b28="" class="blind">내용보기</em></span></a></div> <div data-v-85987b28="" tabindex="0" class="scroll_box"><div data-v-85987b28="" class="terms"><ol data-v-85987b28=""><li data-v-85987b28="">1. 개인정보를 제공받는 자: 해당 공간의 호스트</li> <li data-v-85987b28="">
-                          2. 제공하는 개인정보 항목
-                          <ul data-v-85987b28=""><li data-v-85987b28="">- 필수항목: 네이버 아이디, 이름, 연락처, 결제정보(결제방식 및 결제금액)</li> <li data-v-85987b28="">- 선택항목: 이메일 주소</li></ul></li> <li data-v-85987b28="">3. 개인정보의 제공목적: 공간예약 및 이용 서비스 제공, 환불처리</li> <li data-v-85987b28="">4. 개인정보의 제공기간: 서비스 제공기간(단, 관계법령의 규정에 의하여 보존할 필요가 있는 경우 및 사전 동의를 득한 경우에는 해당 기간 동안 보관합니다.)</li> <li data-v-85987b28="">5. 개인정보의 제공을 거부할 권리: 개인정보 주체는 개인정보의 제공을 거부할 권리가 있으나, 공간 예약을 위해 반드시 필요한 개인정보의 제공으로서 이를 거부할 시 공간 예약이 어려울 수 있습니다.</li></ol></div></div></li> <li data-v-85987b28="" class=""><div data-v-85987b28="" class="confirm_box"><input data-v-85987b28="" type="checkbox" name="terms" id="term4" class="checkbox"> <label data-v-85987b28="" for="term4">
-                      개인정보 수집 및 이용 동의
-                      <span data-v-85987b28="" class="txt_required">(필수)</span></label> <a data-v-85987b28="" class="btn_view_terms"><span data-v-85987b28="" class="sp_icon ico_view_terms"><em data-v-85987b28="" class="blind">내용보기</em></span></a></div> <div data-v-85987b28="" tabindex="0" class="scroll_box"><div data-v-85987b28="" class="terms"><ol data-v-85987b28=""><li data-v-85987b28="">
-                          1. 수집하는 개인정보의 항목
-                          <p data-v-85987b28="" class="sub_term"><em data-v-85987b28="">-</em> 예약정보(성명, 이메일주소, 휴대전화번호), 결제정보(신용카드 번호 및 은행계좌정보 일부 등)
-                          </p></li> <li data-v-85987b28="">
-                          2. 개인정보의 이용목적
-                          <p data-v-85987b28="" class="sub_term"><em data-v-85987b28="">-</em> 공간 예약 및 이용
-                          </p></li> <li data-v-85987b28="">
-                          3. 개인정보의 보관기간
-                          <p data-v-85987b28="" class="sub_term"><em data-v-85987b28="">-</em> 예약 완료 후 관련 법령에 따라 5년간 개인정보를 보관합니다.
-                          </p></li> <li data-v-85987b28="">
-                          4. 개인정보의 수집 및 이용을 거부할 권리
-                          <p data-v-85987b28="" class="sub_term"><em data-v-85987b28="">-</em> 개인정보 주체는 개인정보의 수집 및 이용을 거부할 권리가 있으나, 공간 예약을 위한 최소한의 개인정보 수집으로서 이를 거부할 시 공간 예약이 어려울 수 있습니다.
-                          </p></li></ol></div></div></li></ul></div>
-             </article>
 		
-			<div>	
+			<div class="confirm">	
 				<button class="btn btn-warning" id="confirm">확인</button>
 				</div>
 	</div> <!--  contentsbox 끝> -->

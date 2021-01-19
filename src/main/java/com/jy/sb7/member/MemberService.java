@@ -9,6 +9,17 @@ import org.springframework.stereotype.Service;
 public class MemberService {
 	@Autowired
 	private MemberMapper memberMapper;
+	
+	public int updateTempPw(MemberVO memberVO) throws Exception{
+		return memberMapper.updateTempPw(memberVO);
+	}
+	public MemberVO findMyPw(MemberVO memberVO) throws Exception{
+		return memberMapper.findMyPw(memberVO);
+	}
+	
+	public MemberVO findMyId(MemberVO memberVO) throws Exception {
+		return memberMapper.findMyId(memberVO);
+	}
 
 	public MemberVO emailCheck(MemberVO memberVO) throws Exception{
 		return memberMapper.emailCheck(memberVO);

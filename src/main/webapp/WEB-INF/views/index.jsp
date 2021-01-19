@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>StudyRoom Booking</title>
 <c:import url="./template/bootStrap.jsp"></c:import>
 <!-- <link href="../css/common/reset.css" rel="stylesheet" type="text/css">
 <link href="../css/common/header.css" rel="stylesheet" type="text/css"> -->

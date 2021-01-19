@@ -2,6 +2,8 @@ package com.jy.sb7.member;
 
 import java.sql.Date;
 
+import com.jy.sb7.res.ReservationVO;
+
 import lombok.Data;
 
 @Data
@@ -17,6 +19,7 @@ public class MemberVO {
 	private String joinPath; //kakao, naver
 	private Date joinDate;
 	
+	//private ReservationVO reservationVO;
 	public String getName() {
 		if(this.name == null) {
 			this.name="name";
