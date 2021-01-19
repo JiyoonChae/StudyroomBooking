@@ -225,6 +225,49 @@ public class MemberController {
 	}
 	
 	//임시비번 전송
-	//비번 체크를 위한 확인 id, email일치여부 
-	//일치하면 임시비번으로 업데이트 하고 이메일 보내야함.
+	
+	
+	@PostMapping("findMyPw")
+	@ResponseBody
+	public int findMyPw(MemberVO memberVO) throws Exception{
+		//비번 체크를 위한 확인 id, email일치여부 
+		memberVO = memberService.findMyPw(memberVO);
+		
+		String msg;
+		int result=0;
+		if(memberVO != null) {
+			String email =memberVO.getEmail();
+			String id = memberVO.getId();
+			//일치하면 임시비번으로 업데이트 하고 이메일 보내야함.
+			System.out.println("---임시비번 전송 접근---");
+			Random random = new Random(); 
+			String key=""; //인증번호
+			SimpleMailMessage message = new SimpleMailMessage();
+			message.setTo(email); // 메일을 받을 사용자 이메일 주소
+				//임시 비번 생성을 위한 코드
+				for(int i=0; i<3; i++) {
+					int index= random.nextInt(25)+65; // A-Z까지 랜덤 알파벳 생성
+					key+=(char)index;
+					int numIndex = random.nextInt(9999)+1000; // 4자리 랜덤 정수를 생성
+					key+=numIndex;
+		  		}
+		
+			System.out.println("임시비번: "+key);
+			memberVO.setPw(key); 
+			//db에 임시비번 업데이트 하기
+			result = memberService.updateTempPw(memberVO);
+			System.out.println(result);
+			
+			message.setSubject("임시 비밀번호 메일 전송");
+			message.setText("임시 비밀번호 : "+key);
+			javaMailSender.send(message);
+			System.out.println("임시 비번 전송 완료!!");
+			map.put("key", key);
+			msg = "임시 비번 전송 완료!!";
+		}
+		
+		return result;
+		}
+
+	
 }

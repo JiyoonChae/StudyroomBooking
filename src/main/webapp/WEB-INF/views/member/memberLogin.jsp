@@ -43,7 +43,7 @@
 	<div class="options">
  	<p class="join">
  	<a href="#" data-toggle="modal" data-target="#myModal">아이디 찾기</a><span>|</span>
- 	<a href="#">비밀번호 찾기</a><span>|</span>
+ 	<a href="#" data-toggle="modal" data-target="#pwModal">비밀번호 찾기</a><span>|</span>
  	<a href="${pageContext.request.contextPath}/member/memberJoin">회원가입</a>
  	</p>
 	</div>
@@ -84,6 +84,7 @@
           	<li><span class="tit">email </span> <input type="text" name="email" class="email"></li>
           </ul>
           <button id="find">찾기</button>
+          <div id="result"></div>
           <div id="findResult"></div>
           </div>
       </div>
@@ -97,7 +98,7 @@
 
 
 <!-- pw찾기 Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="pwModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -114,7 +115,7 @@
           	<li><span class="tit">email </span> <input type="text" name="email" class="pw-email"></li>
           </ul>
           <button id="pwfind">찾기</button>
-          <div id="findResult"></div>
+          <div id="pwResult"></div>
           </div>
       </div>
       <div class="modal-footer">
@@ -151,6 +152,7 @@
 			success: function(data){
 				console.log(data);
 				//id받아서 
+				$("#result").text("아이디 찾기 완료 ")
 				$("#findResult").text(data).css("color", "blue");
 				}
 			})
@@ -158,16 +160,21 @@
 
 	//비번찾기: id,mail 일치 확인 - 일치하면 이멜로 랜덤비번보내기 -> db에 비번 update
 	$("#pwfind").click(function(){
-		var id = $(".id").val();
-		var email = $(".email").val();
+		var id = $(".pw-id").val();
+		var email = $(".pw-email").val();
 		$.ajax({
 			url:"./findMyPw",
 			type: "post",
 			data: {id:id, email:email},
 			success: function(data){
 				console.log(data);
+				if(data==1){
+					alert("이메일로 임시 비밀번호를 전송하였습니다")
+					$("#pwResult").text("이메일로 임시 비밀번호를 전송하였습니다").css("color", "blue");
+					}else{
+						alert("비밀번호 찾기에 실패했습니다. 다시 시도해주세요")
+						}
 				
-				$("#findResult").text("이메일로 임시 비밀번호를 전송하였습니다").css("color", "blue");
 				}
 			})
 		})

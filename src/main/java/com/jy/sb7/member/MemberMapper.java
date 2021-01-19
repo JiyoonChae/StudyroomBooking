@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface MemberMapper {
 	
+	public int updateTempPw(MemberVO memberVO) throws Exception;
+	public MemberVO findMyPw(MemberVO memberVO) throws Exception;
 	public MemberVO findMyId(MemberVO memberVO) throws Exception;
 	public MemberVO emailCheck(MemberVO memberVO) throws Exception;
 	public MemberVO memberCheck(MemberVO memberVO) throws Exception;

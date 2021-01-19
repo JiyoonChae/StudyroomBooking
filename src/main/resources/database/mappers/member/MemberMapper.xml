@@ -24,6 +24,11 @@
   		select id from member where name =#{name} and email=#{email}
   	</select>
   
-  
+	  <select id="findMyPw" parameterType="MemberVO" resultType="MemberVO">
+	  		select id, pw, email from member where id =#{id} and email=#{email}
+	  	</select>
+  		<update id="updateTempPw" parameterType="MemberVO">
+  			update member set pw=#{pw} where id=#{id}
+  		</update>
   
   </mapper>
