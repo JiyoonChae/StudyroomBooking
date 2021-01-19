@@ -16,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.jy.sb7.board.BoardVO;
 import com.jy.sb7.utill.Pager;
 
 @SpringBootTest
@@ -121,7 +122,7 @@ class NoticeRepositoryTest {
 		assertNotNull(list);
 	}
 	
-	@Test
+	//@Test
 	void pageableListTest() {
 		Pageable pageable = PageRequest.of(0, 10);
 		Page<NoticeVO> page = noticeRepository.findAll(pageable);
@@ -141,6 +142,88 @@ class NoticeRepositoryTest {
 		assertNotNull(page.getContent());
 	}
 
+	
+	//@Test
+	void findByTitleContainingTest() throws Exception {
+		Pager pager = new Pager();
+		pager.setKeyword("Title");
+		Pageable pageable = PageRequest.of(0, 10);
+		Page<BoardVO> page = noticeRepository.findByTitleContainingOrderByNumDesc(pager.getKeyword(), pageable);
+		
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		System.out.println(page.getTotalElements());
+		System.out.println(page.hasContent());
+		
+		if(page.hasContent()) {
+			List<BoardVO> findNoticeList = page.getContent();
+			
+			for(BoardVO noticeVO : findNoticeList) {
+				System.out.println(noticeVO.getNum());
+				System.out.println(noticeVO.getTitle());
+				System.out.println(noticeVO.getWriter());
+				System.out.println(noticeVO.getContents());
+				System.out.println("---------------------");
+			}
+		}
+		
+		assertNotNull(page.getContent());
+	}
+	
+	//@Test
+	void findByContentsContainingTest() throws Exception {
+		Pager pager = new Pager();
+		pager.setKeyword("Contents");
+		Pageable pageable = PageRequest.of(0, 10);
+		Page<BoardVO> page = noticeRepository.findByContentsContainingOrderByNumDesc(pager.getKeyword(), pageable);
+		
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		System.out.println(page.getTotalElements());
+		System.out.println(page.hasContent());
+		
+		if(page.hasContent()) {
+			List<BoardVO> findNoticeList = page.getContent();
+			
+			for(BoardVO noticeVO : findNoticeList) {
+				System.out.println(noticeVO.getNum());
+				System.out.println(noticeVO.getTitle());
+				System.out.println(noticeVO.getWriter());
+				System.out.println(noticeVO.getContents());
+				System.out.println("---------------------");
+			}
+		}
+		
+		assertNotNull(page.getContent());
+	}
+	
+	
+	//@Test
+	void findByTitleContainingOrContentsContainingTest() throws Exception {
+		Pager pager = new Pager();
+		pager.setKeyword("9");
+		Pageable pageable = PageRequest.of(0, 10);
+		Page<BoardVO> page = noticeRepository.findByTitleContainingOrContentsContainingOrderByNumDesc(pager.getKeyword(), pager.getKeyword(), pageable);
+		
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		System.out.println(page.getTotalElements());
+		System.out.println(page.hasContent());
+		
+		if(page.hasContent()) {
+			List<BoardVO> findNoticeList = page.getContent();
+			
+			for(BoardVO noticeVO : findNoticeList) {
+				System.out.println(noticeVO.getNum());
+				System.out.println(noticeVO.getTitle());
+				System.out.println(noticeVO.getWriter());
+				System.out.println(noticeVO.getContents());
+				System.out.println("---------------------");
+			}
+		}
+		
+		assertNotNull(page.getContent());
+	}
+	
+	
+	
 //	//@Test
 //	void findAllListTest() {
 //		Pageable pageable = PageRequest.of(0, 5, Sort.Direction.DESC, "num");

@@ -87,10 +87,23 @@ function calendarMaker(target, date) {
             $(".custom_calendar_table .select_day").removeClass("select_day");
             $(this).removeClass("select_day").addClass("select_day");
 			selectDate = $(this).text();
+			
 			console.log(selectDate);
 			console.log(year);
 			console.log(month);
+			
 			bookDate = year+"-"+month+"-"+selectDate;
+<<<<<<< HEAD
+=======
+			if(month.toString().length <= 1) {
+				bookDate = year+"-0"+month+"-"+selectDate;
+				if(selectDate.length <= 1) {
+					bookDate = year+"-0"+month+"-0"+selectDate;
+				}
+			}			
+			console.log(bookDate);
+			
+>>>>>>> main
 			$(".reserve_info").text(bookDate);
 			
         });

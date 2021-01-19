@@ -13,10 +13,10 @@
 	<div class="subtap">
 		<ul>
 			<li class="notice">
-				<a href="${pageContext.request.contextPath}/notice/noticeList">공지사항</a>
+				<a href="${pageContext.request.contextPath}/notice/noticeList?page=0&searchType=all&keyword=">공지사항</a>
 			</li>
 			<li class="faq">
-				<a href="${pageContext.request.contextPath}/faq/faqList">FAQ</a>
+				<a href="${pageContext.request.contextPath}/faq/faqList?page=0&searchType=전체&keyword=">FAQ</a>
 			</li>
 			<li class="qna">
 				<a href="${pageContext.request.contextPath}/qna/qnaWrite">1:1문의</a>
@@ -33,5 +33,5 @@
 				$(this).addClass("tapon");
 				$(this).children().css("color", "#fff");
 			}
-		});		
+		});
 	</script>

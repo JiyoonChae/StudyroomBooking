@@ -37,17 +37,20 @@
 				<div class="form-group select_box">
 					<label for="category">카테고리</label>
 					<select class="form-control category">
-						<option value="회원">회원</option>
-						<option value="예약결제">예약 및 결제</option>
-						<option value="취소환불">취소 및 환불</option>
-						<option value="공간이용후기">공간이용 및 후기</option>
-						<option value="기타">기타</option>
+						<option>회원</option>
+						<option>예약 및 결제</option>
+						<option>취소 및 환불</option>
+						<option>공간이용 및 후기</option>
+						<option>기타</option>
 					</select>
 					<input type="hidden" class="form-control" id="category" name="category">
 				</div>
 				</c:if>
 				<div class="form-group">
-					<label for="title">질문</label>
+					<label for="title">
+						<c:if test="${board eq 'notice'}">제목</c:if>
+						<c:if test="${board eq 'faq' or 'qna'}">질문</c:if>
+					</label>
 					<input type="text" class="form-control" placeholder="내용을 입력해주세요" id="title" name="title">
 					<div class="check"></div> 
 				</div>

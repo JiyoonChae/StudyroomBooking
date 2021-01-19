@@ -34,14 +34,15 @@
 		<div class="inner">
 			<!-- Search -->
 			<div class="search">
-				<form method="post" id="frmSearch" action="./${board}List">
-					<select name="type" id="type">
+				<form id="frmSearch" action="./${board}List">
+					<input type="hidden" name="page" value=0>
+					<select name="searchType" id="searchType">
 						<option value="all">전체</option>
 						<option value="title">제목</option>
 						<option value="contents">내용</option>
 					</select>
-					<input type="text" name="search" id="search" placeholder="검색어입력">
-					<a href=""><img src="../images/service/search_btn.jpg" alt="검색"></a>
+					<input type="text" name="keyword" id="keyword" placeholder="검색어입력" value="${pager.keyword}">
+					<a href="" class="search-btn"><img src="../images/service/search_btn.jpg" alt="검색"></a>
 				</form>
 			</div>
 			<!-- //search -->
@@ -71,44 +72,50 @@
 		</div>
 		
 		<!-- Page -->
+		<c:if test="${not empty page.content}">
 		<div class="pager">
 			<ul class="pagination justify-content-center">
 				<c:if test="${pager.prev}">
-					<li class="page-item"><a href="./${board}List?page=${pager.startNum-2}">&#60;</a></li>
+					<li class="page-item"><a href="./${board}List?page=${pager.startNum-2}&searchType=${pager.searchType}&keyword=${pager.keyword}">&#60;</a></li>
 				</c:if>
 				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-					<li class="page-item page-btn" title="${i}"><a href="./${board}List?page=${i-1}">${i}</a>
+					<li class="page-item page-btn"><a href="./${board}List?page=${i-1}&searchType=${pager.searchType}&keyword=${pager.keyword}">${i}</a></li>
 				</c:forEach>
 				<c:if test="${pager.next}">
-					<li class="page-item"><a href="./${board}List?page=${pager.lastNum}">&#62;</a></li>
+					<li class="page-item"><a href="./${board}List?page=${pager.lastNum}&searchType=${pager.searchType}&keyword=${pager.keyword}">&#62;</a></li>
 				</c:if>
 			</ul>
 		</div>
-		
+		</c:if>		
 		<!-- //Page -->
-		<c:if test="${member.type eq 3}">
+		
+		<c:if test="${not empty member and member.type eq 3}">
 		<p><a href="${pageContext.request.contextPath}/${board}/${board}Write" class="btn btn-lg btn-write">글 작성</a></p>
 		</c:if>
 	</div>
 	<c:import url="../template/footer.jsp"></c:import>
 	
 	<script type="text/javascript">
-	$(document).ready(function() {
-		$(".pager li.page-btn").click(function() {
-			alert($(this).hasClass("on"));
-			if(!$(this).hasClass("on")) {
-				$(".pager .btn-page.on").removeClass("on");
+		var page = ${param.page}+1;
+		var searchType = '${param.searchType}';
+		var keyword = '${param.keyword}';
+
+		$(".pager li.page-btn").each(function() {
+			if($(this).children().text() == page) {
 				$(this).addClass("on");
-				alert($(this).hasClass("on"));
+				return false;
 			}
 		});
-	});
 
-/* 	var page = ${param.page};
-	if($(".pager li.page-btn").attr("title").equal(page)) {
-		alert($(this).html());
-		
-	} */
+		$("#searchType").val(searchType);
+				
+		$(".search-btn").click(function() {
+	 		searchType = $("select[name=searchType]").val();
+			keyword = $("input[name=keyword]").val();
+			
+			$(this).attr("href", "./${board}List?page=0&searchType="+searchType+"&keyword="+keyword);
+			$("#frmSearch").submit(); 
+		});	
 	</script>
 </div>
 </body>

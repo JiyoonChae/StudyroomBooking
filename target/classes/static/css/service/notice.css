@@ -39,7 +39,7 @@
 	margin: 10px 0;
 }
 
-#frmSearch #type {
+#frmSearch #searchType {
 	font-size: 15px;
 	width: 150px;
 	height: 32px;
@@ -47,7 +47,7 @@
 	padding-left: 5px;
 }
 
-#frmSearch #search {
+#frmSearch #keyword {
 	width: 250px;
 	height: 32px;
 	margin: 0 5px;
@@ -102,6 +102,18 @@
 	border-radius: 50%;
 }
 
+
+.pager .page-item:hover, .on {
+	display: block; 
+	background: #ffb400;
+	border-radius: 50%;
+	border: none;
+}
+
+.on a {
+	color: #fff;
+}
+
 .pager .page-item a {
 	cursor: pointer;
 	display: block;
@@ -114,21 +126,26 @@
 	box-sizing: border-box;
 }
 
-.pager .page-item:hover, .page-btn.selected {
-	display: block;
-	background: url('../../images/service/number_rud.png') no-repeat;
-	border: none;
-}
 
-.pager .page-item a:hover, .on {
+.pager .page-item a:hover {
+	border: none;
 	color: #fff;
 	text-decoration: none;
 }
+
+
+
 /* boardList */
 
 
 
 /* boardListSlide */
+.table_faq td.category {
+	padding-left: 30px;
+	text-align: left;
+	vertical-align: middle;
+}
+
 .table_faq td.question .detail_view {
 	position: relative;
 	width: 100%;
@@ -137,14 +154,18 @@
 	text-decoration: none;
 	overflow: hidden;
 	display: block;
-	padding: 21px 80px 20px 0;
-	
 }
 
+.table_faq td.question .detail_view:hover {
+	font-weight: bold;
+	color: #ffb400;
+	text-decoration: none;
+}
 
 .table_faq td.question .detail_view .detail_view_icon {
 	position: absolute;
-	right: 30px;
+	top: 7px;
+	right: 10px;	
 	background-size: 684px 663px;
 	background-image: url("../../images/service/all_images.png");
 	width: 14px;
@@ -158,6 +179,10 @@
 
 .table_faq td.question .detail_view .close {
 	background-position: -471px -232px;
+}
+
+.table_faq tr.view .view_box {
+	padding: 20px;
 }
 /* boardListSlide */
 
@@ -242,6 +267,9 @@
 	float: right;
 }
 
+.faq-up-del {
+	
+}
 
 
 /* write */
