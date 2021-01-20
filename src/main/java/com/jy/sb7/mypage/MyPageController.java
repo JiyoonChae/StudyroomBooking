@@ -29,12 +29,15 @@ public class MyPageController {
 	
 	@GetMapping("reservationList")
 	public ModelAndView getList(HttpSession session, Pager pager) throws Exception {
-		//MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		MemberVO memberVO = new MemberVO();
-		memberVO.setId("admin");
-		ReservationVO reservationVO = new ReservationVO();
-		reservationVO.setId(memberVO.getId());
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		
+		ReservationVO reservationVO = new ReservationVO();
+		
+		if(memberVO != null) {
+			reservationVO.setId(memberVO.getId());
+		} else {
+			reservationVO.setId("admin");
+		}
 		pager.setPage(1);
 		pager.setSize(4);
 		PageInfo<ReservationVO> pageInfo = mypageService.getReservationList(reservationVO, pager);

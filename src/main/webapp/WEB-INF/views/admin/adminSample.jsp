@@ -4,17 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<c:import url="./template/bootstrap.jsp"></c:import>
-<link href="../css/admin/style.css" rel="stylesheet">
+<c:import url="../template/bootstrap.jsp"></c:import>
+<link href="../../css/admin/style.css" rel="stylesheet">
 </head>
 <body class="sb-nav-fixed">
 	<header>
-	<c:import url="./template/navigation.jsp"></c:import>
+	<c:import url="../template/navigation.jsp"></c:import>
 	</header>
 	<!-- Page Wrapper -->
 	<div id="layoutSidenav">    	
 		<!-- Sidebar -->
-        <c:import url="./template/sidebar.jsp"></c:import>
+        <c:import url="../template/sidebar.jsp"></c:import>
         <!-- End of Sidebar -->
         
 		<div id="layoutSidenav_content">
@@ -583,9 +583,18 @@
 					</div>
 				</div>
 			</main>
-			<c:import url="./template/footer.jsp"></c:import>
+			<c:import url="../template/footer.jsp"></c:import>
 		</div>
 	</div>
     <!-- End of Page Wrapper -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="${pageContext.request.contextPath}/js/admin/template/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="../../js/admin/template/demo/chart-area-demo.js"></script>
+    <script src="../../js/admin/template/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="../../js/admin/template/demo/datatables-demo.js"></script>
 </body>
 </html>

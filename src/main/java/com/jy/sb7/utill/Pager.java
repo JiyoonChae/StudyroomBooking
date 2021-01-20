@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import com.jy.sb7.board.BoardVO;
 import com.jy.sb7.board.faq.FaqVO;
 import com.jy.sb7.board.notice.NoticeVO;
+import com.jy.sb7.res.ReservationVO;
 
 import lombok.Data;
 
@@ -23,8 +24,12 @@ public class Pager {
 	private String searchType;
 	private String keyword;
 	
+	//mybatis에서 사용
+	private long totalCount;
 	
 	
+	
+	/* 초기화 */	
 	public Integer getPage() {
 		if(this.page == null) {
 			this.page = 0;
@@ -66,23 +71,33 @@ public class Pager {
 	}
 	
 	public String getKeyword() {
-		System.out.println("저장된 검색어 : " + this.keyword);
 		if(keyword == null) {
 			keyword = "";
 		}
-		System.out.println("반환할 검색어 : " + this.keyword);
 		return keyword;
 	}
 	public void setKeyword(String keyword) {
-//		System.out.println("넘어온 검색어 : " + keyword);
-//		if(keyword == null) {
-//			keyword = "";
-//		}
+		if(keyword == null) {
+			keyword = "";
+		}
 		this.keyword = keyword;
 	}
 	
 	
 	
+	/* mybatis에서 사용 */
+	public long getTotalCount() {
+		if(this.totalCount == 0) { this.totalCount = 1; }
+		return this.totalCount;
+	}
+	public void setTotalCount(long totalCount) {
+		if(totalCount == 0) { totalCount = 1; }
+		this.totalCount = totalCount;
+	}
+	
+	
+	
+	/* 페이지 생성 메서드 */
 	public void makePage(Page<BoardVO> page) {
 		//1. totalCount로 totalPage 계산
 		//2. totalPage로 totalBlock 계산
@@ -117,18 +132,18 @@ public class Pager {
 	}
 
 	
-	public void makePage(Page<FaqVO> faqPage, int blockSize) {
+	public void makePageMybatis(Page<ReservationVO> page, int blockSize) {
 		//1. totalCount로 totalPage 계산
 		//2. totalPage로 totalBlock 계산
 		//int blockSize = 5;
-		int totalBlock = faqPage.getTotalPages() / blockSize;
-		if( faqPage.getTotalPages() % blockSize != 0 ) {
+		int totalBlock = page.getTotalPages() / blockSize;
+		if( page.getTotalPages() % blockSize != 0 ) {
 			totalBlock++;
 		}
 		
 		//3. 현재 페이지번호로 현재 블럭번호 계산
-		int curBlock = (faqPage.getNumber()+1) / blockSize;
-		if( (faqPage.getNumber()+1) % blockSize != 0) {
+		int curBlock = (page.getNumber()+1) / blockSize;
+		if( (page.getNumber()+1) % blockSize != 0) {
 			curBlock++;
 		}
 		
@@ -139,7 +154,7 @@ public class Pager {
 		//5. 현재 블럭이 마지막 블럭과 같다면 lastNum 수정 및 next 버튼 비활성화
 		isNext = true;
 		if(curBlock == totalBlock) {
-			lastNum = faqPage.getTotalPages();
+			lastNum = page.getTotalPages();
 			isNext = false;
 		}
 		
