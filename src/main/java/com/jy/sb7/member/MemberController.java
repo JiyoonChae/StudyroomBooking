@@ -12,7 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -183,10 +185,24 @@ public class MemberController {
 	
 	//login 로그인
 	@PostMapping("memberLogin")
-	public ModelAndView getMemberLogin (MemberVO memberVO, HttpSession session) throws Exception{
+	public ModelAndView getMemberLogin (MemberVO memberVO, String remember, HttpSession session,HttpServletResponse response) throws Exception{
 		ModelAndView mv= new ModelAndView();
+		System.out.println("remember : " +remember); 
 		//System.out.println(memberVO.getId());
 		//System.out.println(memberVO.getPw());
+		//remember me 값이 null이 아니라면 cookie 발행
+		//쿠키의 이름 remember, value는 로그인시 id
+		if(remember !=null) {
+			Cookie cookie = new Cookie("remember", memberVO.getId());
+			response.addCookie(cookie);
+		}else {
+			//1번. 아이디저장 체크안하면 빈문자열을 저장하게 함.
+			Cookie cookie= new Cookie("remember", "");
+			//2번. 유효시간을 0으로 바꿔서 쿠키 삭제
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);			
+		}
+		
 		MemberVO VO = memberService.getMemberLogin(memberVO);
 		if(VO != null) {
 			System.out.println("login 성공");

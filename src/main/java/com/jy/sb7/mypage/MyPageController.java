@@ -29,9 +29,9 @@ public class MyPageController {
 	
 	@GetMapping("reservationList")
 	public ModelAndView getList(HttpSession session, Pager pager) throws Exception {
-		//MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		MemberVO memberVO = new MemberVO();
-		memberVO.setId("admin");
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		//MemberVO memberVO = new MemberVO();
+	//	memberVO.setId("admin");
 		ReservationVO reservationVO = new ReservationVO();
 		reservationVO.setId(memberVO.getId());
 		

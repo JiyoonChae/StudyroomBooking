@@ -27,14 +27,14 @@
 	<form action="./memberLogin" method="post" id="frm">
  	 <div class="form-group">
     	<label for="id">ID</label>
-   		 <input type="text" class="form-control" id="id" name="id">
+   		 <input type="text" value="${cookie.remember.value}" class="form-control" id="id" name="id">
   	 </div>
  	 <div class="form-group">
     	<label for="pw">Password:</label>
     	<input type="password" class="form-control" id="pw" name="pw">
   	 </div>
   	<div class="checkbox">
-     	<label><input type="checkbox" id="save"> Remember me</label>
+     	<label><input type="checkbox" name="remember" value="check"> Remember me</label>
   	 </div>
   
 	  <!--  로그인 버튼  -->

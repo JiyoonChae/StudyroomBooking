@@ -103,17 +103,27 @@
 		<!-- 결제 정보 start-->
 			<article>
 			<div class="heading"><h3>결제 정보</h3></div>
-			<div class="reserve-info">
-				<p class="reserve-date">결제 번호
-				<span class="details"> ${pay.merchant_uid}</span>
-				</p>
-				<p class="reserve-date">결제 완료 금액
-				<span class="details"> ${pay.paid_amount} 원</span>
-				</p>
-				<p class="reserve-date">결제 날짜
-					<span class="details"> ${pay.orderDate}</span>
-				</p>
-			</div>
+			<c:if test ="${resInfo.payment eq '바로결제'}"> 
+				<div class="reserve-info">
+					<p class="reserve-date">결제 번호
+					<span class="details"> ${pay.merchant_uid}</span>
+					</p>
+					<p class="reserve-date">결제 완료 금액
+					<span class="details"> ${pay.paid_amount} 원</span>
+					</p>
+					<p class="reserve-date">결제 날짜
+						<span class="details"> ${pay.orderDate}</span>
+					</p>
+				</div>
+			</c:if>
+			<c:if test ="${resInfo.payment eq '현장결제'}"> 
+				<div class="reserve-info">
+					<p class="reserve-date">결제 할 금액
+					<span class="details"> ${resInfo.roomPrice} 원</span>
+					</p>
+					
+				</div>
+			</c:if>
 		</article>
 		
 		<!-- 결제정보 end -->
@@ -124,6 +134,6 @@
 				</div>
 	</div> <!--  contentsbox 끝> -->
 	
-	
+	<c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>
