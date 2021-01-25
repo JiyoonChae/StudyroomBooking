@@ -68,7 +68,10 @@
 	<c:if test="${board eq 'faq'}"><script src="../js/service/faqWrite.js"></script></c:if>
 	<script type="text/javascript">
 		$('#contents').summernote('code', '${vo.contents}');
-		$(".category").val('${vo.category}');
+		var board = ${board};
+		if(${board eq 'faq'}) {
+			$(".category").val('${vo.category}');
+		}
 	</script>
 </div>
 </body>

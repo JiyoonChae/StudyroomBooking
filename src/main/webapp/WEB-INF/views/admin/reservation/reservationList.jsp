@@ -23,16 +23,15 @@
 					<h1 class="mt-4">예약현황리스트</h1>
 					<hr>
 					<div class="card mb-4">
-						<!-- <div class="card-header">
-							<i class="fas fa-table mr-1"></i> 예약리스트
-						</div> -->
+						<div class="card-header">
+							<i class="fas fa-table mr-1"></i> 전체 예약 현황
+						</div>
 						<div class="searchForm" style=" padding: 20px;">
 							<form id="frmReservationSearch" action="">
 								<input type="date" name="roomDate">
 								<select name="order">
-									<option>전체</option>
+									<option selected="selected">예약날짜순</option>
 									<option>예약번호순</option>
-									<option>예약날짜순</option>
 									<option>결제구분순</option>
 								</select>
 								
@@ -62,8 +61,8 @@
 										<td>${vo.startTime}시 ~ ${vo.endTime}시 (총 ${vo.roomTime}시간)</td>
 										<td>${vo.roomUser}</td>
 										<td>${vo.roomDate}</td>
-										<td>${vo.payment}</td>
 										<td>${vo.roomPrice}</td>
+										<td>${vo.payment}</td>
 									</tr>
 									</c:forEach>
 								</tbody>
