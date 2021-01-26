@@ -23,7 +23,7 @@ public class ReservationService {
 		/*
 		 * System.out.println("리스트는 : "+memberVO.getReservationVO()); long num =
 		 * memberVO.getReservationVO().get(0).getRevNum();
-		 */
+		 */ //리스트가 넘어오긴 하는데 그걸 어떻게 DB쪽에 각각 변수에 매핑시켜서 보내는지 모르겠음.
 		System.out.println("service --------------");
 		//System.out.println("number: " +num);
 		

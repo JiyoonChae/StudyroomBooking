@@ -45,3 +45,13 @@
     color: #fff;
 }
 
+.custom_calendar_table tbody td.today {
+    background-color: #ffb400;
+    color: #fff;
+    pointer-events: none;
+}
+
+.custom_calendar_table tbody td.before {
+    color: #c0c0c0;
+    pointer-events: none;
+}

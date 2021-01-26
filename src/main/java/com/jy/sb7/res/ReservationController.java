@@ -58,17 +58,17 @@ public class ReservationController {
 	
 	//예약 확정 (모달창) 정보 받는 메서드
 	@PostMapping("roomConfirm")
-	public ModelAndView roomConfirm(MemberVO memberVO,ReservationVO resVO, HttpSession session) throws Exception{
+	public ModelAndView roomConfirm(MemberVO memberVO, ReservationVO resVO, HttpSession session) throws Exception{
 		ModelAndView mv= new ModelAndView();
 		System.out.println("예약 정보 insert controller------------------------");
 		MemberVO user =(MemberVO)session.getAttribute("member");
 		
-		memberVO.setId(user.getId());
-		memberVO.setEmail(user.getEmail());
+		memberVO.setId(user.getId());  //DB에 저장할 로그인한 아이디
+		memberVO.setEmail(user.getEmail()); //DB에 저장할 로그인한 이메일
 		System.out.println("예약번호:" +resVO.getRevNum());
 		System.out.println("예약금액: "+resVO.getRoomPrice());
 
-		 memberVO.setResVO(resVO);
+		 memberVO.setResVO(resVO); //DB에 저장할 새로운 예약 정보
 		int result = reservationService.roomConfirm(memberVO);
 		System.out.println("result : " + result );
 		

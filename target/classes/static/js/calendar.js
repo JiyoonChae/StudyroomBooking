@@ -45,17 +45,6 @@ function calendarMaker(target, date) {
     $(target).find("#custom_set_date").append(tag);
     calMoveEvtFn();
 
-	var today = new Date();
-	console.log("오늘:" +today);
-	console.log("nowDATE: "+nowDate);
-	 /*오늘의 날짜에 노란색 칠하기*/
-              if (today.getFullYear() == nowDate.getFullYear()
-                 && today.getMonth() == nowDate.getMonth()
-                 && today.getDate() == nowDate.getDate()) {
-                  //달력에 있는 년,달과 내 컴퓨터의 로컬 년,달이 같고, 일이 오늘의 일과 같으면
-                $(this).css("background", "#FAF58C");//셀의 배경색을 노랑으로 
-               }
-	
 	
     function assembly(year, month) {
         var calendar_html_code =
@@ -113,11 +102,30 @@ function calendarMaker(target, date) {
 				}
 			}			
 			console.log(bookDate);
-			
-
 			$(".reserve_info").text(bookDate);
 			
         });
+
+			//오늘 날짜 표시
+			 var today = new Date();
+  			  console.log("오늘:" + today.getDate());
+		      todayMonth = today.getMonth()+1;
+
+			$('td').each(function(){  //모든 날짜 반복해서 체크, 
+  				var test = $(this).text();
+					/*오늘의 날짜에 노란색 칠하기*/
+						if(year==today.getFullYear() && month==todayMonth&&test == today.getDate()){
+						console.log("오늘표시");
+						$(this).addClass("today");
+						}
+
+					//오늘날짜보다 이전 날짜는 선택 안되게하기
+					if(test < today.getDate() && year==today.getFullYear() && month==todayMonth ){
+						$(this).addClass("before");
+					}
+			});
+ 		   
+  	
     }
 }  //-----calendarMaker() 종료 --------------------------
 
