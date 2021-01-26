@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 
 
 @Data 
-public class ReservationVO extends MemberVO{
+public class ReservationVO {
 	private long revNum;
 	private long startTime;
 	private long endTime;

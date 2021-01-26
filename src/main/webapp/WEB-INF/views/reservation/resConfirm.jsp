@@ -47,13 +47,13 @@
 			<div class="heading"><h3>예약 정보</h3></div>
 			<div class="reserve-info">
 				<p class="reserve-date">예약 번호
-				<span class="details"> ${resInfo.revNum }</span>
+				<span class="details"> ${resInfo.resVO.revNum }</span>
 				</p>
 				<p class="reserve-date">예약 날짜
-				<span class="details"> ${resInfo.roomDate}  (${resInfo.roomTime} 시간)</span>
+				<span class="details"> ${resInfo.resVO.roomDate}  (${resInfo.resVO.roomTime} 시간)</span>
 				</p>
 				<p class="reserve-date">예약 인원
-					<span class="details"> ${resInfo.roomUser} 인</span>
+					<span class="details"> ${resInfo.resVO.roomUser} 인</span>
 				</p>
 			</div>
 		</article>
@@ -103,7 +103,7 @@
 		<!-- 결제 정보 start-->
 			<article>
 			<div class="heading"><h3>결제 정보</h3></div>
-			<c:if test ="${resInfo.payment eq '바로결제'}"> 
+			<c:if test ="${resInfo.resVO.payment eq '바로결제'}"> 
 				<div class="reserve-info">
 					<p class="reserve-date">결제 번호
 					<span class="details"> ${pay.merchant_uid}</span>
@@ -116,10 +116,10 @@
 					</p>
 				</div>
 			</c:if>
-			<c:if test ="${resInfo.payment eq '현장결제'}"> 
+			<c:if test ="${resInfo.resVO.payment eq '현장결제'}"> 
 				<div class="reserve-info">
 					<p class="reserve-date">결제 할 금액
-					<span class="details"> ${resInfo.roomPrice} 원</span>
+					<span class="details"> ${resInfo.resVO.roomPrice} 원</span>
 					</p>
 					
 				</div>

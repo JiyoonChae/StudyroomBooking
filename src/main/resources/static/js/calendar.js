@@ -292,7 +292,9 @@ $("#confirmRes").click(function(){
 	//id, email 정보 session 에서 받아오기
 	confirmRes();
 }) //현장결제 완료
-
+/*var allData = {"reservationVO.revNum": revNum, "reservationVO.roomType" : roomType, "reservationVO.roomDate" : bookDate,
+"reservationVO.startTime" :min, "reservationVO.endTime" : max, "reservationVO.roomTime" : revTime, "reservationVO.roomUser" : user,
+"reservationVO.roomPrice" : finalPrice, "reservationVO.payment" : payment}*/
 function confirmRes (){
 	$.ajax({
 		url:"./roomConfirm",

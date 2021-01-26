@@ -30,9 +30,9 @@ public class ResConfirmInterceptor implements HandlerInterceptor {
 		
 		//revNum 꺼내기 - key를 알고있어야함. ("resInfo", resVO)
 		Map<String, Object> model = modelAndView.getModel();
-		ReservationVO resVO = (ReservationVO)model.get("resInfo");
+		MemberVO resVO = (MemberVO)model.get("resInfo");
 		String user =  resVO.getId();
-		long revNum = resVO.getRevNum();
+		long revNum = resVO.getResVO().getRevNum();
 		System.out.println("컨트롤러 후 id + "+user);
 		System.out.println("예약번호 : "+revNum);
 		if(!id.equals(user)) {
@@ -41,11 +41,7 @@ public class ResConfirmInterceptor implements HandlerInterceptor {
 			modelAndView.setViewName("common/result");
 		}
 		
-		/*
-		 * Object resVO = modelMap.get(();
-		 * 
-		 * if(resVO.getId().equals(obj))
-		 */
+	
 		HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
 	}
 	

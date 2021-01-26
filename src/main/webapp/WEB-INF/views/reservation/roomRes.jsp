@@ -215,6 +215,7 @@ span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; 
     
       <!-- Modal content-->
       <div class="modal-content">
+      <form action="./roomConfirm" method="post" id="resForm">
         <div class="modal-header" style="display: block;">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">예약 확정</h4>
@@ -223,12 +224,12 @@ span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; 
           <p class="title">결제하시겠습니까? </p>
           <div class="reserve-info">
           <ul class="reserve-info-wrap">
-          	<li><span class="tit">스터디룸 </span><input type="text" name="roomType" class="reserveRoom"></li>
-          	<li><span class="tit">예약 날짜 </span> <input type="text" name="roomDate" class="reserveDate"></li>
-          	<li><span class="tit">시작 시간 </span><input type="text" name="startTime" class="startTime"></li>
-          	<li><span class="tit">종료 시간 </span><input type="text" name="endTime" class="endTime"></li>
-          	<li><span class="tit">인원 </span><input type="text" name="roomUser" class="reserveUser"></li>
-          	<li style="border-botton:none;"><span class="tit">총 금액</span> <input type="text" name="roomPrice" id="roomPrice"></li>
+          	<li><span class="tit">스터디룸 </span><input type="text" name="reservationVO.roomType" class="reserveRoom"></li>
+          	<li><span class="tit">예약 날짜 </span> <input type="text" name="reservationVO.roomDate" class="reserveDate"></li>
+          	<li><span class="tit">시작 시간 </span><input type="text" name="reservationVO.startTime" class="startTime"></li>
+          	<li><span class="tit">종료 시간 </span><input type="text" name="reservationVO.endTime" class="endTime"></li>
+          	<li><span class="tit">인원 </span><input type="text" name="reservationVO.roomUser" class="reserveUser"></li>
+          	<li style="border-botton:none;"><span class="tit">총 금액</span> <input type="text" name="reservationVO.roomPrice" id="roomPrice"></li>
           </ul>
           </div>
         </div>
@@ -238,7 +239,7 @@ span.price {color: #cc8c28; border:2px solid #ffc000; background-color:#ffd014; 
         	<button class="btn btn-warning" id="cardPay" title="바로결제">바로 결제</button>
           <button type="button" class="btn btn-res" data-dismiss="modal" id="confirmRes" title="현장결제">현장결제</button>
         </div>
-      
+      	</form>
     </div>
  </div> 
  </div> 
