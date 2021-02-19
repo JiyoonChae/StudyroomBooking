@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 
 
 @Data 
-public class ReservationVO extends MemberVO{
+public class ReservationVO {
 	private long revNum;
 	private long startTime;
 	private long endTime;
@@ -22,6 +22,7 @@ public class ReservationVO extends MemberVO{
 	private int roomPrice;
 	private String payment;
 	private Date bookDate;
+	private String id;
 	
 	private StudyRoomsVO studyRoomsVO;
 }

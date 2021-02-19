@@ -1,5 +1,7 @@
 package com.jy.sb7.mypage;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,17 +29,40 @@ public class MyPageController {
 		return "reservation";
 	}
 	
-	@GetMapping("reservationList")
+	//@GetMapping("reservationList")
 	public ModelAndView getList(HttpSession session, Pager pager) throws Exception {
-		//MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		MemberVO memberVO = new MemberVO();
-		memberVO.setId("admin");
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		//MemberVO memberVO = new MemberVO();
+		//memberVO.setId("admin");
 		ReservationVO reservationVO = new ReservationVO();
-		reservationVO.setId(memberVO.getId());
+		//reservationVO.setId(memberVO.getId());
 		
 		pager.setPage(1);
 		pager.setSize(4);
 		PageInfo<ReservationVO> pageInfo = mypageService.getReservationList(reservationVO, pager);
+		System.out.println(pageInfo.getTotal());
+		System.out.println(pageInfo.getPageNum());
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("pager", pager);
+		mv.addObject("pageInfo", pageInfo);
+		mv.addObject("reservation", pageInfo.getList());
+		mv.setViewName("mypage/reservationList");
+		return mv;
+	}
+	
+	@GetMapping("reservationList")
+	public ModelAndView getMemberReservationList(HttpSession session, Pager pager) throws Exception {
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		//MemberVO memberVO = new MemberVO();
+		//memberVO.setId("admin");
+		System.out.println(memberVO.getId());
+		
+		List<ReservationVO> list = mypageService.getMemberReservationList(memberVO);
+		
+		pager.setPage(1);
+		pager.setSize(4);
+		PageInfo<ReservationVO> pageInfo = mypageService.getMemberReservationList(memberVO, pager);
 		System.out.println(pageInfo.getTotal());
 		System.out.println(pageInfo.getPageNum());
 		

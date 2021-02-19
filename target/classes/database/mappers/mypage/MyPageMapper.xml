@@ -59,4 +59,35 @@
 			<result column="fileUrl" property="fileUrl"/>
 		</association>
 	</resultMap>
+	
+	
+	
+	
+	
+	<select id="getMemberReservationList" parameterType="MemberVO" resultMap="getMemberReservationListResult">
+		select R.*, S.roomName, S.fileUrl
+		from member M
+		left join reservation R on (M.id = R.id)
+		left join studyRooms S on (R.roomType = S.roomNum)
+		where M.id = #{id}
+	</select>
+	
+	<resultMap type="ReservationVO" id="getMemberReservationListResult">
+		<id column="revNum" property="revNum"/>
+		<result column="id" property="id"/>
+		<result column="startTime" property="startTime"/>
+		<result column="endTime" property="endTime"/>
+		<result column="roomTime" property="roomTime"/>
+		<result column="roomUser" property="roomUser"/>
+		<result column="roomDate" property="roomDate"/>
+		<result column="roomType" property="roomType"/>
+		<result column="roomPrice" property="roomPrice"/>
+		<result column="payment" property="payment"/>
+		<association property="studyRoomsVO" javaType="StudyRoomsVO">
+			<id column="roomNum" property="roomNum"/>
+			<result column="roomName" property="roomName"/>
+			<result column="fileUrl" property="fileUrl"/>
+		</association>
+	</resultMap>
+	
 </mapper>

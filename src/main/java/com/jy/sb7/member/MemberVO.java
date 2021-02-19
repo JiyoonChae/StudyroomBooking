@@ -1,6 +1,7 @@
 package com.jy.sb7.member;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.jy.sb7.res.ReservationVO;
 
@@ -19,7 +20,11 @@ public class MemberVO {
 	private String joinPath; //kakao, naver
 	private Date joinDate;
 	
-	//private ReservationVO reservationVO;
+	private List<ReservationVO> reservationVOs;
+	private ReservationVO reservationVO;
+	
+	
+	
 	public String getName() {
 		if(this.name == null) {
 			this.name="name";

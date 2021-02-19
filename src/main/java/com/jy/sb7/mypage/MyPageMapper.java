@@ -18,4 +18,5 @@ public interface MyPageMapper {
 	
 	public List<ReservationVO> getReservationList(ReservationVO reservationVO);
 	
+	public List<ReservationVO> getMemberReservationList(MemberVO memberVO);
 }

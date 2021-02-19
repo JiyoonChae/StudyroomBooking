@@ -9,7 +9,7 @@
   	</select>
   	
   	<insert id="setMemberJoin" parameterType="MemberVO">
-  		insert into member (id, pw, name, email, phone, adminNum, type, joinPath, joinDate) values(#{id}, #{pw}, #{name}, #{email}, '010-2222-3333', null, 1, #{joinPath}, sysdate());
+  		insert into member (id, pw, name, email, phone, adminNum, type, joinPath, joinDate) values(#{id}, #{pw}, #{name}, #{email}, '010-2222-3333', null, 1, #{joinPath}, sysdate())
   	</insert>
   	
   	<select id="memberCheck" parameterType="MemberVO" resultType="MemberVO">
@@ -24,11 +24,12 @@
   		select id from member where name =#{name} and email=#{email}
   	</select>
   
-	  <select id="findMyPw" parameterType="MemberVO" resultType="MemberVO">
-	  		select id, pw, email from member where id =#{id} and email=#{email}
-	  	</select>
-  		<update id="updateTempPw" parameterType="MemberVO">
-  			update member set pw=#{pw} where id=#{id}
-  		</update>
+	<select id="findMyPw" parameterType="MemberVO" resultType="MemberVO">
+		select id, pw, email from member where id =#{id} and email=#{email}
+	</select>
+	
+  	<update id="updateTempPw" parameterType="MemberVO">
+  		update member set pw=#{pw} where id=#{id}
+  	</update>
   
   </mapper>

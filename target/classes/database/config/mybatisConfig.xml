@@ -13,6 +13,7 @@
 		<typeAlias type="com.github.pagehelper.PageInfo" alias="PageInfo"/>
 		
 		<typeAlias type="com.jy.sb7.member.MemberVO" alias="MemberVO"/>
+		<typeAlias type="com.jy.sb7.member.admin.MemberAdminVO" alias="AdminVO"/>
 		<typeAlias type="com.jy.sb7.res.ReservationVO" alias="ReservationVO"/>
 		<typeAlias type="com.jy.sb7.res.pay.PayVO" alias="PayVO"/>
 		<typeAlias type="com.jy.sb7.room.StudyRoomsVO" alias="StudyRoomsVO"/>
