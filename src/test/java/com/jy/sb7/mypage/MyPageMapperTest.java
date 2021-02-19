@@ -27,11 +27,11 @@ class MyPageMapperTest {
 	void getMemberReservationListTest() throws Exception {
 		MemberVO memberVO = new MemberVO();
 		memberVO.setId("admin");
-		memberVO = mypageMapper.getMemberReservationList(memberVO);
+		List<ReservationVO> list = mypageMapper.getMemberReservationList(memberVO);
 		
 		System.out.println(memberVO.getId());
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-		for(ReservationVO reservationVO : memberVO.getReservationVOs()) {
+		for(ReservationVO reservationVO : list) {
 			System.out.println(reservationVO.getRevNum());
 			System.out.println(reservationVO.getStartTime());
 			System.out.println(reservationVO.getEndTime());
@@ -45,7 +45,7 @@ class MyPageMapperTest {
 			System.out.println(reservationVO.getStudyRoomsVO().getFileUrl());
 		}
 		
-		assertNotNull(memberVO);
+		assertNotNull(list);
 		
 	}
 	
