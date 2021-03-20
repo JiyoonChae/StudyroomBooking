@@ -29,8 +29,10 @@ public class MyPageController {
 		return "reservation";
 	}
 	
+	//예약 내역 리스트 페이징 처리 메서드
 	//@GetMapping("reservationList")
 	public ModelAndView getList(HttpSession session, Pager pager) throws Exception {
+		//로그인 회원 정보를 세션에서 읽어오기
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		//MemberVO memberVO = new MemberVO();
 		//memberVO.setId("admin");
@@ -51,11 +53,11 @@ public class MyPageController {
 		return mv;
 	}
 	
+	//예약 내역 리스트 불러오는 메서드
 	@GetMapping("reservationList")
 	public ModelAndView getMemberReservationList(HttpSession session, Pager pager) throws Exception {
+		//로그인회원 정보를 세션에서 읽어오기
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		//MemberVO memberVO = new MemberVO();
-		//memberVO.setId("admin");
 		System.out.println(memberVO.getId());
 		
 		List<ReservationVO> list = mypageService.getMemberReservationList(memberVO);
