@@ -6,8 +6,9 @@
 
 ---
 
-1차 팀 프로젝트 때 회의를 위해 자주 가던 스터디룸 예약 사이트를 클론 코딩 하고, 1차 프로젝트 때 담당하지 않았던 로그인, 결제 부분을 구현해보기 위해 결정했습니다.
+1차 팀 프로젝트 때 회의를 위해 자주 가던 스터디룸 예약 사이트를 클론 코딩 하고, 1차 프로젝트 때 담당하지 않았던 로그인, 결제 부분을 구현해보기 위해 결정했습니다.  
 
+[Studyroom Project PDF file](https://github.com/JiyoonChae/StudyroomBooking/blob/53846e12de3ef6f063a53b3a8a02cb2d4e98d0ef/StudyRoom%20Booking.pdf)
 ![스터디룸](https://user-images.githubusercontent.com/71802752/132086917-9e95591c-5e6d-4753-b309-2be64e5ab741.PNG)
 
 
